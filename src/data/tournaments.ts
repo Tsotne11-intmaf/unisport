@@ -46,9 +46,8 @@ export const tournaments: Tournament[] = [
       ka: 'სოლო · პლეიოფი ორ მოგებამდე',
     },
     status: 'registration_open',
-    // TODO: placeholder dates — set the real ones in the admin panel.
-    startDate: '2026-12-06',
-    endDate: '2026-12-06',
+    startDate: '2026-12-08',
+    endDate: '2026-12-08',
     venue: { en: '', ka: '' },
     city: tbilisi,
     level: 'open',
