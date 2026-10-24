@@ -23,13 +23,17 @@ export function WinnerTeams({ teams }: { teams: WinnerTeam[] }) {
             key={team.clubId}
             className="flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper"
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-ink">
-              <img
-                src={team.photoUrl}
-                alt={club?.name ?? team.clubId}
-                loading="lazy"
-                className="size-full object-cover"
-              />
+            {/* Only the photo clips — the crest hangs over its edge, so the
+                overflow has to stay off this wrapper or it gets cut in half. */}
+            <div className="relative">
+              <div className="aspect-[4/3] overflow-hidden bg-ink">
+                <img
+                  src={team.photoUrl}
+                  alt={club?.name ?? team.clubId}
+                  loading="lazy"
+                  className="size-full object-cover"
+                />
+              </div>
               <span className="absolute top-3 left-3 grid size-7 place-items-center rounded-full bg-ink/85 text-xs font-bold text-white">
                 {index + 1}
               </span>
@@ -38,12 +42,12 @@ export function WinnerTeams({ teams }: { teams: WinnerTeam[] }) {
                   src={club.logoUrl}
                   alt=""
                   aria-hidden="true"
-                  className="absolute -bottom-6 left-4 size-14 rounded-xl border-2 border-paper object-cover"
+                  className="absolute -bottom-8 left-5 size-20 rounded-2xl border-4 border-paper bg-paper object-contain shadow-[0_8px_20px_-10px_rgb(13_14_17_/_0.5)]"
                 />
               )}
             </div>
 
-            <div className="flex flex-1 flex-col p-5 pt-9">
+            <div className="flex flex-1 flex-col p-5 pt-14">
               <h3 className="text-lg font-bold">{club?.name}</h3>
               <p className="mt-1.5 flex-1 text-sm leading-relaxed text-slate">
                 {l(team.highlight)}

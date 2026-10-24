@@ -75,7 +75,7 @@ export function TournamentGroups({ groups }: { groups: TournamentGroup[] }) {
                           </td>
                           <td className="py-3">
                             <span className="flex items-center gap-2.5">
-                              <ClubCrest name={club?.name ?? row.clubId} src={club?.logoUrl ?? null} />
+                              <ClubCrest name={club?.name ?? row.clubId} src={club?.logoUrl ?? null} size={32} />
                               <span className="truncate font-semibold">{club?.name}</span>
                             </span>
                           </td>
@@ -110,6 +110,7 @@ export function ClubCrest({
   size?: number
 }) {
   if (src) {
+    // object-contain, so a crest with its own margins is never cropped.
     return (
       <img
         src={src}
@@ -117,7 +118,7 @@ export function ClubCrest({
         width={size}
         height={size}
         loading="lazy"
-        className="shrink-0 rounded-md object-cover"
+        className="shrink-0 rounded-md bg-mist object-contain"
         style={{ width: size, height: size }}
       />
     )

@@ -53,7 +53,7 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
           return (
             <li key={candidate.id} className="border-b border-line last:border-b-0">
               <div className="flex items-center gap-4 px-5 py-4">
-                <ClubCrest name={club?.name ?? ''} src={club?.logoUrl ?? null} size={36} />
+                <ClubCrest name={club?.name ?? ''} src={club?.logoUrl ?? null} size={40} />
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-3">

@@ -77,7 +77,7 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
                   <img
                     src={club.logoUrl}
                     alt={club.name}
-                    className="size-8 rounded-full object-cover"
+                    className="size-9 rounded-full bg-white object-contain p-0.5"
                   />
                 ) : (
                   <ShirtIcon />
