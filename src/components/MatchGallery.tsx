@@ -54,13 +54,23 @@ export function MatchGallery({
   )
 }
 
-/** The link out to the federation's feed, usable on its own. */
-export function InstagramCard() {
+export const EVENTS_INSTAGRAM_URL = 'https://www.instagram.com/bitiuelebis_welcome2026/'
+
+/** The link out to an account's feed, usable on its own. */
+export function InstagramCard({
+  url = INSTAGRAM_URL,
+  title,
+  body,
+}: {
+  url?: string
+  title?: string
+  body?: string
+} = {}) {
   const { t } = useI18n()
 
   return (
       <a
-        href={INSTAGRAM_URL}
+        href={url}
         target="_blank"
         rel="noreferrer noopener"
         className="mt-5 flex flex-wrap items-center gap-4 rounded-card border border-line bg-paper p-5 transition-colors hover:border-ink/35"
@@ -76,8 +86,8 @@ export function InstagramCard() {
         </span>
 
         <span className="min-w-0 flex-1">
-          <span className="block font-bold">{t('social.title')}</span>
-          <span className="block text-sm text-slate">{t('social.body')}</span>
+          <span className="block font-bold">{title ?? t('social.title')}</span>
+          <span className="block text-sm text-slate">{body ?? t('social.body')}</span>
         </span>
 
         <span className="shrink-0 rounded-pill bg-ink px-4 py-2.5 text-sm font-semibold text-white">

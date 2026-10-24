@@ -15,6 +15,7 @@ export function UniversityPicker({
   counts,
   nameOf,
   logoOf,
+  markClassName,
 }: {
   universities: University[]
   value: string
@@ -24,6 +25,8 @@ export function UniversityPicker({
   /** Override the displayed name and mark, for sections with their own brand. */
   nameOf?: (university: University) => string
   logoOf?: (university: University) => string | null
+  /** Widen the mark for a wordmark logo, which a square box renders too small. */
+  markClassName?: string
 }) {
   const { t, l } = useI18n()
 
@@ -49,6 +52,7 @@ export function UniversityPicker({
           subtitle={l(university.city)}
           university={university}
           logoUrl={logoOf ? logoOf(university) : undefined}
+          markClassName={markClassName}
           count={counts?.[university.id]}
           onClick={() => onChange(university.id)}
         />
@@ -63,6 +67,7 @@ function PickerCard({
   subtitle,
   university,
   logoUrl,
+  markClassName,
   count,
   onClick,
 }: {
@@ -71,6 +76,7 @@ function PickerCard({
   subtitle: string
   university?: University
   logoUrl?: string | null
+  markClassName?: string
   count?: number
   onClick: () => void
 }) {
@@ -87,7 +93,7 @@ function PickerCard({
         <UniversityMark
           university={university}
           logoUrl={logoUrl}
-          className="size-16 rounded-2xl text-sm"
+          className={markClassName ?? 'size-16 rounded-2xl text-sm'}
         />
       ) : (
         <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-mist text-sm font-bold text-slate">

@@ -119,6 +119,11 @@ const dictionary = {
     ka: 'მატჩები, შედეგები, შემადგენლობები და ფოტოები ყოველი ტურიდან.',
   },
   'social.cta': { en: 'Follow on Instagram', ka: 'გამოგვყევი Instagram-ზე' },
+  'social.eventsTitle': { en: 'Bitiuelebis Events', ka: 'ბითიუელების ივენთები' },
+  'social.eventsBody': {
+    en: 'Posters, line-ups and photos from every party.',
+    ka: 'პოსტერები, ლაინაპები და ფოტოები ყოველი წვეულებიდან.',
+  },
 
   'groups.lede': {
     en: 'Five groups, five places in each. The draw is announced before the season starts.',

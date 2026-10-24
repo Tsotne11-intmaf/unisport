@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 import { EventCard } from '@/components/cards'
+import { EVENTS_INSTAGRAM_URL, InstagramCard } from '@/components/MatchGallery'
 import { UniversityPicker } from '@/components/UniversityPicker'
 import { Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
@@ -54,6 +55,7 @@ export function EventsPage() {
           onChange={setUniversity}
           nameOf={(university) => l(university.eventsName ?? university.name)}
           logoOf={(university) => university.eventsLogoUrl ?? university.logoUrl}
+          markClassName="h-16 w-28 rounded-2xl text-sm"
           counts={Object.fromEntries(
             hub.universities.map((university) => [
               university.id,
@@ -79,7 +81,7 @@ export function EventsPage() {
       </section>
 
       {past.length > 0 && (
-        <section className="shell pb-14">
+        <section className="shell pb-12">
           <SectionHeading index={3} title={t('section.pastEvents')} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {past.map((event) => (
@@ -88,6 +90,14 @@ export function EventsPage() {
           </div>
         </section>
       )}
+
+      <section className="shell pb-14">
+        <InstagramCard
+          url={EVENTS_INSTAGRAM_URL}
+          title={t('social.eventsTitle')}
+          body={t('social.eventsBody')}
+        />
+      </section>
     </Themed>
   )
 }
