@@ -61,8 +61,8 @@ export const news: NewsItem[] = [
       ka: 'თექვსმეტი წყვილი და პირდაპირი ნოკაუტი — 12 და 13 ნოემბერს, პადელ პარკ საბურთალოზე.',
     },
     body: {
-      en: 'The BTU Padel Cup is played over two days at Padel Park Saburtalo. The format is a straight knockout, so a single defeat ends your weekend. A pair enters for 160 GEL, and both players give their name, surname, email, phone number and photo on the form. Entries are open from 1 to 10 November, and with only sixteen places the draw fills quickly.',
-      ka: 'BTU-ს პადელის თასი ორი დღის განმავლობაში, პადელ პარკ საბურთალოზე გაიმართება. ფორმატი პირდაპირი ნოკაუტია, ამიტომ პირველივე მარცხი ტურნირიდან გასვლას ნიშნავს. წყვილის შენატანი 160 ლარია, ფორმაში კი ორივე მოთამაშე უთითებს სახელს, გვარს, ელფოსტას, ტელეფონის ნომერსა და ფოტოს. რეგისტრაცია 1-დან 10 ნოემბრამდე გრძელდება და, რადგან ადგილი სულ თექვსმეტია, ბადე სწრაფად ივსება.',
+      en: 'The BTU Padel Cup is played over two days at Padel Park Saburtalo. The format is a straight knockout, so a single defeat ends your weekend. A pair enters for 200 GEL, and both players give their name, surname, email, phone number and photo on the form. Entries are open from 1 to 10 November, and with only sixteen places the draw fills quickly.',
+      ka: 'BTU-ს პადელის თასი ორი დღის განმავლობაში, პადელ პარკ საბურთალოზე გაიმართება. ფორმატი პირდაპირი ნოკაუტია, ამიტომ პირველივე მარცხი ტურნირიდან გასვლას ნიშნავს. წყვილის შენატანი 200 ლარია, ფორმაში კი ორივე მოთამაშე უთითებს სახელს, გვარს, ელფოსტას, ტელეფონის ნომერსა და ფოტოს. რეგისტრაცია 1-დან 10 ნოემბრამდე გრძელდება და, რადგან ადგილი სულ თექვსმეტია, ბადე სწრაფად ივსება.',
     },
     sportId: 'padel',
     universityId: 'btu',

@@ -19,7 +19,7 @@ export const tournaments: Tournament[] = [
     venue: { en: 'Padel Park Saburtalo', ka: 'პადელ პარკი, საბურთალო' },
     city: tbilisi,
     level: 'amateur',
-    fee: 160,
+    fee: 200,
     slots: 16,
     slotsTaken: 0,
     registrationOpensAt: '2026-11-01',
