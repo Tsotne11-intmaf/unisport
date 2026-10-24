@@ -229,19 +229,12 @@ const dictionary = {
   'reg.chooseAnother': { en: 'Pick a different tournament', ka: 'აირჩიე სხვა ტურნირი' },
   'reg.conditions': { en: 'Conditions', ka: 'პირობები' },
   'prize.label': { en: 'Prize pool', ka: 'მოსაგები ფონდი' },
-  'prize.upTo': { en: 'up to', ka: 'მაქსიმუმ' },
+  'prize.tbd': { en: 'To be announced', ka: 'დაზუსტდება' },
+  'prize.afterEntries': { en: 'After entries close', ka: 'რეგისტრაციის შემდეგ' },
   'prize.title': { en: 'Prize pool', ka: 'მოსაგები ფონდი' },
-  'prize.lede': {
-    en: 'The pot is a share of the entry fees, so it grows with every team that enters.',
-    ka: 'ფონდი მონაწილეობის საფასურის ნაწილია, ამიტომ ყოველ დარეგისტრირებულ გუნდთან ერთად იზრდება.',
-  },
-  'prize.teams': { en: 'Teams', ka: 'გუნდი' },
-  'prize.pool': { en: 'Pot', ka: 'ფონდი' },
-  'prize.first': { en: '1st place', ka: 'I ადგილი' },
-  'prize.second': { en: '2nd place', ka: 'II ადგილი' },
   'prize.note': {
-    en: 'Figures are calculated from the current entry fee and confirmed once entries close.',
-    ka: 'თანხები გამოთვლილია მიმდინარე საფასურით და დაზუსტდება რეგისტრაციის დასრულების შემდეგ.',
+    en: 'The exact amount is set once team registration closes and depends on how many teams enter.',
+    ka: 'ზუსტი თანხა გუნდების რეგისტრაციის დასრულების შემდეგ დაფიქსირდება და დამოკიდებულია მონაწილე გუნდების რაოდენობაზე.',
   },
   'reg.indexLede': {
     en: 'Each tournament has its own conditions. Pick one to read them and enter.',

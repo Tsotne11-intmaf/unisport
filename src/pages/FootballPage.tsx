@@ -151,13 +151,26 @@ export function FootballPage() {
         </section>
       )}
 
+      {candidates.length > 0 && (
+        <section className="shell py-8">
+          <SectionHeading
+            index={5}
+            eyebrow={l(currentSeason)}
+            eyebrowStrong
+            title={t('section.vote')}
+          />
+          <p className="mb-5 -mt-2 text-sm text-slate">{t('vote.lede')}</p>
+          <PlayerVote candidates={candidates} />
+        </section>
+      )}
+
       {/* A full-bleed accent band, the way padel marks its loudest section. */}
       {winners.length > 0 && (
         <section className="my-8 bg-football py-14">
           <div className="shell">
             <div className="mb-4 flex items-center gap-2">
               <span className="grid size-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
-                5
+                6
               </span>
               <span className="inline-flex items-center rounded-pill bg-white/20 px-3.5 py-1.5 text-sm font-bold text-white ring-1 ring-white/30">
                 {l(currentSeason)}
@@ -168,19 +181,6 @@ export function FootballPage() {
             </h2>
             <WinnerTeams teams={winners} />
           </div>
-        </section>
-      )}
-
-      {candidates.length > 0 && (
-        <section className="shell py-8">
-          <SectionHeading
-            index={6}
-            eyebrow={l(currentSeason)}
-            eyebrowStrong
-            title={t('section.vote')}
-          />
-          <p className="mb-5 -mt-2 text-sm text-slate">{t('vote.lede')}</p>
-          <PlayerVote candidates={candidates} />
         </section>
       )}
 
