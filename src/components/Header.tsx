@@ -73,7 +73,7 @@ export function Header() {
                 type="button"
                 onClick={() => setLang(code)}
                 aria-pressed={lang === code}
-                className={`cursor-pointer rounded-md px-2 py-1 text-xs font-bold uppercase transition-colors ${
+                className={`cursor-pointer rounded-md px-2.5 py-1.5 text-xs font-bold uppercase transition-colors ${
                   lang === code ? 'bg-ink text-white' : 'text-slate hover:text-ink'
                 }`}
               >

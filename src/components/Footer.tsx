@@ -29,12 +29,14 @@ export function Footer() {
           )}
         </div>
 
-        <nav className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:grid-cols-3">
+        {/* py-1.5 is what makes each row a thumb-sized target on a phone;
+            without it the links are 20px of text with gaps between them. */}
+        <nav className="grid grid-cols-2 gap-x-10 text-sm sm:grid-cols-3">
           {columns.map((column) => (
             <Link
               key={column.to}
               to={column.to}
-              className="text-slate transition-colors hover:text-ink"
+              className="py-1.5 text-slate transition-colors hover:text-ink"
             >
               {t(column.key)}
             </Link>

@@ -14,7 +14,7 @@ export function UniversitiesPage() {
       <section className="border-b border-line bg-mist">
         <div className="shell py-10 sm:py-14">
           <Pill variant="solid">{t('nav.universities')}</Pill>
-          <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">
+          <h1 className="mt-4 text-3xl font-semibold min-[360px]:text-4xl sm:text-5xl">
             {t('section.universities')}
           </h1>
           <p className="mt-2 max-w-xl text-slate">

@@ -12,7 +12,7 @@ export function PrizePool() {
       <p className="text-xs font-bold tracking-widest text-slate uppercase">
         {t('prize.label')}
       </p>
-      <p className="mt-4 text-4xl font-bold sm:text-5xl">{t('prize.tbd')}</p>
+      <p className="mt-4 text-3xl font-bold min-[360px]:text-4xl sm:text-5xl">{t('prize.tbd')}</p>
       <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-graphite">
         {t('prize.note')}
       </p>

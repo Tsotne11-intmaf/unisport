@@ -62,7 +62,7 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
 
           return (
             <li key={candidate.id} className="border-b border-line last:border-b-0">
-              <div className="flex items-center gap-4 px-5 py-4">
+              <div className="flex items-center gap-3 px-4 py-4 sm:gap-4 sm:px-5">
                 <span className="w-4 shrink-0 text-sm font-semibold text-slate tabular-nums">
                   {index + 1}
                 </span>
@@ -71,8 +71,10 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-3">
+                    {/* The name wraps rather than truncates: on a phone the
+                        row is too narrow to hold one on a single line. */}
                     <p
-                      className={`truncate font-semibold ${
+                      className={`leading-snug font-semibold ${
                         empty ? 'text-slate/60 italic' : ''
                       }`}
                     >

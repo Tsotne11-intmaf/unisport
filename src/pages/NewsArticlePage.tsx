@@ -66,11 +66,11 @@ export function NewsArticlePage() {
         />
 
         {university && (
-          <div className="mt-6 flex items-center gap-3 border-y border-line py-4">
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-line py-4">
             <UniversityChip university={university} size="sm" />
             <div className="min-w-0">
               <p className="text-xs text-slate">{t('label.host')}</p>
-              <p className="truncate text-sm font-semibold">{l(university.name)}</p>
+              <p className="text-sm leading-snug font-semibold">{l(university.name)}</p>
             </div>
             <Link
               to={`/news?uni=${university.id}`}

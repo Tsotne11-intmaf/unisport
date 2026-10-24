@@ -88,12 +88,12 @@ export function SectionHeading({
               ))}
           </div>
         )}
-        <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>
+        <h2 className="text-2xl font-semibold min-[360px]:text-3xl sm:text-4xl">{title}</h2>
       </div>
       {action && (
         <Link
           to={action.to}
-          className="shrink-0 text-sm font-semibold text-graphite underline-offset-4 hover:underline"
+          className="shrink-0 py-1.5 text-sm font-semibold text-graphite underline-offset-4 hover:underline"
         >
           {action.label} →
         </Link>

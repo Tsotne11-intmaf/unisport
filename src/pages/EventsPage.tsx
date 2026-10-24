@@ -46,7 +46,7 @@ export function EventsPage() {
           <div className="relative px-6 py-14 sm:px-10 sm:py-20">
             <Pill variant="accent">{t('nav.events')}</Pill>
             <h1
-              className="mt-4 text-4xl font-semibold text-white sm:text-5xl"
+              className="mt-4 text-3xl font-semibold text-white min-[360px]:text-4xl sm:text-5xl"
               style={{ textShadow: '0 2px 24px rgb(0 0 0 / 0.45)' }}
             >
               {t('section.events')}

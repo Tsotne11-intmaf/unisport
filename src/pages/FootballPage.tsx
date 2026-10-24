@@ -90,7 +90,7 @@ export function FootballPage() {
               </span>
             )}
             <h1
-              className={`text-5xl font-bold text-white sm:text-7xl ${picked ? 'mt-5' : ''}`}
+              className={`text-4xl font-bold text-white min-[360px]:text-5xl sm:text-7xl ${picked ? 'mt-5' : ''}`}
               style={{ textShadow: '0 2px 24px rgb(0 0 0 / 0.45)' }}
             >
               {l(sport?.name)}

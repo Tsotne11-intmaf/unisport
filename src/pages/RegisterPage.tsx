@@ -19,7 +19,7 @@ export function RegisterPage() {
       <section className="border-b border-line bg-mist">
         <div className="shell py-12 sm:py-16">
           <Pill variant="solid">{t('nav.register')}</Pill>
-          <h1 className="mt-4 max-w-2xl text-4xl font-semibold sm:text-5xl">
+          <h1 className="mt-4 max-w-2xl text-3xl font-semibold min-[360px]:text-4xl sm:text-5xl">
             {t('section.openNow')}
           </h1>
           <p className="mt-4 max-w-xl text-slate">{t('reg.indexLede')}</p>

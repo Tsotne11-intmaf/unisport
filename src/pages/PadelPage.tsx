@@ -96,7 +96,7 @@ export function PadelPage() {
             </span>
             <Pill variant="solid">{l(sport?.name)}</Pill>
           </div>
-          <h2 className="mb-8 max-w-2xl text-3xl font-semibold sm:text-4xl">
+          <h2 className="mb-8 max-w-2xl text-2xl font-semibold min-[360px]:text-3xl sm:text-4xl">
             {t('section.tournaments')}
           </h2>
           {tournaments.length ? (

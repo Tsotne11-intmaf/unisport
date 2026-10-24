@@ -54,7 +54,7 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
           {l(tournament.summary)}
         </p>
 
-        <dl className="mt-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1.5 text-sm">
+        <dl className="mt-4 grid grid-cols-1 gap-x-4 gap-y-2 min-[360px]:grid-cols-[max-content_minmax(0,1fr)] min-[360px]:gap-y-1.5 text-sm">
           <Row label={t('label.format')} value={l(tournament.format)} />
           <Row
             label={t('label.dates')}
@@ -207,7 +207,7 @@ function Detail({ icon, value }: { icon: ReactNode; value: string }) {
   return (
     <div className="flex items-center gap-2.5">
       <dt className="shrink-0 text-slate">{icon}</dt>
-      <dd className="min-w-0 truncate font-medium">{value}</dd>
+      <dd className="min-w-0 leading-snug font-medium">{value}</dd>
     </div>
   )
 }

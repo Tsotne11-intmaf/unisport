@@ -35,7 +35,7 @@ export function NewsPage() {
       <section className="border-b border-line">
         <div className="shell py-10 sm:py-14">
           <Pill variant="accent">{t('nav.news')}</Pill>
-          <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">{t('section.news')}</h1>
+          <h1 className="mt-4 text-3xl font-semibold min-[360px]:text-4xl sm:text-5xl">{t('section.news')}</h1>
           <p className="mt-2 text-sm text-slate">
             {t('filter.showing')}: {news.length}
           </p>
@@ -45,7 +45,7 @@ export function NewsPage() {
               <p className="mb-2.5 text-xs font-semibold tracking-wide text-slate">
                 {t('filter.sport')}
               </p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <SportChip
                   active={!sportId}
                   label={t('filter.allSports')}

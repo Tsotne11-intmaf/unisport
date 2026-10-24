@@ -35,7 +35,7 @@ export function AddUniversityLens() {
   return (
     <div
       ref={band}
-      className="relative flex min-h-[22rem] items-center justify-center sm:min-h-[26rem]"
+      className="relative flex min-h-[22rem] items-center justify-center overflow-hidden sm:min-h-[26rem]"
     >
       {/* What the lens is reading — the same sentence, too small to bother with. */}
       <p
@@ -53,7 +53,7 @@ export function AddUniversityLens() {
         {/* The handle is drawn first so the rim covers the joint. */}
         <span
           aria-hidden
-          className="absolute h-28 w-5 rounded-full bg-ink"
+          className="absolute h-24 w-5 rounded-full bg-ink sm:h-28"
           style={{
             left: '85.35%',
             top: '85.35%',
@@ -62,9 +62,11 @@ export function AddUniversityLens() {
           }}
         />
 
-        <div className="relative grid size-64 place-items-center overflow-hidden rounded-full border-[7px] border-ink bg-paper shadow-[0_26px_60px_-26px_rgb(13_14_17_/_0.55)] sm:size-72">
+        {/* On a phone the lens comes down a size: at size-64 the handle runs
+            past the right edge and the page scrolls sideways. */}
+        <div className="relative grid size-52 place-items-center overflow-hidden rounded-full border-[7px] border-ink bg-paper shadow-[0_26px_60px_-26px_rgb(13_14_17_/_0.55)] min-[360px]:size-56 sm:size-72">
           <div
-            className={`px-9 text-center transition-all delay-200 duration-700 ease-out motion-reduce:transition-none ${
+            className={`px-5 text-center transition-all delay-200 duration-700 ease-out motion-reduce:transition-none min-[360px]:px-6 sm:px-9 ${
               found ? 'scale-100 opacity-100 blur-0' : 'scale-50 opacity-0 blur-[3px]'
             }`}
           >
