@@ -22,7 +22,7 @@ export function CourtCta({ photo }: { photo: string }) {
           alt=""
           loading="lazy"
           className="absolute inset-0 size-full object-cover mix-blend-luminosity"
-          style={{ objectPosition: '55% 45%' }}
+          style={{ objectPosition: '58% 68%' }}
         />
         <span
           className="absolute inset-0 bg-court/35 mix-blend-multiply"

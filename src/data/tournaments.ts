@@ -20,7 +20,7 @@ export const tournaments: Tournament[] = [
     city: tbilisi,
     level: 'open',
     fee: 160,
-    slots: 32,
+    slots: 16,
     slotsTaken: 0,
     registrationOpensAt: '2026-11-01',
     registrationDeadline: '2026-11-10',

@@ -30,11 +30,12 @@ const dictionary = {
     ka: 'პადელის თასები, ფუტსალის ტურნირები, წვეულებები და განცხადებები თბილისის უნივერსიტეტებიდან. აირჩიე შენი კამპუსი და მთელი საიტი მოგყვება.',
   },
   'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
-  'padel.aboutEyebrow': { en: 'About', ka: 'ჩვენ შესახებ' },
-  'padel.about': {
-    en: 'Your chance to prove on court that you are the best out there.',
-    ka: 'შესაძლებლობა, კორტზე დაამტკიცო შენი პირველობა.',
+  'padel.aboutEyebrow': { en: 'The challenge', ka: 'გამოწვევა' },
+  'padel.aboutLead': {
+    en: 'Step onto the court and prove that',
+    ka: 'გამოდი კორტზე და დაამტკიცე, რომ',
   },
+  'padel.aboutHighlight': { en: 'you are the best', ka: 'საუკეთესო შენ ხარ' },
   'padel.title': { en: 'Padel tournament', ka: 'პადელის ტურნირი' },
   'padel.photoLabel': { en: 'On the campus courts', ka: 'კამპუსის კორტებზე' },
   'padel.placesLeft': { en: 'Places left', ka: 'თავისუფალი ადგილი' },

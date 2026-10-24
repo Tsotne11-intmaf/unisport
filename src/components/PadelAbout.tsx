@@ -19,9 +19,18 @@ export function PadelAbout({ tournaments }: { tournaments: Tournament[] }) {
     <div>
       <div className="mx-auto max-w-3xl text-center">
         <Pill variant="soft">{t('padel.aboutEyebrow')}</Pill>
-        <p className="mt-5 text-2xl leading-snug font-semibold text-balance sm:text-3xl">
-          {t('padel.about')}
-        </p>
+        {/* A heading, so it picks up the display face, with the payoff
+            highlighted the way the accent is used elsewhere. */}
+        <h2 className="mt-6 text-3xl leading-[1.15] font-semibold text-balance sm:text-5xl">
+          {t('padel.aboutLead')}{' '}
+          <span className="relative inline-block whitespace-nowrap">
+            <span
+              className="absolute inset-x-[-0.12em] bottom-[0.08em] block h-[0.42em] rounded-sm bg-padel"
+              aria-hidden="true"
+            />
+            <span className="relative">{t('padel.aboutHighlight')}</span>
+          </span>
+        </h2>
       </div>
 
       <div className="mt-10 grid gap-4">
