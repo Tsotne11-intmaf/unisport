@@ -1,12 +1,9 @@
 import { useState } from 'react'
 
-import { clubs, type VoteCandidate } from '@/data/football'
+import type { VoteCandidate } from '@/data/football'
 import { submitVote } from '@/data/repository'
 import { useI18n } from '@/lib/i18n'
 
-import { ClubCrest } from './TournamentGroups'
-
-const clubIndex = new Map(clubs.map((club) => [club.id, club]))
 const STORAGE_KEY = 'unisport-player-vote'
 
 function readStoredVote(): string | null {
@@ -19,7 +16,7 @@ function readStoredVote(): string | null {
 
 /** One vote per browser. Good enough for a campus poll; swap for auth if it needs teeth. */
 export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
-  const { t, l } = useI18n()
+  const { t } = useI18n()
   const [votedFor, setVotedFor] = useState<string | null>(readStoredVote)
   const [storedRemotely, setStoredRemotely] = useState(true)
 
@@ -44,8 +41,7 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
   return (
     <div className="overflow-hidden rounded-card border border-line bg-paper">
       <ul>
-        {ranked.map((candidate) => {
-          const club = clubIndex.get(candidate.clubId)
+        {ranked.map((candidate, index) => {
           const count = tally(candidate)
           const share = total > 0 ? Math.round((count / total) * 100) : 0
           const isChoice = votedFor === candidate.id
@@ -53,7 +49,9 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
           return (
             <li key={candidate.id} className="border-b border-line last:border-b-0">
               <div className="flex items-center gap-4 px-5 py-4">
-                <ClubCrest name={club?.name ?? ''} src={club?.logoUrl ?? null} size={40} />
+                <span className="w-5 shrink-0 text-sm font-semibold text-slate tabular-nums">
+                  {index + 1}
+                </span>
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-baseline justify-between gap-3">
@@ -65,9 +63,6 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
                       {count} {t('vote.total')}
                     </p>
                   </div>
-                  <p className="truncate text-xs text-slate">
-                    {l(candidate.position)} · {club?.name}
-                  </p>
 
                   {/* The bar only means anything once a vote has been cast. */}
                   {votedFor && (

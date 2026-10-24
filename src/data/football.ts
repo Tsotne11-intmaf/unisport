@@ -1,6 +1,6 @@
 import type { Localized } from '@/types'
 
-/** A club playing inside a university's own football league. */
+/** A club playing inside a university's own league. */
 export interface Club {
   id: string
   name: string
@@ -8,22 +8,13 @@ export interface Club {
   universityId: string
 }
 
-export interface GroupStanding {
-  clubId: string
-  played: number
-  won: number
-  drawn: number
-  lost: number
-  points: number
-}
-
-/** The groups a university's tournament is split into — rendered as collapsible rows. */
+/** A group in the league draw — five clubs each, shown as a compact tile. */
 export interface TournamentGroup {
   id: string
   tournamentId: string
   code: string
   name: Localized
-  standings: GroupStanding[]
+  clubIds: string[]
 }
 
 export type AllstarRole = 'gk' | 'defender' | 'midfielder' | 'striker'
@@ -34,7 +25,6 @@ export interface AllstarSlot {
   role: AllstarRole
   x: number
   y: number
-  /** Filled in once voting closes; empty slots render as open positions. */
   playerName: string | null
   clubId: string | null
   isCaptain: boolean
@@ -46,6 +36,8 @@ export interface AllstarSquad {
   round: string
   season: string
   slots: AllstarSlot[]
+  /** Named substitutes, listed under the pitch the way the match graphic does. */
+  bench: Array<{ id: string; playerName: string; clubId: string | null }>
 }
 
 export interface WinnerTeam {
@@ -57,38 +49,63 @@ export interface WinnerTeam {
   highlight: Localized
 }
 
+/** Nothing but a name until the round's shortlist is settled. */
 export interface VoteCandidate {
   id: string
   name: string
-  clubId: string
-  position: Localized
   votes: number
 }
 
 export const clubs: Club[] = [
-  {
-    id: 'rkinigzelebi',
-    name: 'FC Rkinigzelebi',
-    logoUrl: '/teams/rkinigzelebi-logo.png',
-    universityId: 'btu',
-  },
-  {
-    id: 'cloudy-street',
-    name: 'Cloudy Street FC',
-    logoUrl: '/teams/cloudy-street-logo.webp',
-    universityId: 'btu',
-  },
+  // Group A
+  { id: 'wasted-talents', name: 'FC Wasted Talents', logoUrl: null, universityId: 'btu' },
+  { id: 'remontada-21', name: 'FC Remontada 21', logoUrl: null, universityId: 'btu' },
+  { id: 'invictus', name: 'Invictus', logoUrl: null, universityId: 'btu' },
+  { id: 'gorlocks', name: 'FC Gorlocks', logoUrl: null, universityId: 'btu' },
+  { id: 'vazisubani', name: 'FC Vazisubani', logoUrl: null, universityId: 'btu' },
+
+  // Group B
+  { id: 'bravo', name: 'FC Bravo', logoUrl: null, universityId: 'btu' },
+  { id: 'sunderland', name: 'Sunderland', logoUrl: null, universityId: 'btu' },
   {
     id: 'galacticos',
     name: 'FC Galacticos',
     logoUrl: '/teams/galacticos-logo.png',
     universityId: 'btu',
   },
-  { id: 'atlantis', name: 'FC Atlantis', logoUrl: null, universityId: 'btu' },
-  { id: 'vake-united', name: 'Vake United', logoUrl: null, universityId: 'btu' },
-  { id: 'mtatsminda', name: 'FC Mtatsminda', logoUrl: null, universityId: 'btu' },
-  { id: 'saburtalo-students', name: 'Saburtalo Students', logoUrl: null, universityId: 'btu' },
-  { id: 'old-tbilisi', name: 'Old Tbilisi FC', logoUrl: null, universityId: 'btu' },
+  { id: 'winterfell', name: 'Winterfell', logoUrl: null, universityId: 'btu' },
+  { id: 'wildcard-united', name: 'Wildcard United', logoUrl: null, universityId: 'btu' },
+
+  // Group C
+  { id: 'phoenix', name: 'FC Phoenix', logoUrl: null, universityId: 'btu' },
+  { id: 'websteri', name: 'FC Websteri', logoUrl: null, universityId: 'btu' },
+  { id: 'kenzo', name: 'FC Kenzo', logoUrl: null, universityId: 'btu' },
+  { id: 'saztavi', name: 'FC Saztavi', logoUrl: null, universityId: 'btu' },
+  { id: 'davaii', name: 'Davaii', logoUrl: null, universityId: 'btu' },
+
+  // Group D
+  { id: 'black-legion', name: 'Black Legion', logoUrl: null, universityId: 'btu' },
+  { id: 'boixos-nois', name: 'Boixos Nois', logoUrl: null, universityId: 'btu' },
+  { id: 'no-talent-united', name: 'NO Talent United', logoUrl: null, universityId: 'btu' },
+  {
+    id: 'rkinigzelebi',
+    name: 'Rkinigzelebi',
+    logoUrl: '/teams/rkinigzelebi-logo.png',
+    universityId: 'btu',
+  },
+  { id: 'midnight', name: 'FC Midnight', logoUrl: null, universityId: 'btu' },
+
+  // Group E
+  { id: 'maestro', name: 'FC Maestro', logoUrl: null, universityId: 'btu' },
+  {
+    id: 'claudy-street',
+    name: 'Claudy Street',
+    logoUrl: '/teams/cloudy-street-logo.webp',
+    universityId: 'btu',
+  },
+  { id: 'allstar', name: 'Allstar', logoUrl: null, universityId: 'btu' },
+  { id: 'la-passion', name: 'La Passion', logoUrl: null, universityId: 'btu' },
+  { id: 'mstovrebi', name: 'Mstovrebi', logoUrl: null, universityId: 'btu' },
 ]
 
 export const tournamentGroups: TournamentGroup[] = [
@@ -97,42 +114,94 @@ export const tournamentGroups: TournamentGroup[] = [
     tournamentId: 'btu-football-league',
     code: 'A',
     name: { en: 'Group A', ka: 'ჯგუფი A' },
-    standings: [
-      { clubId: 'rkinigzelebi', played: 5, won: 4, drawn: 1, lost: 0, points: 13 },
-      { clubId: 'cloudy-street', played: 5, won: 3, drawn: 1, lost: 1, points: 10 },
-      { clubId: 'atlantis', played: 5, won: 1, drawn: 2, lost: 2, points: 5 },
-      { clubId: 'vake-united', played: 5, won: 0, drawn: 0, lost: 5, points: 0 },
-    ],
+    clubIds: ['wasted-talents', 'remontada-21', 'invictus', 'gorlocks', 'vazisubani'],
   },
   {
     id: 'btu-league-group-b',
     tournamentId: 'btu-football-league',
     code: 'B',
     name: { en: 'Group B', ka: 'ჯგუფი B' },
-    standings: [
-      { clubId: 'galacticos', played: 5, won: 4, drawn: 0, lost: 1, points: 12 },
-      { clubId: 'mtatsminda', played: 5, won: 3, drawn: 0, lost: 2, points: 9 },
-      { clubId: 'saburtalo-students', played: 5, won: 2, drawn: 1, lost: 2, points: 7 },
-      { clubId: 'old-tbilisi', played: 5, won: 0, drawn: 1, lost: 4, points: 1 },
-    ],
+    clubIds: ['bravo', 'sunderland', 'galacticos', 'winterfell', 'wildcard-united'],
+  },
+  {
+    id: 'btu-league-group-c',
+    tournamentId: 'btu-football-league',
+    code: 'C',
+    name: { en: 'Group C', ka: 'ჯგუფი C' },
+    clubIds: ['phoenix', 'websteri', 'kenzo', 'saztavi', 'davaii'],
+  },
+  {
+    id: 'btu-league-group-d',
+    tournamentId: 'btu-football-league',
+    code: 'D',
+    name: { en: 'Group D', ka: 'ჯგუფი D' },
+    clubIds: ['black-legion', 'boixos-nois', 'no-talent-united', 'rkinigzelebi', 'midnight'],
+  },
+  {
+    id: 'btu-league-group-e',
+    tournamentId: 'btu-football-league',
+    code: 'E',
+    name: { en: 'Group E', ka: 'ჯგუფი E' },
+    clubIds: ['maestro', 'claudy-street', 'allstar', 'la-passion', 'mstovrebi'],
   },
 ]
 
-/**
- * The ALLSTAR XI. Slots stay empty until the vote closes — the pitch is the
- * place the winners get announced, so the shape is drawn even while unfilled.
- */
+/** The 2025 All-Star XI, as published on the match graphic. */
 export const allstarSquad: AllstarSquad = {
-  id: 'btu-allstar-2026',
+  id: 'btu-allstar-2025',
   tournamentId: 'btu-football-league',
   round: 'A17',
-  season: '2026',
+  season: '2025',
   slots: [
-    { id: 'st', role: 'striker', x: 50, y: 17, playerName: null, clubId: null, isCaptain: false },
-    { id: 'cm', role: 'midfielder', x: 50, y: 42, playerName: null, clubId: null, isCaptain: false },
-    { id: 'lb', role: 'defender', x: 23, y: 62, playerName: null, clubId: null, isCaptain: false },
-    { id: 'rb', role: 'defender', x: 77, y: 62, playerName: null, clubId: null, isCaptain: false },
-    { id: 'gk', role: 'gk', x: 50, y: 84, playerName: null, clubId: null, isCaptain: true },
+    {
+      id: 'st',
+      role: 'striker',
+      x: 50,
+      y: 17,
+      playerName: 'M. Asatiani',
+      clubId: 'claudy-street',
+      isCaptain: false,
+    },
+    {
+      id: 'cm',
+      role: 'midfielder',
+      x: 50,
+      y: 42,
+      playerName: 'T. Kvatchadze',
+      clubId: 'claudy-street',
+      isCaptain: false,
+    },
+    {
+      id: 'lb',
+      role: 'defender',
+      x: 23,
+      y: 62,
+      playerName: 'T. Meladze',
+      clubId: 'galacticos',
+      isCaptain: false,
+    },
+    {
+      id: 'rb',
+      role: 'defender',
+      x: 77,
+      y: 62,
+      playerName: 'N. Surguladze',
+      clubId: 'rkinigzelebi',
+      isCaptain: false,
+    },
+    {
+      id: 'gk',
+      role: 'gk',
+      x: 50,
+      y: 84,
+      playerName: 'D. Miminoshvili',
+      clubId: null,
+      isCaptain: true,
+    },
+  ],
+  bench: [
+    { id: 'sub-1', playerName: 'N. Pirtskalava', clubId: 'claudy-street' },
+    { id: 'sub-2', playerName: 'L. Leqvinidze', clubId: 'galacticos' },
   ],
 }
 
@@ -144,12 +213,12 @@ export const winnerTeams: WinnerTeam[] = [
     bronze: 0,
     photoUrl: '/teams/rkinigzelebi-team.webp',
     highlight: {
-      en: 'Two titles and still unbeaten at the top of Group A.',
-      ka: 'ორი ტიტული და კვლავ უმარცხოდ ჯგუფი A-ს სათავეში.',
+      en: 'Two titles — the most decorated club in the league.',
+      ka: 'ორი ტიტული — ლიგის ყველაზე ტიტულოვანი კლუბი.',
     },
   },
   {
-    clubId: 'cloudy-street',
+    clubId: 'claudy-street',
     gold: 1,
     silver: 2,
     bronze: 0,
@@ -172,40 +241,11 @@ export const winnerTeams: WinnerTeam[] = [
   },
 ]
 
+/** Placeholder shortlist — swap the names once the round's nominees are set. */
 export const voteCandidates: VoteCandidate[] = [
-  {
-    id: 'cand-1',
-    name: 'D. Miminoshvili',
-    clubId: 'rkinigzelebi',
-    position: { en: 'Goalkeeper', ka: 'მეკარე' },
-    votes: 184,
-  },
-  {
-    id: 'cand-2',
-    name: 'M. Asatiani',
-    clubId: 'cloudy-street',
-    position: { en: 'Striker', ka: 'თავდამსხმელი' },
-    votes: 167,
-  },
-  {
-    id: 'cand-3',
-    name: 'T. Kvatchadze',
-    clubId: 'cloudy-street',
-    position: { en: 'Midfielder', ka: 'ნახევარმცველი' },
-    votes: 142,
-  },
-  {
-    id: 'cand-4',
-    name: 'N. Surguladze',
-    clubId: 'rkinigzelebi',
-    position: { en: 'Defender', ka: 'მცველი' },
-    votes: 118,
-  },
-  {
-    id: 'cand-5',
-    name: 'T. Meladze',
-    clubId: 'galacticos',
-    position: { en: 'Defender', ka: 'მცველი' },
-    votes: 96,
-  },
+  { id: 'cand-1', name: 'D. Miminoshvili', votes: 184 },
+  { id: 'cand-2', name: 'M. Asatiani', votes: 167 },
+  { id: 'cand-3', name: 'T. Kvatchadze', votes: 142 },
+  { id: 'cand-4', name: 'N. Surguladze', votes: 118 },
+  { id: 'cand-5', name: 'T. Meladze', votes: 96 },
 ]

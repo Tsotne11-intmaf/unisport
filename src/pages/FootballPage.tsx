@@ -46,10 +46,9 @@ export function FootballPage() {
   const visibleIds = new Set(tournaments.map((tournament) => tournament.id))
   const groups = tournamentGroups.filter((group) => visibleIds.has(group.tournamentId))
   const winners = winnerTeams.filter((team) => belongsTo(team.clubId, universityId))
-  const candidates = voteCandidates.filter((candidate) =>
-    belongsTo(candidate.clubId, universityId),
-  )
   const showSquad = visibleIds.has(allstarSquad.tournamentId)
+  // The poll is run by the same league as the All-Star squad, so they appear together.
+  const candidates = showSquad ? voteCandidates : []
 
   const hostedCounts = Object.fromEntries(
     hub.universities.map((university) => [

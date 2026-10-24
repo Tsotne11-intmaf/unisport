@@ -68,17 +68,23 @@ const dictionary = {
   'section.vote': { en: 'Player of the week', ka: 'კვირის საუკეთესო მოთამაშე' },
 
   'groups.lede': {
-    en: 'Open a group to see the table as it stands.',
-    ka: 'გახსენი ჯგუფი და ნახე მიმდინარე ცხრილი.',
+    en: 'Five groups, five clubs in each.',
+    ka: 'ხუთი ჯგუფი, თითოში ხუთი გუნდი.',
   },
   'groups.teams': { en: 'teams', ka: 'გუნდი' },
 
   'allstar.lede': {
-    en: 'The line-up is announced once voting closes — the positions are set, the names are not.',
-    ka: 'შემადგენლობა კენჭისყრის დასრულების შემდეგ ცხადდება — პოზიციები დაფიქსირებულია, სახელები ჯერ არა.',
+    en: 'The XI students voted for last season.',
+    ka: 'გასულ სეზონში სტუდენტების მიერ არჩეული შემადგენლობა.',
   },
   'allstar.empty': { en: 'Open slot', ka: 'თავისუფალი ადგილი' },
   'allstar.round': { en: 'Round', ka: 'ტური' },
+  'allstar.bench': { en: 'Substitutes', ka: 'სათადარიგო' },
+  'allstar.invite': {
+    en: 'Enter the tournament and you have a shot at next season’s All-Star XI.',
+    ka: 'მიიღე მონაწილეობა ტურნირში და შანსი გექნება მომავალი სეზონის ALLSTAR შემადგენლობაში მოხვდე.',
+  },
+  'allstar.inviteCta': { en: 'Enter now', ka: 'დარეგისტრირდი' },
 
   'role.gk': { en: 'Goalkeeper', ka: 'მეკარე' },
   'role.defender': { en: 'Defender', ka: 'მცველი' },
