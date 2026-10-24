@@ -48,6 +48,8 @@ export function RegisterPage() {
   const [team, setTeam] = useState<TeamFormValue>(() =>
     emptyTeamForm(preselected?.squadMin ?? null),
   )
+  /** Cleared only if the visitor asks to see the other open tournaments. */
+  const [lockedToPreselected, setLockedToPreselected] = useState(Boolean(preselected))
 
   /* A student can enter their own university's tournaments plus anything open
      to all campuses — which is exactly what picking a university should reveal. */
@@ -67,6 +69,11 @@ export function RegisterPage() {
   const selected = available.find((tournament) => tournament.id === tournamentId)
 
   const isTeam = selected?.teamBased ?? false
+  // The lock only holds while the chosen campus can actually enter that tournament.
+  const locked =
+    lockedToPreselected &&
+    Boolean(selected) &&
+    available.some((tournament) => tournament.id === selected?.id)
 
   useEffect(() => {
     if (selected?.teamBased) setTeam(emptyTeamForm(selected.squadMin))
@@ -77,6 +84,7 @@ export function RegisterPage() {
     hub.setMyUniversityId(id)
     // The previous pick may not be open to this campus any more.
     setTournamentId('')
+    setLockedToPreselected(false)
   }
 
   const onSubmit = async (event: FormEvent) => {
@@ -210,6 +218,19 @@ export function RegisterPage() {
               <p className="rounded-xl border border-dashed border-line bg-mist px-5 py-8 text-center text-sm text-slate">
                 {t('reg.noTournaments')}
               </p>
+            ) : locked && selected ? (
+              <div>
+                <TournamentOption tournament={selected} active onSelect={() => {}} />
+                {available.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => setLockedToPreselected(false)}
+                    className="mt-3 cursor-pointer text-xs font-semibold text-slate underline-offset-4 hover:text-ink hover:underline"
+                  >
+                    {t('reg.chooseAnother')}
+                  </button>
+                )}
+              </div>
             ) : (
               <div className="grid gap-2.5">
                 {available.map((tournament) => (

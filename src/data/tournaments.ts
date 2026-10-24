@@ -82,6 +82,6 @@ export const tournaments: Tournament[] = [
     teamBased: true,
     squadMin: 6,
     squadMax: 9,
-    imageUrl: null,
+    imageUrl: '/banners/btu-campus.png',
   },
 ]

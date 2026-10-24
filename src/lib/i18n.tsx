@@ -226,6 +226,7 @@ const dictionary = {
   },
   'reg.opensOn': { en: 'Entries open', ka: 'რეგისტრაცია იხსნება' },
   'reg.window': { en: 'Entry window', ka: 'რეგისტრაციის პერიოდი' },
+  'reg.chooseAnother': { en: 'Pick a different tournament', ka: 'აირჩიე სხვა ტურნირი' },
 
   'section.rules': { en: 'Tournament rules', ka: 'ტურნირის წესები' },
   'rules.lede': {
