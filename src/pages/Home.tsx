@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 
 import { EventCard, NewsCard, TournamentCard } from '@/components/cards'
-import { UniversityFilter } from '@/components/UniversityFilter'
+import { UniversityPicker } from '@/components/UniversityPicker'
+import { UniteBlock } from '@/components/UniteBlock'
 import { Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import {
@@ -32,6 +33,12 @@ export function Home() {
   const events = upcomingEvents(filterEvents(hub.events, { universityId }), 3)
   const news = filterNews(hub.news, { universityId }).slice(0, 4)
   const picked = universityId === ALL ? undefined : hub.universityById(universityId)
+  const hostedCounts = Object.fromEntries(
+    hub.universities.map((university) => [
+      university.id,
+      hub.tournaments.filter((item) => item.hostUniversityId === university.id).length,
+    ]),
+  )
 
   return (
     <Themed theme="neutral">
@@ -78,14 +85,19 @@ export function Home() {
 
       {/* Picking a campus here is what the rest of the site remembers. */}
       <section className="border-b border-line bg-mist">
-        <div className="shell py-8">
-          <UniversityFilter
+        <div className="shell py-12">
+          <SectionHeading
+            index={1}
+            eyebrow={t('nav.universities')}
+            title={t('section.pickUniversity')}
+          />
+          <UniversityPicker
             universities={hub.universities}
             value={universityId}
             onChange={hub.setMyUniversityId}
-            label={t('filter.myUniversity')}
+            counts={hostedCounts}
           />
-          {picked && <p className="mt-3 text-xs text-slate">{t('filter.saved')}</p>}
+          {picked && <p className="mt-4 text-xs text-slate">{t('filter.saved')}</p>}
         </div>
       </section>
 
@@ -110,10 +122,17 @@ export function Home() {
         </div>
       </section>
 
+      {/* The mission, stated once, where the sports have just been introduced. */}
+      <section className="shell pb-6">
+        <Themed theme="news">
+          <UniteBlock />
+        </Themed>
+      </section>
+
       {open.length > 0 && (
         <section className="shell py-10">
           <SectionHeading
-            index={1}
+            index={2}
             eyebrow={t('tab.open')}
             title={t('section.openNow')}
             action={{ to: '/register', label: t('action.register') }}
@@ -129,7 +148,7 @@ export function Home() {
       <section className="shell py-10">
         <Themed theme="events">
           <SectionHeading
-            index={2}
+            index={3}
             eyebrow={t('nav.events')}
             title={t('section.events')}
             action={{ to: '/events', label: t('action.viewAll') }}
@@ -144,31 +163,24 @@ export function Home() {
 
 
       {/* A dark band so the four steps read as one run, not four loose cards. */}
-      <section className="my-10 bg-ink py-16">
+      <section className="my-6 border-y border-line bg-mist py-14">
         <div className="shell">
-          <div className="mb-4 flex items-center gap-2">
-            <span className="grid size-6 place-items-center rounded-full bg-padel text-[11px] font-bold text-ink">
-              3
-            </span>
-            <span className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
-              {t('nav.register')}
-            </span>
-          </div>
-          <h2 className="mb-10 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
-            {t('section.howToJoin')}
-          </h2>
-
+          <SectionHeading
+            index={4}
+            eyebrow={t('nav.register')}
+            title={t('section.howToJoin')}
+          />
           <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, index) => (
               <li
                 key={step.title}
-                className="relative rounded-2xl bg-white/[0.06] p-6 ring-1 ring-white/10 transition-colors hover:bg-white/[0.1]"
+                className="rounded-2xl border border-line bg-paper p-6 transition-colors hover:border-ink/20"
               >
                 <span className="grid size-10 place-items-center rounded-full bg-padel text-base font-bold text-ink">
                   {index + 1}
                 </span>
-                <h3 className="mt-5 font-bold text-white">{t(step.title)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65">{t(step.body)}</p>
+                <h3 className="mt-5 font-bold">{t(step.title)}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate">{t(step.body)}</p>
               </li>
             ))}
           </ol>
@@ -178,7 +190,7 @@ export function Home() {
       <section className="shell py-10">
         <Themed theme="news">
           <SectionHeading
-            index={4}
+            index={5}
             eyebrow={t('nav.news')}
             title={t('section.news')}
             action={{ to: '/news', label: t('action.viewAll') }}

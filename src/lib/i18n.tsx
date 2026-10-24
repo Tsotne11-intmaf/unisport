@@ -43,6 +43,21 @@ const dictionary = {
   'hero.ctaFootball': { en: 'Football', ka: 'ფეხბურთი' },
   'hero.ctaRegister': { en: 'Register for a tournament', ka: 'დარეგისტრირდი ტურნირზე' },
 
+  'unite.eyebrow': { en: 'Our mission', ka: 'ჩვენი მისია' },
+  'unite.titleLead': { en: 'Bringing students', ka: 'სტუდენტების' },
+  'unite.titleMark': { en: 'together', ka: 'გაერთიანება' },
+  'unite.titleTail': {
+    en: 'beyond the lecture hall',
+    ka: 'ლექციების მიღმა',
+  },
+  'unite.body': {
+    en: 'Our main goal is to bring students together — outside lectures and outside the university walls, through the right, healthy kind of activity.',
+    ka: 'ჩვენი მთავარი მიზანი სტუდენტების გაერთიანებაა — ლექციებისა და უნივერსიტეტის კედნების მიღმა, სწორი და ჯანსაღი აქტივობებით.',
+  },
+  'unite.quote': {
+    en: 'A football pitch, a padel court and one night out are enough to turn a campus into a team.',
+    ka: 'ფეხბურთის მოედანი, პადელის კორტი და ერთი საღამო საკმარისია, რომ კამპუსი გუნდად გადაქცეს.',
+  },
   'about.foundedLabel': { en: 'Founded in:', ka: 'დაარსდა:' },
   'about.eyebrow': { en: 'About us', ka: 'ჩვენ შესახებ' },
   'about.title': {
