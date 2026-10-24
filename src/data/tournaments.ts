@@ -64,7 +64,9 @@ export const tournaments: Tournament[] = [
     collectPlayerPhones: true,
     collectTeamLogo: false,
     imageUrl: '/banners/fifa-cup.webp',
-    imageFocus: '50% 42%',
+    // The photo is a tall phone shot; this lands the banner's thin slice on
+    // the screen itself rather than the dark room above it.
+    imageFocus: '50% 54%',
   },
   {
     id: 'btu-football-league',
