@@ -29,8 +29,6 @@ export function MatchGallery({
   photos?: string[]
   showSocial?: boolean
 } = {}) {
-  const { t } = useI18n()
-
   return (
     <>
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -51,7 +49,16 @@ export function MatchGallery({
         ))}
       </div>
 
-      {showSocial && (
+      {showSocial && <InstagramCard />}
+    </>
+  )
+}
+
+/** The link out to the federation's feed, usable on its own. */
+export function InstagramCard() {
+  const { t } = useI18n()
+
+  return (
       <a
         href={INSTAGRAM_URL}
         target="_blank"
@@ -77,8 +84,6 @@ export function MatchGallery({
           {t('social.cta')} ↗
         </span>
       </a>
-      )}
-    </>
   )
 }
 

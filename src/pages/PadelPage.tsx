@@ -2,24 +2,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { NewsCard, TournamentCard } from '@/components/cards'
-import { MatchGallery, padelPhotos } from '@/components/MatchGallery'
-import { UniversityFilter } from '@/components/UniversityFilter'
+import { InstagramCard } from '@/components/MatchGallery'
+import { PadelAbout } from '@/components/PadelAbout'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
+import { UniversityPicker } from '@/components/UniversityPicker'
 import { useHub } from '@/data/HubProvider'
-import {
-  filterNews,
-  filterTournaments,
-  openForRegistration,
-  sortByUrgency,
-} from '@/data/selectors'
-import { useI18n, type TranslationKey } from '@/lib/i18n'
-
-const steps: Array<{ title: TranslationKey; body: TranslationKey }> = [
-  { title: 'join.step1', body: 'join.step1Body' },
-  { title: 'join.step2', body: 'join.step2Body' },
-  { title: 'join.step3', body: 'join.step3Body' },
-  { title: 'join.step4', body: 'join.step4Body' },
-]
+import { filterNews, filterTournaments, sortByUrgency } from '@/data/selectors'
+import { useI18n } from '@/lib/i18n'
 
 export function PadelPage() {
   const { t, l } = useI18n()
@@ -27,20 +16,28 @@ export function PadelPage() {
   const [universityId, setUniversityId] = useState(hub.myUniversityId)
 
   const sport = hub.sportById('padel')
-  const all = sortByUrgency(filterTournaments(hub.tournaments, { sportId: 'padel', universityId }))
-  const open = openForRegistration(all)
+  const tournaments = sortByUrgency(
+    filterTournaments(hub.tournaments, { sportId: 'padel', universityId }),
+  )
   const news = filterNews(hub.news, { sportId: 'padel', universityId }).slice(0, 3)
 
-  const campuses = hub.universities.filter((university) =>
-    hub.tournaments.some(
-      (tournament) =>
-        tournament.sportId === 'padel' && tournament.hostUniversityId === university.id,
-    ),
+  const hostedCounts = Object.fromEntries(
+    hub.universities.map((university) => [
+      university.id,
+      hub.tournaments.filter(
+        (tournament) =>
+          tournament.sportId === 'padel' && tournament.hostUniversityId === university.id,
+      ).length,
+    ]),
   )
+
+  const pick = (next: string) => {
+    setUniversityId(next)
+    hub.setMyUniversityId(next)
+  }
 
   return (
     <Themed theme="padel">
-      {/* Hero — a court-blue panel, the way the reference leads with photography. */}
       <section className="shell pt-6">
         <div className="relative overflow-hidden rounded-[2rem] bg-court px-6 py-16 sm:px-12 sm:py-24">
           <img
@@ -51,98 +48,80 @@ export function PadelPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/65 to-ink/20" />
           <div className="relative">
-          <Pill variant="accent">{l(sport?.name)}</Pill>
-          <h1 className="mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold text-white sm:text-6xl">
-            {l(sport?.blurb)}
-          </h1>
-          <p className="mt-5 max-w-lg text-white/80">{t('padel.lede')}</p>
+            <Pill variant="accent">{l(sport?.name)}</Pill>
+            <h1 className="mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold text-white sm:text-6xl">
+              {l(sport?.blurb)}
+            </h1>
+            <p className="mt-5 max-w-lg text-white/80">{t('padel.lede')}</p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              to="/register"
-              className="rounded-pill bg-padel px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
-            >
-              {t('hero.ctaRegister')} ↗
-            </Link>
-            <a
-              href="#tournaments"
-              className="rounded-pill bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/25 transition-colors hover:bg-white/20"
-            >
-              {t('section.tournaments')}
-            </a>
-          </div>
-
-          <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4 text-white">
-            <Stat value={all.length} label={t('stat.tournaments')} />
-            <Stat value={open.length} label={t('stat.open')} />
-            <Stat value={campuses.length} label={t('stat.universities')} />
-          </dl>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/register"
+                className="rounded-pill bg-padel px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+              >
+                {t('hero.ctaRegister')} ↗
+              </Link>
+              <a
+                href="#tournaments"
+                className="rounded-pill bg-white/10 px-5 py-3 text-sm font-semibold text-white ring-1 ring-white/25 transition-colors hover:bg-white/20"
+              >
+                {t('section.tournaments')}
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="shell py-12">
-        <UniversityFilter
+      <section className="shell py-12">
+        <SectionHeading
+          index={1}
+          eyebrow={t('nav.universities')}
+          title={t('section.pickUniversity')}
+        />
+        <UniversityPicker
           universities={hub.universities}
           value={universityId}
-          onChange={setUniversityId}
+          onChange={pick}
+          counts={hostedCounts}
         />
-      </div>
+      </section>
 
-      {/* The lime block — the loudest moment on the page, reserved for what you can join today. */}
-      {open.length > 0 && (
-        <section className="bg-padel py-14">
-          <div className="shell">
-            <div className="mb-8 flex items-center gap-2">
-              <span className="grid size-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
-                1
-              </span>
-              <Pill variant="solid">{t('tab.open')}</Pill>
-            </div>
-            <h2 className="mb-8 max-w-2xl text-3xl font-semibold sm:text-4xl">
-              {t('section.openNow')}
-            </h2>
+      {/* Everything open to enter lives here — there is no second list. */}
+      <section id="tournaments" className="scroll-mt-20 bg-padel py-14">
+        <div className="shell">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="grid size-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
+              2
+            </span>
+            <Pill variant="solid">{l(sport?.name)}</Pill>
+          </div>
+          <h2 className="mb-8 max-w-2xl text-3xl font-semibold sm:text-4xl">
+            {t('section.tournaments')}
+          </h2>
+          {tournaments.length ? (
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {open.map((tournament) => (
+              {tournaments.map((tournament) => (
                 <TournamentCard key={tournament.id} tournament={tournament} />
               ))}
             </div>
-          </div>
-        </section>
-      )}
-
-      <section id="tournaments" className="shell scroll-mt-20 py-14">
-        <SectionHeading index={2} eyebrow={l(sport?.name)} title={t('section.tournaments')} />
-        {all.length ? (
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {all.map((tournament) => (
-              <TournamentCard key={tournament.id} tournament={tournament} />
-            ))}
-          </div>
-        ) : (
-          <EmptyState />
-        )}
+          ) : (
+            <EmptyState />
+          )}
+        </div>
       </section>
 
       <section className="shell py-14">
-        <SectionHeading index={3} eyebrow={t('nav.register')} title={t('section.howToJoin')} />
-        <ol className="divide-y divide-line border-y border-line">
-          {steps.map((step, index) => (
-            <li key={step.title} className="grid gap-2 py-6 sm:grid-cols-[4rem_1fr_1fr]">
-              <span className="text-sm font-semibold text-slate tabular-nums">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <h3 className="text-lg font-semibold">{t(step.title)}</h3>
-              <p className="text-sm leading-relaxed text-slate">{t(step.body)}</p>
-            </li>
-          ))}
-        </ol>
+        <PadelAbout tournaments={tournaments} />
+      </section>
+
+      <section className="shell pb-14">
+        <InstagramCard />
       </section>
 
       {news.length > 0 && (
-        <section className="shell py-14">
+        <section className="shell pb-14">
           <SectionHeading
-            index={4}
+            index={3}
             eyebrow={t('nav.news')}
             title={t('section.news')}
             action={{ to: '/news?sport=padel', label: t('action.viewAll') }}
@@ -154,40 +133,6 @@ export function PadelPage() {
           </div>
         </section>
       )}
-
-      <section className="shell py-14">
-        <SectionHeading
-          index={5}
-          eyebrow={t('gallery.eyebrow')}
-          title={t('section.gallery')}
-        />
-        <p className="mb-5 -mt-2 text-sm text-slate">{t('gallery.lede')}</p>
-        <MatchGallery photos={padelPhotos} showSocial={false} />
-      </section>
-
-      <section className="shell pb-6">
-        <div className="rounded-[2rem] bg-padel px-6 py-14 text-center sm:px-12">
-          <h2 className="mx-auto max-w-xl text-3xl font-semibold sm:text-4xl">
-            {t('reg.title')}
-          </h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-graphite">{t('reg.lede')}</p>
-          <Link
-            to="/register"
-            className="mt-7 inline-block rounded-pill bg-ink px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-          >
-            {t('action.register')} ↗
-          </Link>
-        </div>
-      </section>
     </Themed>
-  )
-}
-
-function Stat({ value, label }: { value: number; label: string }) {
-  return (
-    <div>
-      <dt className="text-xs tracking-wide text-white/60">{label}</dt>
-      <dd className="text-3xl font-semibold">{value}</dd>
-    </div>
   )
 }

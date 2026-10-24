@@ -30,6 +30,15 @@ const dictionary = {
     ka: 'პადელის თასები, ფუტსალის ტურნირები, წვეულებები და განცხადებები თბილისის უნივერსიტეტებიდან. აირჩიე შენი კამპუსი და მთელი საიტი მოგყვება.',
   },
   'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
+  'padel.aboutEyebrow': { en: 'About', ka: 'ჩვენ შესახებ' },
+  'padel.about': {
+    en: 'UniSport brings students, pairs and campus courts together in one place, where every padel tournament starts.',
+    ka: 'UniSport ერთ სივრცეში კრებს სტუდენტებს, წყვილებსა და კამპუსის კორტებს — სწორედ აქ იწყება პადელის ყოველი ტურნირი.',
+  },
+  'padel.photoLabel': { en: 'On the campus courts', ka: 'კამპუსის კორტებზე' },
+  'padel.placesLeft': { en: 'Places left', ka: 'თავისუფალი ადგილი' },
+  'padel.openTournaments': { en: 'Open for entry', ka: 'ღია რეგისტრაციით' },
+  'padel.totalPlaces': { en: 'Places in total', ka: 'ადგილი სულ' },
   'padel.lede': {
     en: 'Cups and open draws on the campus courts. Enter as a pair and play the weekend.',
     ka: 'თასები და ღია ბადეები კამპუსის კორტებზე. დარეგისტრირდი წყვილად და ითამაშე შაბათ-კვირას.',
