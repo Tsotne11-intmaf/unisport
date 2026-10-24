@@ -86,6 +86,7 @@ export function RegisterTournamentPage() {
   const isTeam = tournament.teamBased
   // A one-place tournament is an individual entry wearing the squad sheet.
   const isSolo = isTeam && (tournament.squadMax ?? 1) === 1
+  const prizes = tournament.id === 'btu-padel-cup' ? padelPrizes : undefined
   const theme = tournament.sportId === 'football' ? 'football' : 'padel'
   const hostUniversity = hub.universityById(host)
   const left = placesLeft(tournament)
@@ -330,7 +331,19 @@ export function RegisterTournamentPage() {
                   value={tournament.fee === null ? t('label.free') : `${tournament.fee} ₾`}
                 />
                 {tournament.teamBased && !isSolo && (
-                  <SummaryRow label={t('prize.label')} value={t('prize.afterEntries')} />
+                  <SummaryRow
+                    label={t('prize.label')}
+                    // Where the pot is already decided, the row says the figure
+                    // rather than promising it later; the block below breaks it down.
+                    value={
+                      prizes
+                        ? `${prizes
+                            .reduce((sum, place) => sum + place.amount, 0)
+                            .toLocaleString('en-US')
+                            .replace(/,/g, ' ')} ₾`
+                        : t('prize.afterEntries')
+                    }
+                  />
                 )}
                 {tournament.squadMax && !isSolo && (
                   <SummaryRow
@@ -424,7 +437,7 @@ export function RegisterTournamentPage() {
         <section className="shell pb-14">
           <PrizePool
             solo={isSolo}
-            places={tournament.id === 'btu-padel-cup' ? padelPrizes : undefined}
+            places={prizes}
           />
         </section>
       )}
