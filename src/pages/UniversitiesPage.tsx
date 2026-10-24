@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import { AddUniversityLens } from '@/components/AddUniversityLens'
 import { Card, Pill, Themed, UniversityChip } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { useI18n } from '@/lib/i18n'
@@ -84,6 +85,10 @@ export function UniversitiesPage() {
             </Card>
           )
         })}
+      </div>
+
+      <div className="shell pb-16">
+        <AddUniversityLens />
       </div>
     </Themed>
   )

@@ -99,6 +99,10 @@ const dictionary = {
     ka: 'ჯერ არაფერია გამოცხადებული. მომდევნო სწორედ აქ გამოჩნდება პირველად.',
   },
   'section.news': { en: 'News & announcements', ka: 'სიახლეები და განცხადებები' },
+  'addUni.lead': {
+    en: 'To add your university, call',
+    ka: 'უნივერსიტეტის დასამატებლად დარეკეთ',
+  },
   'section.universities': { en: 'Universities on the hub', ka: 'უნივერსიტეტები ჰაბზე' },
   'section.howToJoin': { en: 'How to join', ka: 'როგორ შემოუერთდე' },
   'section.latest': { en: 'Latest', ka: 'უახლესი' },
