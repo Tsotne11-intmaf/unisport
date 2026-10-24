@@ -8,7 +8,9 @@ import {
   type TeamFormValue,
 } from '@/components/TeamRegistrationForm'
 import { LeagueRules } from '@/components/LeagueRules'
+import { TournamentSchedule } from '@/components/TournamentSchedule'
 import { fifaMatchFormat, fifaRules } from '@/data/rules'
+import { padelPrizes, padelSchedule } from '@/data/schedule'
 import { PrizePool } from '@/components/PrizePool'
 import { Card, Media, SectionHeading, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
@@ -408,9 +410,22 @@ export function RegisterTournamentPage() {
         )
       )}
 
+      {tournament.id === 'btu-padel-cup' && (
+        <section className="shell pb-10">
+          <SectionHeading
+            eyebrow={l(hub.sportById(tournament.sportId)?.name)}
+            title={t('section.schedule')}
+          />
+          <TournamentSchedule days={padelSchedule} />
+        </section>
+      )}
+
       {tournament.teamBased && (
         <section className="shell pb-14">
-          <PrizePool solo={isSolo} />
+          <PrizePool
+            solo={isSolo}
+            places={tournament.id === 'btu-padel-cup' ? padelPrizes : undefined}
+          />
         </section>
       )}
     </Themed>

@@ -320,6 +320,8 @@ const dictionary = {
   },
 
   'section.rules': { en: 'Tournament rules', ka: 'ტურნირის წესები' },
+  'section.schedule': { en: 'Order of play', ka: 'თამაშების განრიგი' },
+  'schedule.court': { en: 'Court', ka: 'კორტი' },
   'rules.lede': {
     en: 'The federation’s official regulations.',
     ka: 'ფედერაციის ოფიციალური რეგლამენტი.',
