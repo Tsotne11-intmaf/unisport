@@ -1,8 +1,18 @@
-import { leagueRules, matchDurations } from '@/data/rules'
+import { leagueRules, matchDurations, type RuleSection } from '@/data/rules'
+import type { Localized } from '@/types'
 import { useI18n } from '@/lib/i18n'
 
-/** The federation's regulations, as published by the league. */
-export function LeagueRules() {
+/**
+ * A set of regulations. It defaults to the football league's, which is what
+ * most entry sheets show; the console tournament passes its own.
+ */
+export function LeagueRules({
+  sections = leagueRules,
+  durations = matchDurations,
+}: {
+  sections?: RuleSection[]
+  durations?: Array<{ stage: Localized; minutes: number }>
+} = {}) {
   const { t, l } = useI18n()
 
   return (
@@ -12,7 +22,7 @@ export function LeagueRules() {
           {t('rules.duration')}
         </p>
         <div className="grid gap-3 sm:grid-cols-3">
-          {matchDurations.map((entry) => (
+          {durations.map((entry) => (
             <div
               key={entry.minutes}
               className="rounded-xl bg-[var(--accent-soft)] px-4 py-3 text-center"
@@ -30,7 +40,7 @@ export function LeagueRules() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        {leagueRules.map((section) => (
+        {sections.map((section) => (
           <section
             key={section.id}
             className="rounded-card border border-line bg-paper p-5"

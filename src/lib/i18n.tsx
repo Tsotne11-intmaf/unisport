@@ -268,6 +268,11 @@ const dictionary = {
   },
   'reg.contact': { en: 'Captain’s contact', ka: 'კაპიტნის საკონტაქტო' },
   'reg.squad': { en: 'Squad', ka: 'შემადგენლობა' },
+  'reg.soloEntry': { en: 'Your details', ka: 'შენი მონაცემები' },
+  'reg.soloHint': {
+    en: 'A solo tournament — you enter on your own.',
+    ka: 'სოლო ტურნირია — ცალკე რეგისტრირდები.',
+  },
   'reg.squadRange': { en: 'players', ka: 'მოთამაშე' },
   'reg.player': { en: 'Player', ka: 'მოთამაშე' },
   'reg.firstName': { en: 'First name', ka: 'სახელი' },

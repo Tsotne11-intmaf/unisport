@@ -14,6 +14,47 @@ export const matchDurations: Array<{ stage: Localized; minutes: number }> = [
   { stage: { en: 'Final', ka: 'ფინალი' }, minutes: 30 },
 ]
 
+/** Every FIFA match is the same length, whatever the stage. */
+export const fifaMatchFormat: Array<{ stage: Localized; minutes: number }> = [
+  { stage: { en: 'Every match', ka: 'ყოველი მატჩი' }, minutes: 7 },
+]
+
+/** How the console tournament is played. */
+export const fifaRules: RuleSection[] = [
+  {
+    id: 'fifa-entry',
+    title: { en: 'Who enters', ka: 'ვინ რეგისტრირდება' },
+    body: {
+      en: 'A solo tournament: every player enters on their own, with a name, a photo, a phone number and an email. Entry is 20 GEL per player.',
+      ka: 'სოლო ტურნირია: თითოეული მოთამაშე ცალკე რეგისტრირდება — სახელი, გვარი, ფოტო, ტელეფონის ნომერი და ელფოსტა. მონაწილეობა კაცზე 20 ლარია.',
+    },
+  },
+  {
+    id: 'fifa-playoff',
+    title: { en: 'Play-offs', ka: 'პლეიოფი' },
+    body: {
+      en: 'First to two wins — best of three.',
+      ka: 'ორ მოგებამდე — best of 3.',
+    },
+  },
+  {
+    id: 'fifa-final',
+    title: { en: 'Semi-final and final', ka: 'ნახევარფინალი და ფინალი' },
+    body: {
+      en: 'First to three wins.',
+      ka: 'სამ მოგებამდე.',
+    },
+  },
+  {
+    id: 'fifa-length',
+    title: { en: 'Match length', ka: 'მატჩის ხანგრძლივობა' },
+    body: {
+      en: 'Seven minutes, at every stage.',
+      ka: 'შვიდი წუთი, ყველა ეტაპზე.',
+    },
+  },
+]
+
 /** The federation's official rules, as published by the league. */
 export const leagueRules: RuleSection[] = [
   {

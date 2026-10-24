@@ -52,6 +52,10 @@ export function TeamRegistrationForm({
   const min = tournament.squadMin ?? 1
   const max = tournament.squadMax ?? 9
 
+  // One place on the sheet means one person: no team name, and the player's
+  // own email and phone are the contact, so the captain block is dropped.
+  const solo = max === 1
+
   const set = (patch: Partial<TeamFormValue>) => onChange({ ...value, ...patch })
 
   const setPlayer = (id: string, patch: Partial<SquadPlayer>) =>
@@ -63,7 +67,7 @@ export function TeamRegistrationForm({
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className={`grid gap-4 sm:grid-cols-2 ${solo ? 'hidden' : ''}`}>
         <Field label={t('reg.teamName')}>
           <input
             required
@@ -115,14 +119,18 @@ export function TeamRegistrationForm({
       <div>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h3 className="font-bold">{t('reg.squad')}</h3>
+            <h3 className="font-bold">{solo ? t('reg.soloEntry') : t('reg.squad')}</h3>
             <p className="text-xs text-slate">
-              {min === max ? min : `${min}–${max}`} {t('reg.squadRange')}
+              {solo
+                ? t('reg.soloHint')
+                : `${min === max ? min : `${min}–${max}`} ${t('reg.squadRange')}`}
             </p>
           </div>
-          <span className="rounded-pill bg-mist px-3 py-1.5 text-xs font-bold tabular-nums">
-            {value.players.length} / {max}
-          </span>
+          {!solo && (
+            <span className="rounded-pill bg-mist px-3 py-1.5 text-xs font-bold tabular-nums">
+              {value.players.length} / {max}
+            </span>
+          )}
         </div>
 
         <ol className="space-y-3">
@@ -272,16 +280,21 @@ export function isTeamFormComplete(
   value: TeamFormValue,
   squadMin: number | null,
   needsPlayerPhones = false,
+  solo = false,
 ): boolean {
-  if (!value.teamName.trim()) return false
-  if (!isEmail(value.contactEmail) || !isGeorgianPhone(value.contactPhone)) return false
+  // A solo entry has no team name and no separate captain; the one player
+  // carries the contact details, which are checked with everyone else's.
+  if (!solo) {
+    if (!value.teamName.trim()) return false
+    if (!isEmail(value.contactEmail) || !isGeorgianPhone(value.contactPhone)) return false
+  }
   if (value.players.length < (squadMin ?? 1)) return false
   return value.players.every(
     (player) =>
       player.firstName.trim() &&
       player.lastName.trim() &&
       isEmail(player.email) &&
-      (!needsPlayerPhones || isGeorgianPhone(player.phone)),
+      (!needsPlayerPhones && !solo ? true : isGeorgianPhone(player.phone)),
   )
 }
 

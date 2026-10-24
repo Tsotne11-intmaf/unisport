@@ -8,6 +8,7 @@ import {
   type TeamFormValue,
 } from '@/components/TeamRegistrationForm'
 import { LeagueRules } from '@/components/LeagueRules'
+import { fifaMatchFormat, fifaRules } from '@/data/rules'
 import { PrizePool } from '@/components/PrizePool'
 import { Card, Media, SectionHeading, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
@@ -81,12 +82,15 @@ export function RegisterTournamentPage() {
   }
 
   const isTeam = tournament.teamBased
+  // A one-place tournament is an individual entry wearing the squad sheet.
+  const isSolo = isTeam && (tournament.squadMax ?? 1) === 1
   const theme = tournament.sportId === 'football' ? 'football' : 'padel'
   const hostUniversity = hub.universityById(host)
   const left = placesLeft(tournament)
 
   const ready = isTeam
-    ? Boolean(effectiveUniversity) && isTeamFormComplete(team, tournament.squadMin, tournament.collectPlayerPhones)
+    ? Boolean(effectiveUniversity) &&
+      isTeamFormComplete(team, tournament.squadMin, tournament.collectPlayerPhones, isSolo)
     : Boolean(effectiveUniversity) &&
       fullName.trim().length > 0 &&
       isEmail(email) &&
@@ -101,10 +105,11 @@ export function RegisterTournamentPage() {
       ? await submitTeamRegistration({
           tournamentId: tournament.id,
           universityId: effectiveUniversity,
-          teamName: team.teamName,
+          // Solo: the entry is filed under the player, who is also the contact.
+          teamName: isSolo ? soloName(team) : team.teamName,
           logo: team.logo,
-          contactEmail: team.contactEmail,
-          contactPhone: team.contactPhone,
+          contactEmail: isSolo ? (team.players[0]?.email ?? '') : team.contactEmail,
+          contactPhone: isSolo ? (team.players[0]?.phone ?? '') : team.contactPhone,
           notes: team.notes,
           players: team.players,
         })
@@ -320,10 +325,10 @@ export function RegisterTournamentPage() {
                   label={t('label.fee')}
                   value={tournament.fee === null ? t('label.free') : `${tournament.fee} ₾`}
                 />
-                {tournament.teamBased && (
+                {tournament.teamBased && !isSolo && (
                   <SummaryRow label={t('prize.label')} value={t('prize.afterEntries')} />
                 )}
-                {tournament.squadMax && (
+                {tournament.squadMax && !isSolo && (
                   <SummaryRow
                     label={t('reg.squad')}
                     value={
@@ -383,16 +388,26 @@ export function RegisterTournamentPage() {
         </aside>
       </form>
 
-      {/* The regulations you are agreeing to, on the page where you enter. */}
-      {tournament.sportId === 'football' && (
+      {/* The regulations you are agreeing to, on the page where you enter.
+          The console tournament has its own, so the league's are not shown
+          on every football entry sheet. */}
+      {tournament.id === 'btu-fifa-cup' ? (
         <section className="shell pb-10">
-          <SectionHeading eyebrow="BTU Uni League" title={t('section.rules')} />
-          <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
-          <LeagueRules />
+          <SectionHeading eyebrow="FIFA" title={t('section.rules')} />
+          <LeagueRules sections={fifaRules} durations={fifaMatchFormat} />
         </section>
+      ) : (
+        tournament.sportId === 'football' && (
+          <section className="shell pb-10">
+            <SectionHeading eyebrow="BTU Uni League" title={t('section.rules')} />
+            <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
+            <LeagueRules />
+          </section>
+        )
       )}
 
-      {tournament.teamBased && (
+      {/* A prize pool is a team thing; a solo entry has nothing to split. */}
+      {tournament.teamBased && (tournament.squadMax ?? 1) > 1 && (
         <section className="shell pb-14">
           <PrizePool />
         </section>
@@ -447,6 +462,13 @@ function Field({
       )}
     </label>
   )
+}
+
+/** "First Last" for a solo entry, so the row reads as a person. */
+function soloName(team: { players: Array<{ firstName: string; lastName: string }> }) {
+  const player = team.players[0]
+  if (!player) return ''
+  return `${player.firstName} ${player.lastName}`.trim()
 }
 
 function SummaryRow({ label, value }: { label: string; value: string }) {

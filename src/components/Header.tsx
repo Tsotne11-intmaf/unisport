@@ -35,14 +35,14 @@ export function Header() {
           <span className="text-lg font-semibold tracking-tight">UniSport</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex xl:gap-1">
           {links.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               end={link.to === '/'}
               className={({ isActive }) =>
-                `rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                `rounded-lg px-2.5 py-2 text-sm font-medium transition-colors xl:px-3 ${
                   isActive ? 'bg-mist text-ink' : 'text-slate hover:text-ink'
                 }`
               }
