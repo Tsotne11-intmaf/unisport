@@ -46,6 +46,15 @@ The site reads Supabase when those variables are set and falls back to the seed
 data whenever a query fails, so a half-finished setup never shows an empty page.
 The footer says which source is live.
 
+### Registration
+
+Every tournament has its own page at `/register/<tournament-id>`, because the
+conditions differ from one to the next and a shared form invites people to read
+the wrong ones. `/register` is only an index of what is currently open.
+
+A tournament hosted by one university never asks which campus you are from; one
+with `hostUniversityId: null` does, since it is open to all of them.
+
 ### Team registrations need a storage bucket
 
 Squad sheets upload a team crest and a photo per player. In the Supabase

@@ -86,7 +86,7 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
 
         {open && (
           <Link
-            to={`/register?tournament=${tournament.id}`}
+            to={`/register/${tournament.id}`}
             className="mt-4 rounded-pill bg-[var(--accent)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--accent-ink)] transition-opacity hover:opacity-90"
           >
             {t('action.registerFor')} →

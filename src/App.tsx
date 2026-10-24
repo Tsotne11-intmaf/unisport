@@ -11,6 +11,7 @@ import { NewsPage } from '@/pages/NewsPage'
 import { NotFound } from '@/pages/NotFound'
 import { PadelPage } from '@/pages/PadelPage'
 import { RegisterPage } from '@/pages/RegisterPage'
+import { RegisterTournamentPage } from '@/pages/RegisterTournamentPage'
 import { UniversitiesPage } from '@/pages/UniversitiesPage'
 
 /** Switching route should start at the top; changing a filter on the same route should not. */
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/news/:slug" element={<NewsArticlePage />} />
           <Route path="/universities" element={<UniversitiesPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/register/:tournamentId" element={<RegisterTournamentPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

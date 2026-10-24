@@ -63,7 +63,7 @@ export function FootballPage() {
   )
 
   const picked = universityId === ALL ? undefined : hub.universityById(universityId)
-  const banner = picked?.bannerUrl ?? '/banners/football-default.png'
+  const banner = picked?.bannerUrl ?? '/banners/football-default.webp'
 
   const pick = (next: string) => {
     setUniversityId(next)
@@ -132,7 +132,7 @@ export function FootballPage() {
         )}
       </section>
 
-      <section className="shell py-8">
+      <section id="rules" className="shell scroll-mt-24 py-8">
         <SectionHeading index={3} eyebrow="BTU Uni League" title={t('section.rules')} />
         <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
         <LeagueRules />

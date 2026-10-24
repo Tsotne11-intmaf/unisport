@@ -227,6 +227,16 @@ const dictionary = {
   'reg.opensOn': { en: 'Entries open', ka: 'რეგისტრაცია იხსნება' },
   'reg.window': { en: 'Entry window', ka: 'რეგისტრაციის პერიოდი' },
   'reg.chooseAnother': { en: 'Pick a different tournament', ka: 'აირჩიე სხვა ტურნირი' },
+  'reg.conditions': { en: 'Conditions', ka: 'პირობები' },
+  'reg.indexLede': {
+    en: 'Each tournament has its own conditions. Pick one to read them and enter.',
+    ka: 'თითოეულ ტურნირს თავისი პირობები აქვს. აირჩიე, წაიკითხე და დარეგისტრირდი.',
+  },
+  'reg.noneOpen': {
+    en: 'No tournaments are open for registration right now.',
+    ka: 'ამჟამად რეგისტრაციისთვის ღია ტურნირები არ არის.',
+  },
+  'reg.readRules': { en: 'Read the full rules', ka: 'წაიკითხე სრული წესები' },
 
   'section.rules': { en: 'Tournament rules', ka: 'ტურნირის წესები' },
   'rules.lede': {
