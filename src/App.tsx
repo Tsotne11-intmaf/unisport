@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { CookieConsent } from '@/components/CookieConsent'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { AdminPage } from '@/pages/admin/AdminPage'
 import { EventsPage } from '@/pages/EventsPage'
 import { FootballPage } from '@/pages/FootballPage'
 import { Home } from '@/pages/Home'
@@ -40,6 +41,8 @@ export default function App() {
           <Route path="/universities" element={<UniversitiesPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/:tournamentId" element={<RegisterTournamentPage />} />
+          {/* Not linked from anywhere: you reach it by typing the address. */}
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
