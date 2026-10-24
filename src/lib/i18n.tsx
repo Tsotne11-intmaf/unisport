@@ -236,7 +236,6 @@ const dictionary = {
     en: 'No tournaments are open for registration right now.',
     ka: 'ამჟამად რეგისტრაციისთვის ღია ტურნირები არ არის.',
   },
-  'reg.readRules': { en: 'Read the full rules', ka: 'წაიკითხე სრული წესები' },
 
   'section.rules': { en: 'Tournament rules', ka: 'ტურნირის წესები' },
   'rules.lede': {

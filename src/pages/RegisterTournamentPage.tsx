@@ -7,7 +7,8 @@ import {
   TeamRegistrationForm,
   type TeamFormValue,
 } from '@/components/TeamRegistrationForm'
-import { Card, Media, Themed, UniversityMark } from '@/components/ui'
+import { LeagueRules } from '@/components/LeagueRules'
+import { Card, Media, SectionHeading, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { submitRegistration, submitTeamRegistration } from '@/data/repository'
 import { placesLeft } from '@/data/selectors'
@@ -147,9 +148,10 @@ export function RegisterTournamentPage() {
             kind={tournament.sportId}
             tint={hostUniversity?.color}
             label={hostUniversity?.shortName}
+            focus="50% 30%"
             ratio="absolute inset-0 size-full"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/60 to-ink/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/60 to-ink/10" />
           <div className="relative px-6 py-12 sm:px-10 sm:py-16">
             <Link
               to={`/${tournament.sportId}`}
@@ -328,14 +330,6 @@ export function RegisterTournamentPage() {
                 )}
               </dl>
 
-              {tournament.sportId === 'football' && (
-                <Link
-                  to="/football#rules"
-                  className="mt-4 inline-block text-xs font-semibold text-[var(--accent)] underline-offset-4 hover:underline"
-                >
-                  {t('reg.readRules')} →
-                </Link>
-              )}
             </div>
 
             <div className="p-5">
@@ -360,6 +354,15 @@ export function RegisterTournamentPage() {
           </Card>
         </aside>
       </form>
+
+      {/* The regulations you are agreeing to, on the page where you enter. */}
+      {tournament.sportId === 'football' && (
+        <section className="shell pb-14">
+          <SectionHeading eyebrow="BTU Uni League" title={t('section.rules')} />
+          <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
+          <LeagueRules />
+        </section>
+      )}
     </Themed>
   )
 }

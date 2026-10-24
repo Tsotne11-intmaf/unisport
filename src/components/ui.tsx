@@ -183,6 +183,7 @@ export function Media({
   kind,
   tint,
   label,
+  focus,
   className = '',
   ratio = 'aspect-[16/10]',
 }: {
@@ -192,13 +193,21 @@ export function Media({
   tint?: string
   /** Short caption burned into the stand-in artwork, usually a university's short name. */
   label?: string
+  /** CSS object-position, to keep the subject in frame when the box crops. */
+  focus?: string
   className?: string
   ratio?: string
 }) {
   if (src) {
     return (
       <div className={`${ratio} overflow-hidden ${className}`}>
-        <img src={src} alt={alt} loading="lazy" className="size-full object-cover" />
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="size-full object-cover"
+          style={focus ? { objectPosition: focus } : undefined}
+        />
       </div>
     )
   }

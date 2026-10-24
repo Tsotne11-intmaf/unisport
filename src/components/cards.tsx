@@ -38,6 +38,7 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
         kind={tournament.sportId}
         tint={host?.color}
         label={host?.shortName}
+        focus="50% 30%"
         ratio="aspect-[16/9]"
       />
 
