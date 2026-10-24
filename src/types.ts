@@ -1,0 +1,98 @@
+export type Lang = 'en' | 'ka'
+
+export type SportId = 'football' | 'padel'
+
+/** Where a tournament is in its lifecycle. Registration is the state that matters most. */
+export type TournamentStatus = 'registration_open' | 'upcoming' | 'ongoing' | 'finished'
+
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'open'
+
+export type EventKind = 'party' | 'ceremony' | 'social'
+
+/** Every piece of copy carries both languages so the toggle never falls back to a blank. */
+export interface Localized {
+  en: string
+  ka: string
+}
+
+export interface University {
+  id: string
+  name: Localized
+  shortName: string
+  city: Localized
+  color: string
+}
+
+export interface Sport {
+  id: SportId
+  name: Localized
+  blurb: Localized
+}
+
+/**
+ * A tournament belongs to the university hosting it — the site aggregates what
+ * each university runs rather than staging one league between them. `null` is
+ * for open tournaments that aren't tied to a single campus.
+ */
+export interface Tournament {
+  id: string
+  sportId: SportId
+  hostUniversityId: string | null
+  title: Localized
+  summary: Localized
+  format: Localized
+  status: TournamentStatus
+  startDate: string
+  endDate: string
+  venue: Localized
+  city: Localized
+  level: SkillLevel
+  /** Entry fee per player in GEL; null when free. */
+  fee: number | null
+  slots: number | null
+  slotsTaken: number
+  registrationDeadline: string | null
+  imageUrl: string | null
+}
+
+export interface CampusEvent {
+  id: string
+  title: Localized
+  summary: Localized
+  kind: EventKind
+  startsAt: string
+  venue: Localized
+  city: Localized
+  /** The university putting the event on; null for anything open to all campuses. */
+  universityId: string | null
+  ticketUrl: string | null
+  imageUrl: string | null
+}
+
+export interface NewsItem {
+  id: string
+  slug: string
+  title: Localized
+  excerpt: Localized
+  body: Localized
+  sportId: SportId | null
+  /** The university the story comes from; null for site-wide announcements. */
+  universityId: string | null
+  publishedAt: string
+  isAnnouncement: boolean
+  readMinutes: number
+  imageUrl: string | null
+}
+
+/** What the registration form collects before it is sent to Supabase. */
+export interface RegistrationDraft {
+  sportId: SportId
+  tournamentId: string
+  universityId: string
+  fullName: string
+  email: string
+  phone: string
+  level: SkillLevel
+  partnerName: string
+  notes: string
+}
