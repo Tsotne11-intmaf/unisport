@@ -32,13 +32,27 @@ export function EventsPage() {
 
   return (
     <Themed theme="events">
-      <section className="border-b border-line bg-mist">
-        <div className="shell py-10 sm:py-14">
-          <Pill variant="accent">{t('nav.events')}</Pill>
-          <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">{t('section.events')}</h1>
-          <p className="mt-2 text-sm text-slate">
-            {t('filter.showing')}: {events.length}
-          </p>
+      <section className="shell pt-6">
+        <div className="relative overflow-hidden rounded-[2rem] bg-ink">
+          <img
+            src="/banners/events-default.webp"
+            alt=""
+            className="absolute inset-0 size-full object-cover"
+            style={{ objectPosition: '50% 45%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/60 to-ink/15" />
+          <div className="relative px-6 py-14 sm:px-10 sm:py-20">
+            <Pill variant="accent">{t('nav.events')}</Pill>
+            <h1
+              className="mt-4 text-4xl font-semibold text-white sm:text-5xl"
+              style={{ textShadow: '0 2px 24px rgb(0 0 0 / 0.45)' }}
+            >
+              {t('section.events')}
+            </h1>
+            <p className="mt-3 text-sm text-white/75">
+              {t('filter.showing')}: {events.length}
+            </p>
+          </div>
         </div>
       </section>
 
