@@ -67,6 +67,7 @@ const dictionary = {
   'section.winners': { en: 'Winner teams', ka: 'გამარჯვებული გუნდები' },
   'section.vote': { en: 'Player of the week', ka: 'კვირის საუკეთესო მოთამაშე' },
   'section.gallery': { en: 'From the pitch', ka: 'მოედნიდან' },
+  'gallery.eyebrow': { en: 'Photos', ka: 'ფოტოები' },
 
   'gallery.lede': {
     en: 'Shots from this season’s matchdays.',

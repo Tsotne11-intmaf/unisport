@@ -156,10 +156,20 @@ export function FootballPage() {
         </section>
       )}
 
+      <section className="shell py-8">
+        <SectionHeading
+          index={7}
+          eyebrow={t('gallery.eyebrow')}
+          title={t('section.gallery')}
+        />
+        <p className="mb-5 -mt-2 text-sm text-slate">{t('gallery.lede')}</p>
+        <MatchGallery />
+      </section>
+
       {news.length > 0 && (
-        <section className="shell py-8">
+        <section className="shell py-8 pb-14">
           <SectionHeading
-            index={7}
+            index={8}
             eyebrow={t('nav.news')}
             title={t('section.news')}
             action={{ to: '/news?sport=football', label: t('action.viewAll') }}
@@ -171,16 +181,6 @@ export function FootballPage() {
           </div>
         </section>
       )}
-
-      <section className="shell py-8 pb-14">
-        <SectionHeading
-          index={news.length > 0 ? 8 : 7}
-          eyebrow={l(currentSeason)}
-          title={t('section.gallery')}
-        />
-        <p className="mb-5 -mt-2 text-sm text-slate">{t('gallery.lede')}</p>
-        <MatchGallery />
-      </section>
     </Themed>
   )
 }
