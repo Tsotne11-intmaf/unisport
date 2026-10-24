@@ -1,10 +1,20 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 
 import { useI18n } from '@/lib/i18n'
+import { emailError, isEmail, isGeorgianPhone, phoneError } from '@/lib/validate'
 import type { SquadPlayer, Tournament } from '@/types'
 
-const inputClass =
-  'w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm outline-none focus:border-ink'
+// The colour utilities live on the variants, not the base: listing both
+// border-line and border-football on one element is a coin toss over which
+// rule the stylesheet emits last.
+const inputBase = 'w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none'
+const inputClass = `${inputBase} border-line bg-paper focus:border-ink`
+
+/** The same input, turned red once what is in it cannot be right. */
+const fieldClass = (invalid: boolean) =>
+  invalid
+    ? `${inputBase} border-football bg-football/5 ring-1 ring-football/35 focus:border-football`
+    : inputClass
 
 let nextPlayerId = 0
 const blankPlayer = (): SquadPlayer => ({
@@ -73,24 +83,30 @@ export function TeamRegistrationForm({
           </Field>
         )}
 
-        <Field label={t('reg.email')}>
+        <Field
+          label={t('reg.email')}
+          error={emailError(value.contactEmail) ? t('valid.email') : undefined}
+        >
           <input
             required
             type="email"
             value={value.contactEmail}
             onChange={(event) => set({ contactEmail: event.target.value })}
-            className={inputClass}
+            className={fieldClass(emailError(value.contactEmail))}
             autoComplete="email"
           />
         </Field>
 
-        <Field label={t('reg.phone')}>
+        <Field
+          label={t('reg.phone')}
+          error={phoneError(value.contactPhone) ? t('valid.phone') : undefined}
+        >
           <input
             required
             type="tel"
             value={value.contactPhone}
             onChange={(event) => set({ contactPhone: event.target.value })}
-            className={inputClass}
+            className={fieldClass(phoneError(value.contactPhone))}
             autoComplete="tel"
           />
         </Field>
@@ -182,8 +198,13 @@ export function TeamRegistrationForm({
                       onChange={(event) =>
                         setPlayer(player.id, { email: event.target.value })
                       }
-                      className={inputClass}
+                      className={fieldClass(emailError(player.email))}
                     />
+                    {emailError(player.email) && (
+                      <span className="mt-1 block text-xs font-medium text-football">
+                        {t('valid.email')}
+                      </span>
+                    )}
                   </label>
                   {tournament.collectPlayerPhones && (
                     <label className="block">
@@ -197,8 +218,13 @@ export function TeamRegistrationForm({
                         onChange={(event) =>
                           setPlayer(player.id, { phone: event.target.value })
                         }
-                        className={inputClass}
+                        className={fieldClass(phoneError(player.phone))}
                       />
+                      {phoneError(player.phone) && (
+                        <span className="mt-1 block text-xs font-medium text-football">
+                          {t('valid.phone')}
+                        </span>
+                      )}
                     </label>
                   )}
                 </div>
@@ -241,39 +267,44 @@ export function emptyTeamForm(squadMin: number | null): TeamFormValue {
   }
 }
 
-/** True once every required field on the sheet is filled. */
+/** True once every required field is filled and the contacts actually parse. */
 export function isTeamFormComplete(
   value: TeamFormValue,
   squadMin: number | null,
   needsPlayerPhones = false,
 ): boolean {
-  if (!value.teamName.trim() || !value.contactEmail.trim() || !value.contactPhone.trim()) {
-    return false
-  }
+  if (!value.teamName.trim()) return false
+  if (!isEmail(value.contactEmail) || !isGeorgianPhone(value.contactPhone)) return false
   if (value.players.length < (squadMin ?? 1)) return false
   return value.players.every(
     (player) =>
       player.firstName.trim() &&
       player.lastName.trim() &&
-      player.email.trim() &&
-      (!needsPlayerPhones || player.phone.trim()),
+      isEmail(player.email) &&
+      (!needsPlayerPhones || isGeorgianPhone(player.phone)),
   )
 }
 
 function Field({
   label,
   hint,
+  error,
   children,
 }: {
   label: string
   hint?: string
+  error?: string
   children: ReactNode
 }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-sm font-medium">{label}</span>
       {children}
-      {hint && <span className="mt-1 block text-xs text-slate">{hint}</span>}
+      {error ? (
+        <span className="mt-1 block text-xs font-medium text-football">{error}</span>
+      ) : (
+        hint && <span className="mt-1 block text-xs text-slate">{hint}</span>
+      )}
     </label>
   )
 }

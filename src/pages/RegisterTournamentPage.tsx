@@ -15,19 +15,30 @@ import { submitRegistration, submitTeamRegistration } from '@/data/repository'
 import { placesLeft } from '@/data/selectors'
 import { formatDate, formatRange } from '@/lib/format'
 import { useI18n, type TranslationKey } from '@/lib/i18n'
+import { emailError, isEmail, isGeorgianPhone, phoneError } from '@/lib/validate'
 import type { SkillLevel } from '@/types'
 
 const levelKey: Record<SkillLevel, TranslationKey> = {
   beginner: 'level.beginner',
   intermediate: 'level.intermediate',
   advanced: 'level.advanced',
+  amateur: 'level.amateur',
   open: 'level.open',
 }
 
-const levels: SkillLevel[] = ['open', 'beginner', 'intermediate', 'advanced']
+const levels: SkillLevel[] = ['beginner', 'intermediate', 'advanced']
 
-const inputClass =
-  'w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm outline-none focus:border-ink'
+// The colour utilities live on the variants, not the base: listing both
+// border-line and border-football on one element is a coin toss over which
+// rule the stylesheet emits last.
+const inputBase = 'w-full rounded-xl border px-3.5 py-2.5 text-sm outline-none'
+const inputClass = `${inputBase} border-line bg-paper focus:border-ink`
+
+/** The same input, turned red once what is in it cannot be right. */
+const fieldClass = (invalid: boolean) =>
+  invalid
+    ? `${inputBase} border-football bg-football/5 ring-1 ring-football/35 focus:border-football`
+    : inputClass
 
 type Status = 'idle' | 'sending' | 'done' | 'error'
 
@@ -76,7 +87,10 @@ export function RegisterTournamentPage() {
 
   const ready = isTeam
     ? Boolean(effectiveUniversity) && isTeamFormComplete(team, tournament.squadMin, tournament.collectPlayerPhones)
-    : Boolean(effectiveUniversity)
+    : Boolean(effectiveUniversity) &&
+      fullName.trim().length > 0 &&
+      isEmail(email) &&
+      isGeorgianPhone(phone)
 
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -231,23 +245,29 @@ export function RegisterTournamentPage() {
                     autoComplete="name"
                   />
                 </Field>
-                <Field label={t('reg.email')}>
+                <Field
+                  label={t('reg.email')}
+                  error={emailError(email) ? t('valid.email') : undefined}
+                >
                   <input
                     required
                     type="email"
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    className={inputClass}
+                    className={fieldClass(emailError(email))}
                     autoComplete="email"
                   />
                 </Field>
-                <Field label={t('reg.phone')}>
+                <Field
+                  label={t('reg.phone')}
+                  error={phoneError(phone) ? t('valid.phone') : undefined}
+                >
                   <input
                     required
                     type="tel"
                     value={phone}
                     onChange={(event) => setPhone(event.target.value)}
-                    className={inputClass}
+                    className={fieldClass(phoneError(phone))}
                     autoComplete="tel"
                   />
                 </Field>
@@ -407,18 +427,24 @@ function Field({
   label,
   hint,
   full,
+  error,
   children,
 }: {
   label: string
   hint?: string
   full?: boolean
+  error?: string
   children: ReactNode
 }) {
   return (
     <label className={`block ${full ? 'sm:col-span-2' : ''}`}>
       <span className="mb-1.5 block text-sm font-medium">{label}</span>
       {children}
-      {hint && <span className="mt-1 block text-xs text-slate">{hint}</span>}
+      {error ? (
+        <span className="mt-1 block text-xs font-medium text-football">{error}</span>
+      ) : (
+        hint && <span className="mt-1 block text-xs text-slate">{hint}</span>
+      )}
     </label>
   )
 }

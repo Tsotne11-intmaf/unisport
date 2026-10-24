@@ -198,7 +198,8 @@ const dictionary = {
   'level.beginner': { en: 'Beginner', ka: 'დამწყები' },
   'level.intermediate': { en: 'Intermediate', ka: 'საშუალო' },
   'level.advanced': { en: 'Advanced', ka: 'გამოცდილი' },
-  'level.open': { en: 'Amateur level', ka: 'მოყვარულთა დონე' },
+  'level.amateur': { en: 'Amateur level', ka: 'მოყვარულთა დონე' },
+  'level.open': { en: 'All levels', ka: 'ყველა დონე' },
 
   'kind.party': { en: 'Party', ka: 'წვეულება' },
   'kind.ceremony': { en: 'Ceremony', ka: 'ცერემონია' },
@@ -276,6 +277,14 @@ const dictionary = {
   'reg.removePlayer': { en: 'Remove', ka: 'წაშლა' },
   'reg.chooseFile': { en: 'Choose image', ka: 'აირჩიე სურათი' },
   'reg.changeFile': { en: 'Change', ka: 'შეცვლა' },
+  'valid.email': {
+    en: 'This does not look like an email — it needs an @ and a domain.',
+    ka: 'ეს ელფოსტას არ ჰგავს — სჭირდება @ და დომენი.',
+  },
+  'valid.phone': {
+    en: 'A Georgian number is nine digits — for example 5XX XX XX XX.',
+    ka: 'ქართული ნომერი ცხრა ციფრია — მაგალითად 5XX XX XX XX.',
+  },
   'reg.needMorePlayers': {
     en: 'Fill in every player before sending.',
     ka: 'გაგზავნამდე შეავსე ყველა მოთამაშის ველი.',

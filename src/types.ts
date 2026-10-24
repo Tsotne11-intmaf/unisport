@@ -5,7 +5,7 @@ export type SportId = 'football' | 'padel'
 /** Where a tournament is in its lifecycle. Registration is the state that matters most. */
 export type TournamentStatus = 'registration_open' | 'upcoming' | 'ongoing' | 'finished'
 
-export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'open'
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'amateur' | 'open'
 
 export type EventKind = 'party' | 'ceremony' | 'social'
 

@@ -18,7 +18,7 @@ export const tournaments: Tournament[] = [
     endDate: '2026-11-13',
     venue: { en: 'Padel Park Saburtalo', ka: 'პადელ პარკი, საბურთალო' },
     city: tbilisi,
-    level: 'open',
+    level: 'amateur',
     fee: 160,
     slots: 16,
     slotsTaken: 0,

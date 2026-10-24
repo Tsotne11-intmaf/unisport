@@ -46,7 +46,7 @@ create table if not exists tournaments (
   city_en               text not null default '',
   city_ka               text not null default '',
   level                 text not null default 'open'
-                          check (level in ('beginner', 'intermediate', 'advanced', 'open')),
+                          check (level in ('beginner', 'intermediate', 'advanced', 'amateur', 'open')),
   fee                   integer,
   slots                 integer,
   slots_taken           integer not null default 0,
@@ -110,7 +110,7 @@ create table if not exists registrations (
   email         text not null,
   phone         text not null,
   level         text not null default 'beginner'
-                  check (level in ('beginner', 'intermediate', 'advanced', 'open')),
+                  check (level in ('beginner', 'intermediate', 'advanced', 'amateur', 'open')),
   partner_name  text,
   notes         text,
   created_at    timestamptz not null default now()

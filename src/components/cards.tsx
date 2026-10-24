@@ -20,6 +20,7 @@ const levelKey: Record<Tournament['level'], TranslationKey> = {
   beginner: 'level.beginner',
   intermediate: 'level.intermediate',
   advanced: 'level.advanced',
+  amateur: 'level.amateur',
   open: 'level.open',
 }
 
