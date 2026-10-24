@@ -120,11 +120,7 @@ export function FootballPage() {
 
       {groups.length > 0 && (
         <section className="shell py-8">
-          <SectionHeading
-            index={3}
-            eyebrow={l(currentSeason)}
-            title={t('section.groups')}
-          />
+          <SectionHeading index={3} title={t('section.groups')} />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('groups.lede')}</p>
           <TournamentGroups groups={groups} />
         </section>
@@ -132,7 +128,12 @@ export function FootballPage() {
 
       {showSquad && (
         <section className="shell py-8">
-          <SectionHeading index={4} eyebrow={l(currentSeason)} title={t('section.allstar')} />
+          <SectionHeading
+            index={4}
+            eyebrow={l(currentSeason)}
+            eyebrowStrong
+            title={t('section.allstar')}
+          />
           <AllstarPitch squad={allstarSquad} />
         </section>
       )}
@@ -142,6 +143,7 @@ export function FootballPage() {
           <SectionHeading
             index={5}
             eyebrow={l(currentSeason)}
+            eyebrowStrong
             title={t('section.winners')}
           />
           <WinnerTeams teams={winners} />
@@ -150,7 +152,12 @@ export function FootballPage() {
 
       {candidates.length > 0 && (
         <section className="shell py-8">
-          <SectionHeading index={6} eyebrow={l(currentSeason)} title={t('section.vote')} />
+          <SectionHeading
+            index={6}
+            eyebrow={l(currentSeason)}
+            eyebrowStrong
+            title={t('section.vote')}
+          />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('vote.lede')}</p>
           <PlayerVote candidates={candidates} />
         </section>

@@ -84,10 +84,12 @@ const dictionary = {
   'social.cta': { en: 'Follow on Instagram', ka: 'გამოგვყევი Instagram-ზე' },
 
   'groups.lede': {
-    en: 'Five groups, five clubs in each.',
-    ka: 'ხუთი ჯგუფი, თითოში ხუთი გუნდი.',
+    en: 'Five groups, five places in each. The draw is announced before the season starts.',
+    ka: 'ხუთი ჯგუფი, თითოში ხუთი ადგილი. ბადე სეზონის დაწყებამდე გამოცხადდება.',
   },
   'groups.teams': { en: 'teams', ka: 'გუნდი' },
+  'groups.places': { en: 'places', ka: 'ადგილი' },
+  'groups.placeholderTeam': { en: 'Team name', ka: 'გუნდის სახელი' },
 
   'allstar.bench': { en: 'Substitutes', ka: 'სათადარიგო' },
   'allstar.invite': {

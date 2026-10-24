@@ -30,7 +30,7 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
     >
       <div className="mb-5 text-center">
         <p className="text-2xl font-bold tracking-tight text-white">ALLSTAR {squad.season}</p>
-        <p className="mt-1 text-xs font-semibold text-white/85">{l(currentSeason)}</p>
+        <p className="mt-1.5 text-sm font-bold text-white/90">{l(currentSeason)}</p>
       </div>
 
       <div className="relative mx-auto aspect-[4/5] w-full max-w-sm">

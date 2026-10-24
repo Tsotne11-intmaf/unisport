@@ -8,13 +8,17 @@ export interface Club {
   universityId: string
 }
 
-/** A group in the league draw — five clubs each, shown as a compact tile. */
+/**
+ * A group in the league draw. A `null` place is an unfilled slot — the tiles
+ * show the shape of the draw before it is made, so nobody reads last season's
+ * names as this season's groups.
+ */
 export interface TournamentGroup {
   id: string
   tournamentId: string
   code: string
   name: Localized
-  clubIds: string[]
+  clubIds: Array<string | null>
 }
 
 export type AllstarRole = 'gk' | 'defender' | 'midfielder' | 'striker'
@@ -124,35 +128,35 @@ export const tournamentGroups: TournamentGroup[] = [
     tournamentId: 'btu-football-league',
     code: 'A',
     name: { en: 'Group A', ka: 'ჯგუფი A' },
-    clubIds: ['wasted-talents', 'remontada-21', 'invictus', 'gorlocks', 'vazisubani'],
+    clubIds: [null, null, null, null, null],
   },
   {
     id: 'btu-league-group-b',
     tournamentId: 'btu-football-league',
     code: 'B',
     name: { en: 'Group B', ka: 'ჯგუფი B' },
-    clubIds: ['bravo', 'sunderland', 'galacticos', 'winterfell', 'wildcard-united'],
+    clubIds: [null, null, null, null, null],
   },
   {
     id: 'btu-league-group-c',
     tournamentId: 'btu-football-league',
     code: 'C',
     name: { en: 'Group C', ka: 'ჯგუფი C' },
-    clubIds: ['phoenix', 'websteri', 'kenzo', 'saztavi', 'davaii'],
+    clubIds: [null, null, null, null, null],
   },
   {
     id: 'btu-league-group-d',
     tournamentId: 'btu-football-league',
     code: 'D',
     name: { en: 'Group D', ka: 'ჯგუფი D' },
-    clubIds: ['black-legion', 'boixos-nois', 'no-talent-united', 'rkinigzelebi', 'midnight'],
+    clubIds: [null, null, null, null, null],
   },
   {
     id: 'btu-league-group-e',
     tournamentId: 'btu-football-league',
     code: 'E',
     name: { en: 'Group E', ka: 'ჯგუფი E' },
-    clubIds: ['maestro', 'claudy-street', 'allstar', 'la-passion', 'mstovrebi'],
+    clubIds: [null, null, null, null, null],
   },
 ]
 

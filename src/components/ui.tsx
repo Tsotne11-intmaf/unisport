@@ -57,11 +57,14 @@ export function Pill({
 export function SectionHeading({
   index,
   eyebrow,
+  /** Renders the eyebrow larger and tinted — used for the season label. */
+  eyebrowStrong = false,
   title,
   action,
 }: {
   index?: number
   eyebrow?: string
+  eyebrowStrong?: boolean
   title: string
   action?: { to: string; label: string }
 }) {
@@ -75,7 +78,14 @@ export function SectionHeading({
                 {index}
               </span>
             )}
-            {eyebrow && <Pill>{eyebrow}</Pill>}
+            {eyebrow &&
+              (eyebrowStrong ? (
+                <span className="inline-flex items-center rounded-pill bg-[var(--accent-soft)] px-3.5 py-1.5 text-sm font-bold text-ink">
+                  {eyebrow}
+                </span>
+              ) : (
+                <Pill>{eyebrow}</Pill>
+              ))}
           </div>
         )}
         <h2 className="text-3xl font-semibold sm:text-4xl">{title}</h2>

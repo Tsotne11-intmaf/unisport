@@ -12,7 +12,7 @@ export function TournamentGroups({ groups }: { groups: TournamentGroup[] }) {
       {groups.map((group) => (
         <section
           key={group.id}
-          className="group/card flex flex-col overflow-hidden rounded-2xl border border-line bg-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-[0_16px_34px_-22px_rgb(13_14_17_/_0.5)]"
+          className="flex flex-col overflow-hidden rounded-2xl border border-line bg-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-[0_16px_34px_-22px_rgb(13_14_17_/_0.5)]"
         >
           {/* A hairline of the section accent, so the tiles read as a set. */}
           <span className="block h-1 bg-[var(--accent)]" />
@@ -24,25 +24,32 @@ export function TournamentGroups({ groups }: { groups: TournamentGroup[] }) {
             <div className="min-w-0">
               <h3 className="truncate text-sm font-bold">{l(group.name)}</h3>
               <p className="text-[11px] font-medium text-slate">
-                {group.clubIds.length} {t('groups.teams')}
+                {group.clubIds.length} {t('groups.places')}
               </p>
             </div>
           </header>
 
           <ol className="flex-1 divide-y divide-line px-4">
-            {group.clubIds.map((clubId, index) => (
-              <li
-                key={clubId}
-                className="flex items-center gap-3 py-2.5 text-sm transition-colors hover:bg-mist/70"
-              >
-                <span className="grid size-5 shrink-0 place-items-center rounded-full bg-mist text-[10px] font-bold text-slate tabular-nums">
-                  {index + 1}
-                </span>
-                <span className="min-w-0 flex-1 truncate font-medium">
-                  {clubIndex.get(clubId)?.name ?? clubId}
-                </span>
-              </li>
-            ))}
+            {group.clubIds.map((clubId, index) => {
+              const club = clubId ? clubIndex.get(clubId) : undefined
+              return (
+                <li
+                  key={`${group.id}-${index}`}
+                  className="flex items-center gap-3 py-2.5 text-sm transition-colors hover:bg-mist/70"
+                >
+                  <span className="grid size-5 shrink-0 place-items-center rounded-full bg-mist text-[10px] font-bold text-slate tabular-nums">
+                    {index + 1}
+                  </span>
+                  <span
+                    className={`min-w-0 flex-1 truncate ${
+                      club ? 'font-medium' : 'text-slate/60 italic'
+                    }`}
+                  >
+                    {club?.name ?? t('groups.placeholderTeam')}
+                  </span>
+                </li>
+              )
+            })}
           </ol>
         </section>
       ))}
