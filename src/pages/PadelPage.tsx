@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { NewsCard, TournamentCard } from '@/components/cards'
 import { InstagramCard } from '@/components/MatchGallery'
+import { CourtCta } from '@/components/CourtCta'
 import { PadelAbout } from '@/components/PadelAbout'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
 import { UniversityPicker } from '@/components/UniversityPicker'
@@ -50,9 +51,8 @@ export function PadelPage() {
           <div className="relative">
             <Pill variant="accent">{l(sport?.name)}</Pill>
             <h1 className="mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold text-white sm:text-6xl">
-              {l(sport?.blurb)}
+              {t('padel.title')}
             </h1>
-            <p className="mt-5 max-w-lg text-white/80">{t('padel.lede')}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -112,6 +112,10 @@ export function PadelPage() {
 
       <section className="shell py-14">
         <PadelAbout tournaments={tournaments} />
+      </section>
+
+      <section className="shell pb-14">
+        <CourtCta photo="/gallery/padel-cta.webp" />
       </section>
 
       <section className="shell pb-14">

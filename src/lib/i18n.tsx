@@ -32,20 +32,26 @@ const dictionary = {
   'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
   'padel.aboutEyebrow': { en: 'About', ka: 'ჩვენ შესახებ' },
   'padel.about': {
-    en: 'UniSport brings students, pairs and campus courts together in one place, where every padel tournament starts.',
-    ka: 'UniSport ერთ სივრცეში კრებს სტუდენტებს, წყვილებსა და კამპუსის კორტებს — სწორედ აქ იწყება პადელის ყოველი ტურნირი.',
+    en: 'Your chance to prove on court that you are the best out there.',
+    ka: 'შესაძლებლობა, კორტზე დაამტკიცო შენი პირველობა.',
   },
+  'padel.title': { en: 'Padel tournament', ka: 'პადელის ტურნირი' },
   'padel.photoLabel': { en: 'On the campus courts', ka: 'კამპუსის კორტებზე' },
   'padel.placesLeft': { en: 'Places left', ka: 'თავისუფალი ადგილი' },
   'padel.openTournaments': { en: 'Open for entry', ka: 'ღია რეგისტრაციით' },
   'padel.totalPlaces': { en: 'Places in total', ka: 'ადგილი სულ' },
-  'padel.lede': {
-    en: 'Cups and open draws on the campus courts. Enter as a pair and play the weekend.',
-    ka: 'თასები და ღია ბადეები კამპუსის კორტებზე. დარეგისტრირდი წყვილად და ითამაშე შაბათ-კვირას.',
-  },
   'hero.ctaFootball': { en: 'Football', ka: 'ფეხბურთი' },
   'hero.ctaRegister': { en: 'Register for a tournament', ka: 'დარეგისტრირდი ტურნირზე' },
 
+  'cta.title': {
+    en: 'Ready to step onto the court?',
+    ka: 'მზად ხარ კორტზე გამოსვლისთვის?',
+  },
+  'cta.body': {
+    en: 'Enter as a pair, play the weekend, and settle it on court.',
+    ka: 'დარეგისტრირდი წყვილად, ითამაშე შაბათ-კვირას და კორტზე გაარკვიე ყველაფერი.',
+  },
+  'cta.button': { en: 'Register', ka: 'დარეგისტრირდი' },
   'stat.universities': { en: 'Universities', ka: 'უნივერსიტეტი' },
   'stat.tournaments': { en: 'Tournaments listed', ka: 'ტურნირი სიაში' },
   'stat.open': { en: 'Open for registration', ka: 'ღია რეგისტრაციით' },
