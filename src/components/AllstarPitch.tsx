@@ -56,6 +56,7 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
 
         {squad.slots.map((slot) => {
           const club = slot.clubId ? clubIndex.get(slot.clubId) : undefined
+          const crest = slot.crestUrl ?? club?.logoUrl ?? null
 
           return (
             <div
@@ -63,7 +64,7 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
               className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5"
               style={{ left: `${slot.x}%`, top: `${slot.y}%` }}
             >
-              <Shirt crest={club?.logoUrl ?? null} crestAlt={club?.name ?? ''} />
+              <Shirt crest={crest} crestAlt={club?.name ?? ''} />
               <span className="rounded-md bg-ink/85 px-2 py-0.5 text-center text-[10px] leading-tight font-bold whitespace-nowrap text-white">
                 {slot.playerName ?? t(roleKey[slot.role])}
                 {slot.isCaptain && <span className="ml-1 text-amber">C</span>}
@@ -81,9 +82,10 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
           <ul className="flex flex-wrap justify-center gap-6">
             {squad.bench.map((player) => {
               const club = player.clubId ? clubIndex.get(player.clubId) : undefined
+              const crest = player.crestUrl ?? club?.logoUrl ?? null
               return (
                 <li key={player.id} className="flex flex-col items-center gap-1.5">
-                  <Shirt crest={club?.logoUrl ?? null} crestAlt={club?.name ?? ''} />
+                  <Shirt crest={crest} crestAlt={club?.name ?? ''} />
                   <span className="rounded-md bg-ink/85 px-2 py-0.5 text-[10px] font-bold whitespace-nowrap text-white">
                     {player.playerName}
                   </span>

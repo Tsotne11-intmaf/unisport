@@ -26,10 +26,14 @@ function ScrollToTop() {
 }
 
 export default function App() {
+  // The panel has its own header; the site's nav and footer would only offer
+  // a signed-in admin links they do not want there.
+  const isAdmin = useLocation().pathname.startsWith('/admin')
+
   return (
     <div className="flex min-h-dvh flex-col">
       <ScrollToTop />
-      <Header />
+      {!isAdmin && <Header />}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,8 +50,8 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
-      <CookieConsent />
+      {!isAdmin && <Footer />}
+      {!isAdmin && <CookieConsent />}
     </div>
   )
 }

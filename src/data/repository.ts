@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import type {
   CampusEvent,
+  Localized,
   NewsItem,
   RegistrationDraft,
   Sport,
@@ -10,6 +11,14 @@ import type {
 } from '@/types'
 
 import * as content from './content'
+import {
+  allstarSquad as seedAllstar,
+  currentSeason as seedSeason,
+  voteCandidates as seedVoteCandidates,
+  type AllstarRole,
+  type AllstarSquad,
+  type VoteCandidate,
+} from './football'
 import { tournaments as seedTournaments } from './tournaments'
 import { sports as seedSports, universities as seedUniversities } from './universities'
 
@@ -19,6 +28,9 @@ export interface HubData {
   tournaments: Tournament[]
   events: CampusEvent[]
   news: NewsItem[]
+  allstar: AllstarSquad
+  allstarSeason: Localized
+  voteCandidates: VoteCandidate[]
 }
 
 export const seedData: HubData = {
@@ -27,6 +39,9 @@ export const seedData: HubData = {
   tournaments: seedTournaments,
   events: content.events,
   news: content.news,
+  allstar: seedAllstar,
+  allstarSeason: seedSeason,
+  voteCandidates: seedVoteCandidates,
 }
 
 /* Supabase stores every translated field as two columns (`*_en` / `*_ka`); these
@@ -121,6 +136,54 @@ const toNews = (row: Row): NewsItem => ({
 
 export type DataSource = 'seed' | 'supabase'
 
+/**
+ * The pitch and the bench come back as one flat list; the order on the pitch
+ * is the order the admin set, and the season label is the same on every row.
+ */
+function toAllstar(rows: Row[]): { squad: AllstarSquad; season: Localized } {
+  const first = rows[0] ?? {}
+  const text = (row: Row, key: string) => (row[key] as string | null) ?? ''
+
+  const onPitch = rows.filter((row) => !row.is_bench)
+  const onBench = rows.filter((row) => row.is_bench)
+
+  return {
+    season: { en: text(first, 'season_en'), ka: text(first, 'season_ka') },
+    squad: {
+      id: 'allstar',
+      tournamentId: text(first, 'tournament_id') || seedAllstar.tournamentId,
+      round: text(first, 'round'),
+      season: text(first, 'season_ka'),
+      slots: onPitch.map((row) => ({
+        id: String(row.id),
+        role: text(row, 'role') as AllstarRole,
+        x: Number(row.slot_x ?? 50),
+        y: Number(row.slot_y ?? 50),
+        playerName: (row.player_name as string | null) || null,
+        clubId: null,
+        crestUrl: (row.crest_url as string | null) ?? null,
+        isCaptain: Boolean(row.is_captain),
+      })),
+      bench: onBench.map((row) => ({
+        id: String(row.id),
+        playerName: text(row, 'player_name'),
+        clubId: null,
+        crestUrl: (row.crest_url as string | null) ?? null,
+      })),
+    },
+  }
+}
+
+function toVoteCandidate(row: Row, tallies: Map<string, number>): VoteCandidate {
+  return {
+    id: String(row.id),
+    name: (row.name as string | null) || null,
+    logoUrl: (row.logo_url as string | null) ?? null,
+    photoUrl: (row.photo_url as string | null) ?? null,
+    votes: tallies.get(String(row.id)) ?? 0,
+  }
+}
+
 export interface LoadResult {
   data: HubData
   source: DataSource
@@ -136,18 +199,32 @@ export async function loadHubData(): Promise<LoadResult> {
   if (!supabase) return { data: seedData, source: 'seed', error: null }
 
   try {
-    const [universities, sports, tournaments, events, news] = await Promise.all([
-      supabase.from('universities').select('*').order('short_name'),
-      supabase.from('sports').select('*'),
-      supabase.from('tournaments').select('*').order('start_date'),
-      supabase.from('events').select('*').order('starts_at'),
-      supabase.from('news').select('*').order('published_at', { ascending: false }),
-    ])
+    const [universities, sports, tournaments, events, news, allstar, candidates, tallies] =
+      await Promise.all([
+        supabase.from('universities').select('*').order('short_name'),
+        supabase.from('sports').select('*'),
+        supabase.from('tournaments').select('*').order('start_date'),
+        supabase.from('events').select('*').order('starts_at'),
+        supabase.from('news').select('*').order('published_at', { ascending: false }),
+        supabase.from('allstar_players').select('*').order('sort_order'),
+        supabase.from('vote_candidates').select('*').order('sort_order'),
+        supabase.from('vote_tallies').select('*'),
+      ])
 
+    // The squad and the nominees are optional: a project that has not run
+     // migration 0002 yet should still show everything else.
     const failed = [universities, sports, tournaments, events, news].find(
       (result) => result.error,
     )
     if (failed?.error) throw new Error(failed.error.message)
+
+    const tally = new Map(
+      (tallies.data ?? []).map((row: Row) => [
+        String(row.candidate_id),
+        Number(row.votes ?? 0),
+      ]),
+    )
+    const squad = allstar.data?.length ? toAllstar(allstar.data) : null
 
     // An empty database is almost always a half-finished setup, so keep the seed visible.
     if (!universities.data?.length) {
@@ -163,6 +240,11 @@ export async function loadHubData(): Promise<LoadResult> {
         tournaments: (tournaments.data ?? []).map(toTournament),
         events: (events.data ?? []).map(toEvent),
         news: (news.data ?? []).map(toNews),
+        allstar: squad?.squad ?? seedAllstar,
+        allstarSeason: squad?.season ?? seedSeason,
+        voteCandidates: candidates.data?.length
+          ? candidates.data.map((row: Row) => toVoteCandidate(row, tally))
+          : seedVoteCandidates,
       },
     }
   } catch (cause) {

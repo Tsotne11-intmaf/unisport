@@ -31,6 +31,8 @@ export interface AllstarSlot {
   y: number
   playerName: string | null
   clubId: string | null
+  /** Set when the badge was uploaded in the admin rather than taken from a club. */
+  crestUrl?: string | null
   isCaptain: boolean
 }
 
@@ -41,7 +43,12 @@ export interface AllstarSquad {
   season: string
   slots: AllstarSlot[]
   /** Named substitutes, listed under the pitch the way the match graphic does. */
-  bench: Array<{ id: string; playerName: string; clubId: string | null }>
+  bench: Array<{
+    id: string
+    playerName: string
+    clubId: string | null
+    crestUrl?: string | null
+  }>
 }
 
 export interface WinnerTeam {
