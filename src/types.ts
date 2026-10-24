@@ -65,6 +65,8 @@ export interface Tournament {
   /** Collect a phone number for every player, not just the captain. */
   collectPlayerPhones: boolean
   imageUrl: string | null
+  /** CSS object-position for that photo, so each crop keeps its own subject. */
+  imageFocus: string | null
 }
 
 export interface CampusEvent {

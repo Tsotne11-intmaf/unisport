@@ -29,6 +29,7 @@ export const tournaments: Tournament[] = [
     squadMax: 2,
     collectPlayerPhones: true,
     imageUrl: '/gallery/padel-1.webp',
+    imageFocus: '50% 58%',
   },
   {
     id: 'btu-football-league',
@@ -59,5 +60,6 @@ export const tournaments: Tournament[] = [
     squadMax: 9,
     collectPlayerPhones: false,
     imageUrl: '/banners/btu-league.webp',
+    imageFocus: '50% 30%',
   },
 ]

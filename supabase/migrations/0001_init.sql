@@ -54,6 +54,7 @@ create table if not exists tournaments (
   squad_min             integer,
   squad_max             integer,
   image_url             text,
+  image_focus           text,
   created_at            timestamptz not null default now()
 );
 

@@ -84,6 +84,7 @@ const toTournament = (row: Row): Tournament => ({
   squadMin: nullableNum(row, 'squad_min'),
   squadMax: nullableNum(row, 'squad_max'),
   imageUrl: nullableStr(row, 'image_url'),
+  imageFocus: nullableStr(row, 'image_focus'),
 })
 
 const toEvent = (row: Row): CampusEvent => ({

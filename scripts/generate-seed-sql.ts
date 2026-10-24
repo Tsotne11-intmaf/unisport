@@ -92,6 +92,7 @@ const sql = [
       'squad_min',
       'squad_max',
       'image_url',
+      'image_focus',
     ],
     tournaments.map((item) => [
       item.id,
@@ -121,6 +122,7 @@ const sql = [
       item.squadMin,
       item.squadMax,
       item.imageUrl,
+      item.imageFocus,
     ]),
   ),
   insert(

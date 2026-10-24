@@ -149,7 +149,7 @@ export function RegisterTournamentPage() {
             kind={tournament.sportId}
             tint={hostUniversity?.color}
             label={hostUniversity?.shortName}
-            focus="50% 30%"
+            focus={tournament.imageFocus ?? '50% 40%'}
             ratio="absolute inset-0 size-full"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/60 to-ink/10" />
