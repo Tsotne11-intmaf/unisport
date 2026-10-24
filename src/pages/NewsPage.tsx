@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom'
 
 import { FeatureNewsCard, NewsCard } from '@/components/cards'
-import { UniversityFilter } from '@/components/UniversityFilter'
+import { UniversityPicker } from '@/components/UniversityPicker'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { ALL, filterNews } from '@/data/selectors'
@@ -62,11 +62,22 @@ export function NewsPage() {
               </div>
             </div>
 
-            <UniversityFilter
-              universities={hub.universities}
-              value={universityId}
-              onChange={(next) => setParam('uni', next)}
-            />
+            <div>
+              <p className="mb-2.5 text-xs font-semibold tracking-wide text-slate">
+                {t('filter.university')}
+              </p>
+              <UniversityPicker
+                universities={hub.universities}
+                value={universityId}
+                onChange={(next) => setParam('uni', next)}
+                counts={Object.fromEntries(
+                  hub.universities.map((university) => [
+                    university.id,
+                    hub.news.filter((item) => item.universityId === university.id).length,
+                  ]),
+                )}
+              />
+            </div>
           </div>
         </div>
       </section>

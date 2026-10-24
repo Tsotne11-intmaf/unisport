@@ -268,7 +268,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
   const sport = item.sportId ? sportById(item.sportId) : undefined
 
   return (
-    <article className="group h-full">
+    <article className="group h-full overflow-hidden rounded-card border border-line bg-paper transition-colors hover:border-ink/20">
       <Link to={`/news/${item.slug}`} className="flex h-full flex-col">
         <Media
           src={item.imageUrl}
@@ -277,10 +277,10 @@ export function NewsCard({ item }: { item: NewsItem }) {
           tint={university?.color}
           label={university?.shortName}
           ratio="aspect-[16/10]"
-          className="rounded-card"
         />
 
-        <div className="mt-3.5 flex items-center gap-2 text-xs text-slate">
+        <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-center gap-2 text-xs text-slate">
           {university ? (
             <span className="inline-flex items-center gap-1.5 font-semibold text-ink">
               <span
@@ -303,7 +303,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           {l(item.excerpt)}
         </p>
 
-        <div className="mt-3 flex items-center gap-2 text-xs">
+        <div className="mt-4 flex items-center gap-2 border-t border-line pt-3 text-xs">
           {item.isAnnouncement ? (
             <span className="font-semibold text-[var(--accent)]">{t('label.announcement')}</span>
           ) : (
@@ -312,6 +312,7 @@ export function NewsCard({ item }: { item: NewsItem }) {
           <span className="text-slate">
             · {item.readMinutes} {t('label.minRead')}
           </span>
+        </div>
         </div>
       </Link>
     </article>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { EventCard, NewsCard, TournamentCard } from '@/components/cards'
 import { UniversityFilter } from '@/components/UniversityFilter'
-import { Card, Pill, SectionHeading, Themed } from '@/components/ui'
+import { Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import {
   ALL,
@@ -143,21 +143,36 @@ export function Home() {
       </section>
 
 
-      <section className="shell py-14">
-        <SectionHeading index={3} eyebrow={t('nav.register')} title={t('section.howToJoin')} />
-        <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step, index) => (
-            <li key={step.title}>
-              <Card className="h-full p-5">
-                <span className="grid size-7 place-items-center rounded-full bg-ink text-xs font-bold text-white">
+      {/* A dark band so the four steps read as one run, not four loose cards. */}
+      <section className="my-10 bg-ink py-16">
+        <div className="shell">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="grid size-6 place-items-center rounded-full bg-padel text-[11px] font-bold text-ink">
+              3
+            </span>
+            <span className="rounded-pill bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
+              {t('nav.register')}
+            </span>
+          </div>
+          <h2 className="mb-10 max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
+            {t('section.howToJoin')}
+          </h2>
+
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step, index) => (
+              <li
+                key={step.title}
+                className="relative rounded-2xl bg-white/[0.06] p-6 ring-1 ring-white/10 transition-colors hover:bg-white/[0.1]"
+              >
+                <span className="grid size-10 place-items-center rounded-full bg-padel text-base font-bold text-ink">
                   {index + 1}
                 </span>
-                <h3 className="mt-4 font-semibold">{t(step.title)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate">{t(step.body)}</p>
-              </Card>
-            </li>
-          ))}
-        </ol>
+                <h3 className="mt-5 font-bold text-white">{t(step.title)}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/65">{t(step.body)}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       <section className="shell py-10">

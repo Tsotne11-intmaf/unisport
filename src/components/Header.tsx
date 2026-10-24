@@ -55,11 +55,11 @@ export function Header() {
         <div className="flex items-center gap-2">
           {myUniversity && (
             <span
-              className="hidden items-center gap-1.5 rounded-pill border border-line px-2.5 py-1.5 text-xs font-semibold sm:inline-flex"
+              className="hidden items-center gap-2 rounded-pill border border-line bg-mist px-3.5 py-2 text-sm font-bold sm:inline-flex"
               title={t('filter.myUniversity')}
             >
               <span
-                className="size-2 rounded-full"
+                className="size-2.5 rounded-full"
                 style={{ backgroundColor: myUniversity.color }}
               />
               {myUniversity.shortName}
