@@ -42,26 +42,39 @@ export function Home() {
 
   return (
     <Themed theme="neutral">
-      {/* The photograph is tall and mostly empty space, so it keeps its own
-          shape beside the copy. Cropped into a wide strip it loses the horizon
-          and the reflection, which is the whole picture. */}
-      <section className="bg-mist">
-        <div className="shell grid items-center gap-10 py-14 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-20">
-          <div>
-            <span className="inline-flex w-fit items-center rounded-pill bg-ink px-3.5 py-1.5 text-xs font-bold text-white">
-              {t('hero.eyebrow')}
-            </span>
+      {/* The banner fills the hero edge to edge and the copy sits inside it,
+          low and left, the way a poster carries its own type. */}
+      <section className="relative isolate overflow-hidden bg-ink">
+        <img
+          src="/banners/home-hero.webp"
+          alt=""
+          className="absolute inset-0 -z-10 size-full object-cover"
+        />
+        {/* Two scrims: one lifting from the floor, one from the left, so white
+            type stays readable over the bright turf of the football panel. */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/65 via-ink/10 to-transparent" />
 
-            {/* "უნივერსიტეტი" is one long unbreakable word, so the phone size
-                has to come down rather than rely on wrapping. */}
-            <h1 className="mt-6 text-4xl leading-[1.05] font-semibold text-balance sm:text-6xl">
-              {t('hero.title')}
-            </h1>
+        {/* Heights track the banner's 2.62:1 so the three panels stay whole
+            instead of being cropped away at the sides. */}
+        <div className="shell flex min-h-[26rem] flex-col justify-end py-14 sm:min-h-[30rem] lg:min-h-[34rem]">
+          <span className="inline-flex w-fit items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25 backdrop-blur-sm">
+            {t('hero.eyebrow')}
+          </span>
 
-            <div className="mt-10 flex flex-wrap gap-3">
+          {/* "უნივერსიტეტი" is one long unbreakable word, so the phone size has
+              to come down rather than rely on wrapping. */}
+          <h1
+            className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl"
+            style={{ textShadow: '0 2px 36px rgb(0 0 0 / 0.55)' }}
+          >
+            {t('hero.title')}
+          </h1>
+
+          <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/register"
-              className="rounded-pill bg-ink px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-pill bg-paper px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
             >
               {t('hero.ctaRegister')} ↗
             </Link>
@@ -77,15 +90,7 @@ export function Home() {
             >
               {t('hero.ctaFootball')}
             </Link>
-            </div>
           </div>
-
-          <img
-            src="/banners/home-hero-run.webp"
-            alt=""
-            className="aspect-[4/5] w-full rounded-[1.75rem] object-cover lg:aspect-[3/4]"
-            style={{ objectPosition: '50% 42%' }}
-          />
         </div>
       </section>
 
