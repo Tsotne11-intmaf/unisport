@@ -50,7 +50,7 @@ export const tournaments: Tournament[] = [
     endDate: '2026-12-08',
     venue: { en: '', ka: '' },
     city: tbilisi,
-    level: 'open',
+    level: 'amateur',
     fee: 20,
     slots: 16,
     slotsTaken: 0,

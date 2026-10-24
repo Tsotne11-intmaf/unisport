@@ -319,7 +319,9 @@ export function RegisterTournamentPage() {
               </p>
               <dl className="mt-4 grid grid-cols-1 gap-x-4 gap-y-3 min-[360px]:grid-cols-[max-content_minmax(0,1fr)] min-[360px]:gap-y-2 text-sm">
                 <SummaryRow label={t('label.dates')} value={formatRange(tournament.startDate, tournament.endDate, lang)} />
-                <SummaryRow label={t('label.venue')} value={l(tournament.venue)} />
+                {l(tournament.venue) && (
+                  <SummaryRow label={t('label.venue')} value={l(tournament.venue)} />
+                )}
                 <SummaryRow label={t('label.format')} value={l(tournament.format)} />
                 <SummaryRow
                   label={t('label.fee')}

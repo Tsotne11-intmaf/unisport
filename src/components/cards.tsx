@@ -61,7 +61,9 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
             label={t('label.dates')}
             value={formatRange(tournament.startDate, tournament.endDate, lang)}
           />
-          <Row label={t('label.venue')} value={l(tournament.venue)} />
+          {l(tournament.venue) && (
+            <Row label={t('label.venue')} value={l(tournament.venue)} />
+          )}
           <Row
             label={t('label.fee')}
             value={tournament.fee === null ? t('label.free') : `${tournament.fee} ₾`}
