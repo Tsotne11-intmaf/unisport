@@ -8,9 +8,11 @@ import {
   type TeamFormValue,
 } from '@/components/TeamRegistrationForm'
 import { LeagueRules } from '@/components/LeagueRules'
+import { PrizePool } from '@/components/PrizePool'
 import { Card, Media, SectionHeading, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { submitRegistration, submitTeamRegistration } from '@/data/repository'
+import { formatLari, prizePool } from '@/data/prizes'
 import { placesLeft } from '@/data/selectors'
 import { formatDate, formatRange } from '@/lib/format'
 import { useI18n, type TranslationKey } from '@/lib/i18n'
@@ -72,6 +74,9 @@ export function RegisterTournamentPage() {
   const theme = tournament.sportId === 'football' ? 'football' : 'padel'
   const hostUniversity = hub.universityById(host)
   const left = placesLeft(tournament)
+  // Quote the pot at a full field, which is the figure teams care about.
+  const topPool =
+    tournament.fee && tournament.slots ? prizePool(tournament.slots, tournament.fee) : 0
 
   const ready = isTeam
     ? Boolean(effectiveUniversity) && isTeamFormComplete(team, tournament.squadMin)
@@ -299,6 +304,12 @@ export function RegisterTournamentPage() {
                   label={t('label.fee')}
                   value={tournament.fee === null ? t('label.free') : `${tournament.fee} ₾`}
                 />
+                {topPool > 0 && (
+                  <SummaryRow
+                    label={t('prize.label')}
+                    value={`${t('prize.upTo')} ${formatLari(topPool)} ₾`}
+                  />
+                )}
                 {tournament.squadMax && (
                   <SummaryRow
                     label={t('reg.squad')}
@@ -357,10 +368,17 @@ export function RegisterTournamentPage() {
 
       {/* The regulations you are agreeing to, on the page where you enter. */}
       {tournament.sportId === 'football' && (
-        <section className="shell pb-14">
+        <section className="shell pb-10">
           <SectionHeading eyebrow="BTU Uni League" title={t('section.rules')} />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
           <LeagueRules />
+        </section>
+      )}
+
+      {topPool > 0 && (
+        <section className="shell pb-14">
+          <SectionHeading title={t('prize.title')} />
+          <PrizePool tournament={tournament} />
         </section>
       )}
     </Themed>
