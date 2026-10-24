@@ -12,6 +12,7 @@ const blankPlayer = (): SquadPlayer => ({
   firstName: '',
   lastName: '',
   email: '',
+  phone: '',
   photo: null,
 })
 
@@ -98,7 +99,7 @@ export function TeamRegistrationForm({
           <div>
             <h3 className="font-bold">{t('reg.squad')}</h3>
             <p className="text-xs text-slate">
-              {min}–{max} {t('reg.squadRange')}
+              {min === max ? min : `${min}–${max}`} {t('reg.squadRange')}
             </p>
           </div>
           <span className="rounded-pill bg-mist px-3 py-1.5 text-xs font-bold tabular-nums">
@@ -137,7 +138,11 @@ export function TeamRegistrationForm({
                   label={t('reg.playerPhoto')}
                 />
 
-                <div className="grid min-w-55 flex-1 gap-3 sm:grid-cols-3">
+                <div
+                  className={`grid min-w-55 flex-1 gap-3 ${
+                    tournament.collectPlayerPhones ? 'sm:grid-cols-2' : 'sm:grid-cols-3'
+                  }`}
+                >
                   <label className="block">
                     <span className="mb-1.5 block text-xs font-medium text-slate">
                       {t('reg.firstName')}
@@ -178,6 +183,22 @@ export function TeamRegistrationForm({
                       className={inputClass}
                     />
                   </label>
+                  {tournament.collectPlayerPhones && (
+                    <label className="block">
+                      <span className="mb-1.5 block text-xs font-medium text-slate">
+                        {t('reg.phone')}
+                      </span>
+                      <input
+                        required
+                        type="tel"
+                        value={player.phone}
+                        onChange={(event) =>
+                          setPlayer(player.id, { phone: event.target.value })
+                        }
+                        className={inputClass}
+                      />
+                    </label>
+                  )}
                 </div>
               </div>
             </li>
@@ -219,14 +240,21 @@ export function emptyTeamForm(squadMin: number | null): TeamFormValue {
 }
 
 /** True once every required field on the sheet is filled. */
-export function isTeamFormComplete(value: TeamFormValue, squadMin: number | null): boolean {
+export function isTeamFormComplete(
+  value: TeamFormValue,
+  squadMin: number | null,
+  needsPlayerPhones = false,
+): boolean {
   if (!value.teamName.trim() || !value.contactEmail.trim() || !value.contactPhone.trim()) {
     return false
   }
   if (value.players.length < (squadMin ?? 1)) return false
   return value.players.every(
     (player) =>
-      player.firstName.trim() && player.lastName.trim() && player.email.trim(),
+      player.firstName.trim() &&
+      player.lastName.trim() &&
+      player.email.trim() &&
+      (!needsPlayerPhones || player.phone.trim()),
   )
 }
 

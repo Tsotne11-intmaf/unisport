@@ -2,7 +2,7 @@ import { useI18n } from '@/lib/i18n'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/bituelebis_football_federation/'
 
-const photos = [
+export const footballPhotos = [
   '/gallery/match-1.webp',
   '/gallery/match-2.webp',
   '/gallery/match-3.webp',
@@ -10,11 +10,25 @@ const photos = [
   '/gallery/match-5.webp',
 ]
 
+export const padelPhotos = [
+  '/gallery/padel-1.webp',
+  '/gallery/padel-2.webp',
+  '/gallery/padel-3.webp',
+  '/gallery/padel-4.webp',
+  '/gallery/padel-5.webp',
+]
+
 /**
  * Matchday photos, with the lead shot taking a 2x2 block so the five images
  * fill a four-column grid exactly, then the link out to the federation's feed.
  */
-export function MatchGallery() {
+export function MatchGallery({
+  photos = footballPhotos,
+  showSocial = true,
+}: {
+  photos?: string[]
+  showSocial?: boolean
+} = {}) {
   const { t } = useI18n()
 
   return (
@@ -37,6 +51,7 @@ export function MatchGallery() {
         ))}
       </div>
 
+      {showSocial && (
       <a
         href={INSTAGRAM_URL}
         target="_blank"
@@ -62,6 +77,7 @@ export function MatchGallery() {
           {t('social.cta')} ↗
         </span>
       </a>
+      )}
     </>
   )
 }

@@ -62,6 +62,8 @@ export interface Tournament {
   teamBased: boolean
   squadMin: number | null
   squadMax: number | null
+  /** Collect a phone number for every player, not just the captain. */
+  collectPlayerPhones: boolean
   imageUrl: string | null
 }
 
@@ -100,6 +102,7 @@ export interface SquadPlayer {
   firstName: string
   lastName: string
   email: string
+  phone: string
   photo: File | null
 }
 

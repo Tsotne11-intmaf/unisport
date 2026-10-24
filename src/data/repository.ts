@@ -80,6 +80,7 @@ const toTournament = (row: Row): Tournament => ({
   registrationOpensAt: nullableStr(row, 'registration_opens_at'),
   registrationDeadline: nullableStr(row, 'registration_deadline'),
   teamBased: Boolean(row.team_based),
+  collectPlayerPhones: Boolean(row.collect_player_phones),
   squadMin: nullableNum(row, 'squad_min'),
   squadMax: nullableNum(row, 'squad_max'),
   imageUrl: nullableStr(row, 'image_url'),
@@ -260,6 +261,7 @@ export async function submitTeamRegistration(
               firstName: player.firstName,
               lastName: player.lastName,
               email: player.email,
+              phone: player.phone,
               photoName: player.photo?.name ?? null,
             })),
           },
@@ -299,6 +301,7 @@ export async function submitTeamRegistration(
         first_name: player.firstName,
         last_name: player.lastName,
         email: player.email,
+        phone: player.phone || null,
         photo_url: player.photo
           ? await uploadImage(
               player.photo,

@@ -75,7 +75,7 @@ export function RegisterTournamentPage() {
   const left = placesLeft(tournament)
 
   const ready = isTeam
-    ? Boolean(effectiveUniversity) && isTeamFormComplete(team, tournament.squadMin)
+    ? Boolean(effectiveUniversity) && isTeamFormComplete(team, tournament.squadMin, tournament.collectPlayerPhones)
     : Boolean(effectiveUniversity)
 
   const onSubmit = async (event: FormEvent) => {
@@ -306,7 +306,11 @@ export function RegisterTournamentPage() {
                 {tournament.squadMax && (
                   <SummaryRow
                     label={t('reg.squad')}
-                    value={`${tournament.squadMin ?? 1}–${tournament.squadMax}`}
+                    value={
+                      tournament.squadMin === tournament.squadMax
+                        ? String(tournament.squadMax)
+                        : `${tournament.squadMin ?? 1}–${tournament.squadMax}`
+                    }
                   />
                 )}
                 {tournament.registrationOpensAt && tournament.registrationDeadline ? (

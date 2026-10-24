@@ -50,6 +50,7 @@ create table if not exists tournaments (
   registration_opens_at date,
   registration_deadline date,
   team_based            boolean not null default false,
+  collect_player_phones boolean not null default false,
   squad_min             integer,
   squad_max             integer,
   image_url             text,
@@ -187,6 +188,7 @@ create table if not exists team_registration_players (
   first_name      text not null,
   last_name       text not null,
   email           text not null,
+  phone           text,
   photo_url       text,
   shirt_order     integer not null
 );

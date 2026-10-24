@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { NewsCard, TournamentCard } from '@/components/cards'
+import { MatchGallery, padelPhotos } from '@/components/MatchGallery'
 import { UniversityFilter } from '@/components/UniversityFilter'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
@@ -41,18 +42,20 @@ export function PadelPage() {
     <Themed theme="padel">
       {/* Hero — a court-blue panel, the way the reference leads with photography. */}
       <section className="shell pt-6">
-        <div
-          className="court-weave relative overflow-hidden rounded-[2rem] px-6 py-16 sm:px-12 sm:py-24"
-          style={{
-            backgroundImage:
-              'linear-gradient(140deg, #17395c 0%, #1d4a74 45%, #0f2742 100%)',
-          }}
-        >
+        <div className="relative overflow-hidden rounded-[2rem] bg-court px-6 py-16 sm:px-12 sm:py-24">
+          <img
+            src="/banners/padel-default.webp"
+            alt=""
+            className="absolute inset-0 size-full object-cover"
+            style={{ objectPosition: '50% 45%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/65 to-ink/20" />
+          <div className="relative">
           <Pill variant="accent">{l(sport?.name)}</Pill>
           <h1 className="mt-5 max-w-3xl text-4xl leading-[1.05] font-semibold text-white sm:text-6xl">
             {l(sport?.blurb)}
           </h1>
-          <p className="mt-5 max-w-lg text-white/75">{t('hero.lede')}</p>
+          <p className="mt-5 max-w-lg text-white/80">{t('padel.lede')}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
@@ -74,6 +77,7 @@ export function PadelPage() {
             <Stat value={open.length} label={t('stat.open')} />
             <Stat value={campuses.length} label={t('stat.universities')} />
           </dl>
+          </div>
         </div>
       </section>
 
@@ -150,6 +154,16 @@ export function PadelPage() {
           </div>
         </section>
       )}
+
+      <section className="shell py-14">
+        <SectionHeading
+          index={5}
+          eyebrow={t('gallery.eyebrow')}
+          title={t('section.gallery')}
+        />
+        <p className="mb-5 -mt-2 text-sm text-slate">{t('gallery.lede')}</p>
+        <MatchGallery photos={padelPhotos} showSocial={false} />
+      </section>
 
       <section className="shell pb-6">
         <div className="rounded-[2rem] bg-padel px-6 py-14 text-center sm:px-12">
