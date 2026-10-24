@@ -9,21 +9,23 @@ export function UniteBlock() {
 
   return (
     <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      {/* Left photo sits high, right photo drops below it and covers one corner. */}
-      <div className="relative pb-16 sm:pb-24 lg:pb-28">
+      {/* Left photo sits high, right photo drops below it and covers one corner.
+          Each keeps close to its own shape: the huddle is landscape, the padel
+          shot is square, so neither gets cropped down to a sliver. */}
+      <div className="relative pb-20 sm:pb-28">
         <img
           src="/gallery/unite-football.webp"
           alt=""
           loading="lazy"
-          className="aspect-[4/5] w-[72%] rounded-sm object-cover"
-          style={{ objectPosition: '50% 45%' }}
+          className="aspect-[4/3] w-[82%] rounded-sm object-cover"
+          style={{ objectPosition: '50% 35%' }}
         />
         <img
           src="/gallery/unite-padel.webp"
           alt=""
           loading="lazy"
-          className="absolute right-0 bottom-0 aspect-[4/5] w-[58%] rounded-sm border-[6px] border-paper object-cover sm:w-[52%]"
-          style={{ objectPosition: '50% 55%' }}
+          className="absolute right-0 bottom-0 aspect-square w-[52%] rounded-sm border-[6px] border-paper object-cover sm:w-[46%]"
+          style={{ objectPosition: '45% 55%' }}
         />
       </div>
 
