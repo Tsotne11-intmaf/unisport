@@ -42,25 +42,34 @@ export function Home() {
 
   return (
     <Themed theme="neutral">
-      {/* The banner is a composed poster, so it gets its own room rather than a
-          headline laid over it — text on top would bury the football panel. */}
-      <section className="bg-ink">
-        <div className="shell py-14 sm:py-16">
-          <span className="inline-flex items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25">
+      {/* The banner fills the hero edge to edge and the copy sits inside it,
+          low and left, the way a poster carries its own type. */}
+      <section className="relative isolate overflow-hidden bg-ink">
+        <img
+          src="/banners/home-hero.webp"
+          alt=""
+          className="absolute inset-0 -z-10 size-full object-cover"
+        />
+        {/* Two scrims: one lifting from the floor, one from the left, so white
+            type stays readable over the bright turf of the football panel. */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/60 to-ink/5" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/75 via-ink/15 to-transparent" />
+
+        {/* Heights track the banner's 2.62:1 so the three panels stay whole
+            instead of being cropped away at the sides. */}
+        <div className="shell flex min-h-[26rem] flex-col justify-end py-14 sm:min-h-[30rem] lg:min-h-[34rem]">
+          <span className="inline-flex w-fit items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25 backdrop-blur-sm">
             {t('hero.eyebrow')}
           </span>
 
           {/* "უნივერსიტეტი" is one long unbreakable word, so the phone size has
               to come down rather than rely on wrapping. */}
-          <h1 className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl">
+          <h1
+            className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl"
+            style={{ textShadow: '0 2px 36px rgb(0 0 0 / 0.55)' }}
+          >
             {t('hero.title')}
           </h1>
-
-          <img
-            src="/banners/home-hero.webp"
-            alt=""
-            className="mt-10 w-full rounded-[1.5rem]"
-          />
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
