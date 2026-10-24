@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { NewsCard, TournamentCard } from '@/components/cards'
 import { InstagramCard } from '@/components/MatchGallery'
 import { CourtCta } from '@/components/CourtCta'
+import { FoundedBlock } from '@/components/FoundedBlock'
 import { PadelAbout } from '@/components/PadelAbout'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
 import { UniversityPicker } from '@/components/UniversityPicker'
@@ -137,6 +138,10 @@ export function PadelPage() {
           </div>
         </section>
       )}
+
+      <section className="shell border-t border-line py-14">
+        <FoundedBlock />
+      </section>
     </Themed>
   )
 }

@@ -43,6 +43,16 @@ const dictionary = {
   'hero.ctaFootball': { en: 'Football', ka: 'ფეხბურთი' },
   'hero.ctaRegister': { en: 'Register for a tournament', ka: 'დარეგისტრირდი ტურნირზე' },
 
+  'about.foundedLabel': { en: 'Founded in:', ka: 'დაარსდა:' },
+  'about.eyebrow': { en: 'About us', ka: 'ჩვენ შესახებ' },
+  'about.title': {
+    en: 'What brings us together is more than a university.',
+    ka: 'ის, რაც გვაერთიანებს, მხოლოდ უნივერსიტეტი არ არის.',
+  },
+  'about.body': {
+    en: 'It started with weekend matches between friends and grew into a community where beginners and seasoned players share the same court.',
+    ka: 'დავიწყეთ შაბათ-კვირის მატჩებით მეგობრებს შორის და გადავიზარდეთ საზოგადოებად, სადაც დამწყები და გამოცდილი მოთამაშე ერთსა და იმავე კორტზე დგება.',
+  },
   'cta.title': {
     en: 'Ready to step onto the court?',
     ka: 'მზად ხარ კორტზე გამოსვლისთვის?',
