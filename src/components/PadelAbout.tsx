@@ -44,10 +44,7 @@ export function PadelAbout({ tournaments }: { tournaments: Tournament[] }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-ink/25" />
 
-          <figcaption className="absolute inset-0 flex flex-col justify-between p-5 sm:p-7">
-            <span className="w-fit rounded-pill bg-white/20 px-3 py-1.5 text-xs font-semibold text-white ring-1 ring-white/30 backdrop-blur-sm">
-              {t('padel.photoLabel')}
-            </span>
+          <figcaption className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7">
             <span>
               <span className="block text-4xl font-bold text-white tabular-nums sm:text-5xl">
                 {freePlaces}

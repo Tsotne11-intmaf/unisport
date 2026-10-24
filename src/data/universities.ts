@@ -24,8 +24,8 @@ export const sports: Sport[] = [
     id: 'padel',
     name: { en: 'Padel', ka: 'პადელი' },
     blurb: {
-      en: 'Cups, ladders and beginner nights hosted on campus courts.',
-      ka: 'თასები, კიბეები და დამწყებთა საღამოები კამპუსის კორტებზე.',
+      en: 'Knockout cups for pairs, played over a weekend.',
+      ka: 'ნოკაუტ თასები წყვილებისთვის, ერთი შაბათ-კვირის განმავლობაში.',
     },
   },
   {

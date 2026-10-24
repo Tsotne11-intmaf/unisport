@@ -64,6 +64,8 @@ export interface Tournament {
   squadMax: number | null
   /** Collect a phone number for every player, not just the captain. */
   collectPlayerPhones: boolean
+  /** Ask for a team crest. A pair entering a padel cup has no use for one. */
+  collectTeamLogo: boolean
   imageUrl: string | null
   /** CSS object-position for that photo, so each crop keeps its own subject. */
   imageFocus: string | null

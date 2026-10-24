@@ -81,6 +81,7 @@ const toTournament = (row: Row): Tournament => ({
   registrationDeadline: nullableStr(row, 'registration_deadline'),
   teamBased: Boolean(row.team_based),
   collectPlayerPhones: Boolean(row.collect_player_phones),
+  collectTeamLogo: Boolean(row.collect_team_logo),
   squadMin: nullableNum(row, 'squad_min'),
   squadMax: nullableNum(row, 'squad_max'),
   imageUrl: nullableStr(row, 'image_url'),

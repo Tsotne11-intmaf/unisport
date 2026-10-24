@@ -51,6 +51,7 @@ create table if not exists tournaments (
   registration_deadline date,
   team_based            boolean not null default false,
   collect_player_phones boolean not null default false,
+  collect_team_logo     boolean not null default false,
   squad_min             integer,
   squad_max             integer,
   image_url             text,

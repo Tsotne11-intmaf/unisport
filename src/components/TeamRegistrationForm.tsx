@@ -63,13 +63,15 @@ export function TeamRegistrationForm({
           />
         </Field>
 
-        <Field label={t('reg.teamLogo')} hint={t('reg.logoHint')}>
-          <ImagePicker
-            file={value.logo}
-            onPick={(logo) => set({ logo })}
-            shape="rounded-xl"
-          />
-        </Field>
+        {tournament.collectTeamLogo && (
+          <Field label={t('reg.teamLogo')} hint={t('reg.logoHint')}>
+            <ImagePicker
+              file={value.logo}
+              onPick={(logo) => set({ logo })}
+              shape="rounded-xl"
+            />
+          </Field>
+        )}
 
         <Field label={t('reg.email')}>
           <input

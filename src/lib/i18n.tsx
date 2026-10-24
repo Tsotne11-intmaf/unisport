@@ -37,7 +37,6 @@ const dictionary = {
   },
   'padel.aboutHighlight': { en: 'you are the best', ka: 'საუკეთესო შენ ხარ' },
   'padel.title': { en: 'Padel tournament', ka: 'პადელის ტურნირი' },
-  'padel.photoLabel': { en: 'On the campus courts', ka: 'კამპუსის კორტებზე' },
   'padel.placesLeft': { en: 'Places left', ka: 'თავისუფალი ადგილი' },
   'padel.openTournaments': { en: 'Open for entry', ka: 'ღია რეგისტრაციით' },
   'padel.totalPlaces': { en: 'Places in total', ka: 'ადგილი სულ' },
