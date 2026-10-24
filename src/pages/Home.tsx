@@ -42,27 +42,25 @@ export function Home() {
 
   return (
     <Themed theme="neutral">
-      {/* A photograph carries the hero. The copy is one line and three buttons. */}
-      <section className="relative isolate overflow-hidden bg-ink">
-        <img
-          src="/gallery/match-1.webp"
-          alt=""
-          className="absolute inset-0 -z-10 size-full object-cover"
-          style={{ objectPosition: '50% 30%' }}
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink/95 via-ink/80 to-ink/50" />
-
-        <div className="shell py-24 sm:py-32 lg:py-40">
-          <span className="inline-flex items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25 backdrop-blur-sm">
+      {/* The banner is a composed poster, so it gets its own room rather than a
+          headline laid over it — text on top would bury the football panel. */}
+      <section className="bg-ink">
+        <div className="shell py-14 sm:py-16">
+          <span className="inline-flex items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25">
             {t('hero.eyebrow')}
           </span>
 
-          <h1
-            className="mt-6 max-w-4xl text-5xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl"
-            style={{ textShadow: '0 2px 32px rgb(0 0 0 / 0.5)' }}
-          >
+          {/* "უნივერსიტეტი" is one long unbreakable word, so the phone size has
+              to come down rather than rely on wrapping. */}
+          <h1 className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl">
             {t('hero.title')}
           </h1>
+
+          <img
+            src="/banners/home-hero.webp"
+            alt=""
+            className="mt-10 w-full rounded-[1.5rem]"
+          />
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
