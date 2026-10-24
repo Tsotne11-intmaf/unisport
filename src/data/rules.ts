@@ -45,14 +45,6 @@ export const fifaRules: RuleSection[] = [
       ka: 'სამ მოგებამდე.',
     },
   },
-  {
-    id: 'fifa-length',
-    title: { en: 'Match length', ka: 'მატჩის ხანგრძლივობა' },
-    body: {
-      en: 'Seven minutes, at every stage.',
-      ka: 'შვიდი წუთი, ყველა ეტაპზე.',
-    },
-  },
 ]
 
 /** The federation's official rules, as published by the league. */

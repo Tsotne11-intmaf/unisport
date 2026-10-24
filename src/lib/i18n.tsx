@@ -303,8 +303,12 @@ const dictionary = {
   'prize.afterEntries': { en: 'After entries close', ka: 'რეგისტრაციის შემდეგ' },
   'prize.title': { en: 'Prize pool', ka: 'მოსაგები ფონდი' },
   'prize.note': {
-    en: 'The exact amount is set once team registration closes and depends on how many teams enter.',
-    ka: 'ზუსტი თანხა გუნდების რეგისტრაციის დასრულების შემდეგ დაფიქსირდება და დამოკიდებულია მონაწილე გუნდების რაოდენობაზე.',
+    en: 'The exact amount is set once registration closes and depends on how many teams enter.',
+    ka: 'ზუსტი თანხა რეგისტრაციის დასრულების შემდეგ დაფიქსირდება და დამოკიდებულია დარეგისტრირებული გუნდების რაოდენობაზე.',
+  },
+  'prize.noteSolo': {
+    en: 'The exact amount is set once registration closes and depends on how many players enter.',
+    ka: 'ზუსტი თანხა რეგისტრაციის დასრულების შემდეგ დაფიქსირდება და დამოკიდებულია დარეგისტრირებული მონაწილეების რაოდენობაზე.',
   },
   'reg.indexLede': {
     en: 'Each tournament has its own conditions. Pick one to read them and enter.',

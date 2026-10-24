@@ -406,10 +406,9 @@ export function RegisterTournamentPage() {
         )
       )}
 
-      {/* A prize pool is a team thing; a solo entry has nothing to split. */}
-      {tournament.teamBased && (tournament.squadMax ?? 1) > 1 && (
+      {tournament.teamBased && (
         <section className="shell pb-14">
-          <PrizePool />
+          <PrizePool solo={isSolo} />
         </section>
       )}
     </Themed>
