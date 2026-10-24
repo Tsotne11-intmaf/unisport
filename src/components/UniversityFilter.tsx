@@ -29,7 +29,9 @@ export function UniversityFilter({
         role="group"
         aria-label={label ?? t('filter.university')}
       >
-        <Chip active={value === ALL} label={t('filter.all')} onClick={() => onChange(ALL)} />
+        {universities.length > 1 && (
+          <Chip active={value === ALL} label={t('filter.all')} onClick={() => onChange(ALL)} />
+        )}
         {universities.map((university) => (
           <Chip
             key={university.id}

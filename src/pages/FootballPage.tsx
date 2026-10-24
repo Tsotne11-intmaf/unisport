@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import { AllstarPitch } from '@/components/AllstarPitch'
 import { NewsCard, TournamentCard } from '@/components/cards'
@@ -62,6 +61,9 @@ export function FootballPage() {
     ]),
   )
 
+  const picked = universityId === ALL ? undefined : hub.universityById(universityId)
+  const banner = picked?.bannerUrl ?? '/banners/football-default.png'
+
   const pick = (next: string) => {
     setUniversityId(next)
     hub.setMyUniversityId(next)
@@ -69,20 +71,22 @@ export function FootballPage() {
 
   return (
     <Themed theme="football">
-      <section className="border-b border-line bg-mist">
-        <div className="shell py-10 sm:py-12">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <Pill variant="accent">{l(sport?.name)}</Pill>
-              <h1 className="mt-4 text-4xl font-semibold sm:text-5xl">{l(sport?.name)}</h1>
-              <p className="mt-2 max-w-xl text-slate">{l(sport?.blurb)}</p>
-            </div>
-            <Link
-              to="/register"
-              className="rounded-pill bg-football px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              {t('hero.ctaRegister')}
-            </Link>
+      {/* The banner swaps to the campus once a university is picked; until then
+          it is the neutral one, since no tournament has been chosen either. */}
+      <section className="shell pt-6">
+        <div className="relative overflow-hidden rounded-[2rem] bg-ink">
+          <img
+            src={banner}
+            alt=""
+            className="absolute inset-0 size-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/15" />
+          <div className="relative px-6 py-14 sm:px-10 sm:py-20">
+            <Pill variant="accent">{l(sport?.name)}</Pill>
+            <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
+              {l(sport?.name)}
+            </h1>
+            <p className="mt-2 max-w-xl text-white/80">{l(sport?.blurb)}</p>
           </div>
         </div>
       </section>

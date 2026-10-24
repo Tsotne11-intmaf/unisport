@@ -51,6 +51,7 @@ const toUniversity = (row: Row): University => ({
   city: pair(row, 'city'),
   color: str(row, 'color'),
   logoUrl: nullableStr(row, 'logo_url'),
+  bannerUrl: nullableStr(row, 'banner_url'),
 })
 
 const toSport = (row: Row): Sport => ({

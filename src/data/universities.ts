@@ -1,5 +1,9 @@
 import type { Sport, University } from '@/types'
 
+/**
+ * Only the universities that have actually agreed to be listed. BTU is the
+ * first; add the next one here and every filter, picker and page picks it up.
+ */
 export const universities: University[] = [
   {
     id: 'btu',
@@ -9,64 +13,9 @@ export const universities: University[] = [
     },
     shortName: 'BTU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#ff2e7e',
+    color: '#c8102e',
     logoUrl: '/universities/btu.png',
-  },
-  {
-    id: 'tsu',
-    name: { en: 'Tbilisi State University', ka: 'თბილისის სახელმწიფო უნივერსიტეტი' },
-    shortName: 'TSU',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#3f7dff',
-    logoUrl: null,
-  },
-  {
-    id: 'gtu',
-    name: { en: 'Georgian Technical University', ka: 'საქართველოს ტექნიკური უნივერსიტეტი' },
-    shortName: 'GTU',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#f2a516',
-    logoUrl: null,
-  },
-  {
-    id: 'cu',
-    name: { en: 'Caucasus University', ka: 'კავკასიის უნივერსიტეტი' },
-    shortName: 'CU',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#0f9d58',
-    logoUrl: null,
-  },
-  {
-    id: 'freeuni',
-    name: { en: 'Free University of Tbilisi', ka: 'თავისუფალი უნივერსიტეტი' },
-    shortName: 'FreeUni',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#00a39b',
-    logoUrl: null,
-  },
-  {
-    id: 'iliauni',
-    name: { en: 'Ilia State University', ka: 'ილიას სახელმწიფო უნივერსიტეტი' },
-    shortName: 'IliaUni',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#8b5cf6',
-    logoUrl: null,
-  },
-  {
-    id: 'gau',
-    name: { en: 'Georgian American University', ka: 'საქართველოს ამერიკული უნივერსიტეტი' },
-    shortName: 'GAU',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#ef6c25',
-    logoUrl: null,
-  },
-  {
-    id: 'agruni',
-    name: { en: 'Agricultural University of Georgia', ka: 'საქართველოს აგრარული უნივერსიტეტი' },
-    shortName: 'AgrUni',
-    city: { en: 'Tbilisi', ka: 'თბილისი' },
-    color: '#2f9e44',
-    logoUrl: null,
+    bannerUrl: '/banners/btu-campus.png',
   },
 ]
 
@@ -75,16 +24,16 @@ export const sports: Sport[] = [
     id: 'padel',
     name: { en: 'Padel', ka: 'პადელი' },
     blurb: {
-      en: 'Cups, ladders and beginner nights hosted across campus courts.',
-      ka: 'თასები, კიბეები და დამწყებთა საღამოები კამპუსების კორტებზე.',
+      en: 'Cups, ladders and beginner nights hosted on campus courts.',
+      ka: 'თასები, კიბეები და დამწყებთა საღამოები კამპუსის კორტებზე.',
     },
   },
   {
     id: 'football',
     name: { en: 'Football', ka: 'ფეხბურთი' },
     blurb: {
-      en: 'Futsal cups, faculty leagues and winter tournaments, university by university.',
-      ka: 'ფუტსალის თასები, ფაკულტეტების ლიგები და ზამთრის ტურნირები უნივერსიტეტების მიხედვით.',
+      en: 'The federation league, its groups, its All-Star XI and its champions.',
+      ka: 'ფედერაციის ლიგა, მისი ჯგუფები, ALLSTAR შემადგენლობა და ჩემპიონები.',
     },
   },
 ]

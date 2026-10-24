@@ -101,8 +101,14 @@ player-of-the-week vote. They all live in `src/data/football.ts` and are keyed
 by club, so they appear only for the campus those clubs belong to.
 
 Team crests and squad photos sit in `public/teams/`, matchday photos in
-`public/gallery/`, and university crests in `public/universities/` (a missing
-file falls back to the short-name tile rather than a broken image). All-Star slots start empty
+`public/gallery/`, university crests in `public/universities/` (a missing file
+falls back to the short-name tile rather than a broken image) and hero banners
+in `public/banners/`.
+
+Only universities that have agreed to be listed belong in
+`src/data/universities.ts` — BTU is the first. Adding the next one there is
+enough: the pickers, filters, banner and every page follow from that list, and
+the "all universities" option appears again once there is more than one. All-Star slots start empty
 on purpose — the pitch is drawn from `allstarSquad.slots`, and filling in
 `playerName` / `clubId` is what announces the line-up.
 

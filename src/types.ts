@@ -23,6 +23,8 @@ export interface University {
   color: string
   /** Crest; falls back to the short name on a colour tile when absent or missing. */
   logoUrl: string | null
+  /** Wide campus photo used as the hero banner once this university is picked. */
+  bannerUrl: string | null
 }
 
 export interface Sport {

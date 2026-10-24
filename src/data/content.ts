@@ -4,21 +4,6 @@ const tbilisi = { en: 'Tbilisi', ka: 'თბილისი' }
 
 export const events: CampusEvent[] = [
   {
-    id: 'halloween-rave-2026',
-    title: { en: 'Halloween Campus Rave', ka: 'ჰელოუინის კამპუს რეივი' },
-    summary: {
-      en: 'Costumes mandatory, student ID at the door. Three rooms, two DJs, one very bad decision.',
-      ka: 'კოსტიუმი სავალდებულოა, სტუდენტური ბარათი შესასვლელთან. სამი დარბაზი, ორი დიჯეი, ერთი ძალიან ცუდი გადაწყვეტილება.',
-    },
-    kind: 'party',
-    startsAt: '2026-10-31T22:00:00+04:00',
-    venue: { en: 'Fabrika Tbilisi', ka: 'ფაბრიკა თბილისი' },
-    city: tbilisi,
-    universityId: 'tsu',
-    ticketUrl: 'https://tkt.ge',
-    imageUrl: null,
-  },
-  {
     id: 'btu-rooftop-opening',
     title: { en: 'BTU Rooftop Season Opening', ka: 'BTU-ს სახურავის სეზონის გახსნა' },
     summary: {
@@ -34,21 +19,6 @@ export const events: CampusEvent[] = [
     imageUrl: null,
   },
   {
-    id: 'freshers-social-2026',
-    title: { en: 'Freshers Sports Social', ka: 'პირველკურსელთა სპორტული შეკრება' },
-    summary: {
-      en: 'Meet the organisers from every campus, try padel for free, sign up for the winter tournaments.',
-      ka: 'გაიცანი ორგანიზატორები ყველა კამპუსიდან, უფასოდ სცადე პადელი და ჩაეწერე ზამთრის ტურნირებზე.',
-    },
-    kind: 'social',
-    startsAt: '2026-11-14T17:00:00+04:00',
-    venue: { en: 'Caucasus University atrium', ka: 'კავკასიის უნივერსიტეტის ატრიუმი' },
-    city: tbilisi,
-    universityId: 'cu',
-    ticketUrl: null,
-    imageUrl: null,
-  },
-  {
     id: 'padel-night-after-party',
     title: { en: 'Student Padel Night After-Party', ka: 'სტუდენტური პადელის ღამის აფთერ-პარტი' },
     summary: {
@@ -61,21 +31,6 @@ export const events: CampusEvent[] = [
     city: tbilisi,
     universityId: null,
     ticketUrl: null,
-    imageUrl: null,
-  },
-  {
-    id: 'winter-ball-2026',
-    title: { en: 'Winter Ball', ka: 'ზამთრის ბალი' },
-    summary: {
-      en: 'Black tie, live band, and the unofficial end of the autumn term.',
-      ka: 'შავი ჰალსტუხი, ცოცხალი ბენდი და შემოდგომის სემესტრის არაოფიციალური დასასრული.',
-    },
-    kind: 'party',
-    startsAt: '2026-12-12T20:00:00+04:00',
-    venue: { en: 'Stamba Hotel', ka: 'სტამბა ჰოტელი' },
-    city: tbilisi,
-    universityId: 'freeuni',
-    ticketUrl: 'https://tkt.ge',
     imageUrl: null,
   },
   {
@@ -119,28 +74,6 @@ export const news: NewsItem[] = [
     imageUrl: null,
   },
   {
-    id: 'tsu-futsal-entries',
-    slug: 'tsu-futsal-cup-entries-close-soon',
-    title: {
-      en: 'TSU futsal cup entries close on 9 November',
-      ka: 'TSU-ს ფუტსალის თასზე განაცხადები 9 ნოემბერს იხურება',
-    },
-    excerpt: {
-      en: 'Eleven squads of a possible sixteen have entered the autumn five-a-side weekend.',
-      ka: 'შემოდგომის 5x5 შაბათ-კვირაზე შესაძლო თექვსმეტიდან თერთმეტმა გუნდმა დაასახელა შემადგენლობა.',
-    },
-    body: {
-      en: 'Tbilisi State University hosts its autumn futsal cup over the weekend of 14 November. Squads may register up to ten players and the entry fee is 150 GEL per team, split however the squad likes. Group stages run on Saturday morning, with the final on Sunday evening. Squads from other universities are welcome — the form asks which campus you represent.',
-      ka: 'თბილისის სახელმწიფო უნივერსიტეტი შემოდგომის ფუტსალის თასს 14 ნოემბრის შაბათ-კვირას მასპინძლობს. გუნდს შეუძლია ათ მოთამაშემდე დაარეგისტრიროს, მონაწილეობის საფასური კი გუნდზე 150 ლარია და შიგნით როგორც გინდათ, ისე გაინაწილეთ. ჯგუფური ეტაპები შაბათს დილით ჩატარდება, ფინალი კი კვირას საღამოს. სხვა უნივერსიტეტების გუნდებიც მოწვეულნი არიან — ფორმაში მიუთითებთ, რომელ კამპუსს წარმოადგენთ.',
-    },
-    sportId: 'football',
-    universityId: 'tsu',
-    publishedAt: '2026-10-21T15:30:00+04:00',
-    isAnnouncement: true,
-    readMinutes: 2,
-    imageUrl: null,
-  },
-  {
     id: 'new-padel-courts',
     slug: 'two-new-padel-courts-open-at-saburtalo',
     title: {
@@ -156,97 +89,9 @@ export const news: NewsItem[] = [
       ka: 'პადელ პარკ საბურთალოს დაემატა ორი დახურული კორტი და ობიექტზე ჯამში ექვსი გახდა. სამუშაო დღეებში 08:00-დან 12:00-მდე უფასო სლოტები შეთანხმდა სტუდენტური ბარათის მქონე სტუდენტებისთვის, დაჯავშნა კი თითოეული კამპუსის სპორტის ოფისის მეშვეობითაა შესაძლებელი. სწორედ დამატებული სიმძლავრე იძლევა იმის საშუალებას, რომ BTU-ს თასმა მომავალ თვეში ოთხი კორტი პარალელურად გამოიყენოს.',
     },
     sportId: 'padel',
-    universityId: 'freeuni',
+    universityId: null,
     publishedAt: '2026-10-20T09:00:00+04:00',
     isAnnouncement: true,
-    readMinutes: 3,
-    imageUrl: null,
-  },
-  {
-    id: 'gtu-faculty-league-halfway',
-    slug: 'gtu-faculty-league-reaches-halfway',
-    title: {
-      en: 'GTU faculty league reaches the halfway point',
-      ka: 'GTU-ს ფაკულტეტების ლიგამ ნახევარს მიაღწია',
-    },
-    excerpt: {
-      en: 'Twelve faculties, one fixture a week, and an informatics side that has not dropped a game.',
-      ka: 'თორმეტი ფაკულტეტი, კვირაში ერთი მატჩი და ინფორმატიკის გუნდი, რომელსაც ჯერ არცერთი თამაში არ წაუგია.',
-    },
-    body: {
-      en: 'Georgian Technical University runs its faculty league every Saturday from late September to the December final. Informatics have won all six of their fixtures so far, with architecture and civil engineering level behind them. The league is free to enter but closed to the faculties already registered this term; the next intake opens in February.',
-      ka: 'საქართველოს ტექნიკური უნივერსიტეტი ფაკულტეტების ლიგას ყოველ შაბათს ატარებს სექტემბრის ბოლოდან დეკემბრის ფინალამდე. ინფორმატიკის გუნდმა ექვსივე მატჩი მოიგო, არქიტექტურა და სამოქალაქო ინჟინერია კი თანაბარი მაჩვენებლით მისდევენ. ლიგაში მონაწილეობა უფასოა, თუმცა ამ სემესტრში რეგისტრაცია უკვე დახურულია; შემდეგი მიღება თებერვალში გაიხსნება.',
-    },
-    sportId: 'football',
-    universityId: 'gtu',
-    publishedAt: '2026-10-19T18:00:00+04:00',
-    isAnnouncement: false,
-    readMinutes: 3,
-    imageUrl: null,
-  },
-  {
-    id: 'gau-beginners-night',
-    slug: 'gau-beginners-padel-night-returns',
-    title: {
-      en: 'GAU beginners padel night returns in November',
-      ka: 'GAU-ს დამწყებთა პადელის საღამო ნოემბერში ბრუნდება',
-    },
-    excerpt: {
-      en: 'Rackets provided, no experience needed, sixteen places and nine already gone.',
-      ka: 'რაკეტები ადგილზეა, გამოცდილება არ სჭირდება — თექვსმეტი ადგილიდან ცხრა უკვე დაკავებულია.',
-    },
-    body: {
-      en: 'The Georgian American University runs the friendliest entry point on the hub: a short coached clinic followed by short sets, with rackets and balls provided. It costs 25 GEL and is capped at sixteen so that nobody spends the evening waiting. Students from any university can register — just pick your campus on the form.',
-      ka: 'საქართველოს ამერიკული უნივერსიტეტი ჰაბზე ყველაზე მეგობრულ შესვლის წერტილს სთავაზობს: მოკლე სავარჯიშო მწვრთნელთან და შემდეგ მოკლე სეტები, რაკეტებითა და ბურთებით უზრუნველყოფით. ღირს 25 ლარი და ლიმიტი თექვსმეტია, რომ არავინ გაატაროს საღამო ლოდინში. რეგისტრაცია ნებისმიერი უნივერსიტეტის სტუდენტს შეუძლია — უბრალოდ აირჩიე შენი კამპუსი ფორმაში.',
-    },
-    sportId: 'padel',
-    universityId: 'gau',
-    publishedAt: '2026-10-18T12:00:00+04:00',
-    isAnnouncement: false,
-    readMinutes: 2,
-    imageUrl: null,
-  },
-  {
-    id: 'iliauni-winter-cup-announced',
-    slug: 'ilia-state-announces-winter-football-cup',
-    title: {
-      en: 'Ilia State announces its winter football cup',
-      ka: 'ილიაუნიმ ზამთრის ფეხბურთის თასი გამოაცხადა',
-    },
-    excerpt: {
-      en: 'Eleven-a-side on the covered pitch across two January weekends. Entries open in December.',
-      ka: 'თერთმეტზე თერთმეტი დახურულ მოედანზე ორ იანვრის შაბათ-კვირას. განაცხადები დეკემბერში იხსნება.',
-    },
-    body: {
-      en: 'Ilia State University will stage an eight-team knockout on its covered pitch over the weekends of 17 and 24 January. Entry is 200 GEL per squad and registration opens in December, closing on 10 January. The university has said half the places are reserved for squads from other campuses.',
-      ka: 'ილიას სახელმწიფო უნივერსიტეტი რვაგუნდიან ნოკაუტს ჩაატარებს დახურულ მოედანზე 17 და 24 იანვრის შაბათ-კვირას. მონაწილეობის საფასური გუნდზე 200 ლარია, რეგისტრაცია დეკემბერში იხსნება და 10 იანვარს იხურება. უნივერსიტეტის განცხადებით, ადგილების ნახევარი სხვა კამპუსების გუნდებისთვისაა დათმობილი.',
-    },
-    sportId: 'football',
-    universityId: 'iliauni',
-    publishedAt: '2026-10-17T11:00:00+04:00',
-    isAnnouncement: true,
-    readMinutes: 2,
-    imageUrl: null,
-  },
-  {
-    id: 'cu-padel-open-seeding',
-    slug: 'caucasus-padel-open-seeding-explained',
-    title: {
-      en: 'How the Caucasus Padel Open seeding works',
-      ka: 'როგორ მუშაობს კავკასიის პადელის ოფენის თესვა',
-    },
-    excerpt: {
-      en: 'December’s strongest draw takes its seeds from ladder results across every campus.',
-      ka: 'დეკემბრის ყველაზე ძლიერი ბადე თესვას ყველა კამპუსის კიბის შედეგებიდან იღებს.',
-    },
-    body: {
-      en: 'Caucasus University has published how it will seed the December open. Pairs are ranked on their results in their own campus ladders over the autumn term, which means a pair from a smaller programme can still be seeded highly. Entries cost 50 GEL and close on 28 November, and the draw is published two days later.',
-      ka: 'კავკასიის უნივერსიტეტმა გამოაქვეყნა, როგორ დათესავს დეკემბრის ოფენს. წყვილები რანჟირდება შემოდგომის სემესტრში საკუთარი კამპუსის კიბეზე ნაჩვენები შედეგებით, რაც ნიშნავს, რომ პატარა პროგრამის წყვილიც შეიძლება მაღლა დაითესოს. მონაწილეობა 50 ლარი ღირს, განაცხადები 28 ნოემბერს იხურება, ბადე კი ორი დღის შემდეგ ქვეყნდება.',
-    },
-    sportId: 'padel',
-    universityId: 'cu',
-    publishedAt: '2026-10-16T14:00:00+04:00',
-    isAnnouncement: false,
     readMinutes: 3,
     imageUrl: null,
   },
@@ -254,16 +99,16 @@ export const news: NewsItem[] = [
     id: 'hub-expansion',
     slug: 'two-more-universities-join-the-hub',
     title: {
-      en: 'Two more universities join the hub in spring',
-      ka: 'გაზაფხულზე ჰაბს კიდევ ორი უნივერსიტეტი შეუერთდება',
+      en: 'BTU is first — more universities to follow',
+      ka: 'BTU პირველია — სხვა უნივერსიტეტებიც შემოგვიერთდებიან',
     },
     excerpt: {
-      en: 'Ten campuses will be publishing their tournaments, events and news here from February.',
-      ka: 'თებერვლიდან ათი კამპუსი გამოაქვეყნებს აქ თავის ტურნირებს, ივენთებსა და სიახლეებს.',
+      en: 'The hub launches with BTU. Other campuses join as soon as their federations sign up.',
+      ka: 'ჰაბი BTU-თი იწყებს. სხვა კამპუსები შემოუერთდებიან, როგორც კი მათი ფედერაციები დაადასტურებენ.',
     },
     body: {
-      en: 'From February the hub will carry ten universities rather than eight, including the first two from outside Tbilisi. Each campus keeps control of what it publishes — its own tournaments, its own registration deadlines, its own announcements — and students filter the site down to whichever universities they care about.',
-      ka: 'თებერვლიდან ჰაბზე რვის ნაცვლად ათი უნივერსიტეტი იქნება, მათ შორის პირველი ორი თბილისის გარედან. თითოეული კამპუსი თავად აკონტროლებს, რას აქვეყნებს — საკუთარ ტურნირებს, საკუთარ ვადებს, საკუთარ განცხადებებს — სტუდენტები კი საიტს იმ უნივერსიტეტებზე ფილტრავენ, რომლებიც მათ აინტერესებთ.',
+      en: 'The hub opens with the Business and Technology University, whose football federation publishes its league, groups, All-Star XI and champions here. Each campus keeps control of what it publishes — its own tournaments, its own registration deadlines, its own announcements — and students filter the site down to whichever universities they care about. Talks with other federations are under way.',
+      ka: 'ჰაბი იხსნება ბიზნესისა და ტექნოლოგიების უნივერსიტეტით, რომლის ფეხბურთის ფედერაციაც აქ აქვეყნებს თავის ლიგას, ჯგუფებს, ALLSTAR შემადგენლობასა და ჩემპიონებს. თითოეული კამპუსი თავად აკონტროლებს, რას აქვეყნებს — საკუთარ ტურნირებს, საკუთარ ვადებს, საკუთარ განცხადებებს — სტუდენტები კი საიტს იმ უნივერსიტეტებზე ფილტრავენ, რომლებიც მათ აინტერესებთ. სხვა ფედერაციებთან მოლაპარაკებები მიმდინარეობს.',
     },
     sportId: null,
     universityId: null,

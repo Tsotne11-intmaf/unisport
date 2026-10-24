@@ -22,14 +22,20 @@ export function UniversityPicker({
 }) {
   const { t, l } = useI18n()
 
+  // With a single university on the hub, an "all universities" card only
+  // duplicates it, so it appears once there is a second campus to compare.
+  const showAll = universities.length > 1
+
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <PickerCard
-        active={value === ALL}
-        title={t('filter.all')}
-        subtitle={`${universities.length} ${t('stat.universities').toLowerCase()}`}
-        onClick={() => onChange(ALL)}
-      />
+      {showAll && (
+        <PickerCard
+          active={value === ALL}
+          title={t('filter.all')}
+          subtitle={`${universities.length} ${t('stat.universities').toLowerCase()}`}
+          onClick={() => onChange(ALL)}
+        />
+      )}
       {universities.map((university) => (
         <PickerCard
           key={university.id}
