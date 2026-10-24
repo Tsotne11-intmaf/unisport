@@ -127,3 +127,36 @@ create policy "public read news"         on news         for select using (true)
 -- Anyone may submit a registration; nobody may read them back with the anon key,
 -- so one student cannot list everyone else's contact details.
 create policy "public insert registrations" on registrations for insert with check (true);
+
+-- Player of the week ------------------------------------------------------
+
+create table if not exists vote_candidates (
+  id          text primary key,
+  name        text not null,
+  club_id     text not null,
+  position_en text not null default '',
+  position_ka text not null default '',
+  round       text,
+  is_open     boolean not null default true
+);
+
+create table if not exists player_votes (
+  id           uuid primary key default gen_random_uuid(),
+  candidate_id text not null references vote_candidates (id) on delete cascade,
+  created_at   timestamptz not null default now()
+);
+
+create index if not exists player_votes_candidate_idx on player_votes (candidate_id);
+
+alter table vote_candidates enable row level security;
+alter table player_votes    enable row level security;
+
+create policy "public read vote candidates" on vote_candidates for select using (true);
+-- Anyone may cast a vote; tallies are read from the view below rather than the raw rows.
+create policy "public insert votes" on player_votes for insert with check (true);
+
+create or replace view vote_tallies as
+  select c.id as candidate_id, count(v.id) as votes
+  from vote_candidates c
+  left join player_votes v on v.candidate_id = c.id
+  group by c.id;

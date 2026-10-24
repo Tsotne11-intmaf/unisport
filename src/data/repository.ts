@@ -195,3 +195,15 @@ export async function submitRegistration(draft: RegistrationDraft): Promise<Subm
   if (error) return { ok: false, error: error.message }
   return { ok: true, stored: 'supabase' }
 }
+
+/**
+ * Records a vote for the player of the week. Falls back to this browser only
+ * when Supabase isn't configured, so the poll still demonstrates end to end.
+ */
+export async function submitVote(candidateId: string): Promise<SubmitResult> {
+  if (!supabase) return { ok: true, stored: 'local' }
+
+  const { error } = await supabase.from('player_votes').insert({ candidate_id: candidateId })
+  if (error) return { ok: false, error: error.message }
+  return { ok: true, stored: 'supabase' }
+}

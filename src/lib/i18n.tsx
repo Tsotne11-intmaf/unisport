@@ -61,6 +61,56 @@ const dictionary = {
   'section.mustRead': { en: 'Must read', ka: 'აუცილებლად წასაკითხი' },
   'section.fromCampus': { en: 'From the campuses', ka: 'კამპუსებიდან' },
 
+  'section.pickUniversity': { en: 'Choose a university', ka: 'აირჩიე უნივერსიტეტი' },
+  'section.groups': { en: 'Tournament groups', ka: 'ტურნირის ჯგუფები' },
+  'section.allstar': { en: 'All-Star XI', ka: 'ALLSTAR შემადგენლობა' },
+  'section.winners': { en: 'Winner teams', ka: 'გამარჯვებული გუნდები' },
+  'section.vote': { en: 'Player of the week', ka: 'კვირის საუკეთესო მოთამაშე' },
+
+  'groups.lede': {
+    en: 'Open a group to see the table as it stands.',
+    ka: 'გახსენი ჯგუფი და ნახე მიმდინარე ცხრილი.',
+  },
+  'groups.teams': { en: 'teams', ka: 'გუნდი' },
+
+  'allstar.lede': {
+    en: 'The line-up is announced once voting closes — the positions are set, the names are not.',
+    ka: 'შემადგენლობა კენჭისყრის დასრულების შემდეგ ცხადდება — პოზიციები დაფიქსირებულია, სახელები ჯერ არა.',
+  },
+  'allstar.empty': { en: 'Open slot', ka: 'თავისუფალი ადგილი' },
+  'allstar.round': { en: 'Round', ka: 'ტური' },
+
+  'role.gk': { en: 'Goalkeeper', ka: 'მეკარე' },
+  'role.defender': { en: 'Defender', ka: 'მცველი' },
+  'role.midfielder': { en: 'Midfielder', ka: 'ნახევარმცველი' },
+  'role.striker': { en: 'Striker', ka: 'თავდამსხმელი' },
+
+  'label.captain': { en: 'Captain', ka: 'კაპიტანი' },
+  'label.titles': { en: 'Titles', ka: 'ტიტული' },
+  'label.first': { en: '1st', ka: 'I ადგილი' },
+  'label.second': { en: '2nd', ka: 'II ადგილი' },
+  'label.third': { en: '3rd', ka: 'III ადგილი' },
+
+  'table.club': { en: 'Club', ka: 'კლუბი' },
+  'table.played': { en: 'P', ka: 'თ' },
+  'table.won': { en: 'W', ka: 'მ' },
+  'table.drawn': { en: 'D', ka: 'ფ' },
+  'table.lost': { en: 'L', ka: 'წ' },
+  'table.points': { en: 'PTS', ka: 'ქულა' },
+
+  'vote.lede': {
+    en: 'One vote per person. The winner takes a place in the All-Star XI above.',
+    ka: 'თითო ადამიანზე ერთი ხმა. გამარჯვებული ზემოთ ALLSTAR შემადგენლობაში მოხვდება.',
+  },
+  'vote.cta': { en: 'Vote', ka: 'მიეცი ხმა' },
+  'vote.voted': { en: 'Voted', ka: 'ხმა მიცემულია' },
+  'vote.thanks': { en: 'Thanks — your vote is counted.', ka: 'მადლობა — შენი ხმა დაფიქსირდა.' },
+  'vote.total': { en: 'votes', ka: 'ხმა' },
+  'vote.localOnly': {
+    en: 'Counted in this browser only until Supabase is connected.',
+    ka: 'ითვლება მხოლოდ ამ ბრაუზერში, სანამ Supabase არ დაუკავშირდება.',
+  },
+
   'status.registration_open': { en: 'Registration open', ka: 'რეგისტრაცია ღიაა' },
   'status.upcoming': { en: 'Upcoming', ka: 'მომავალი' },
   'status.ongoing': { en: 'Ongoing', ka: 'მიმდინარე' },

@@ -74,6 +74,7 @@ src/
     universities.ts   universities + sports
     tournaments.ts    one row per tournament, owned by its host university
     content.ts        events + news
+    football.ts       clubs, groups, the All-Star XI, vote candidates
     repository.ts     Supabase reads, seed fallback, registration insert
     selectors.ts      filtering by university / sport
     HubProvider.tsx   loads the data once, remembers "my university"
@@ -93,6 +94,15 @@ Edit the files in `src/data`, then `npm run db:seed` and run the regenerated
 A tournament's `hostUniversityId` is the university running it; `null` means it
 is open to every campus, and those stay visible under any university filter.
 Same for `universityId` on events and news.
+
+The football page carries the sections specific to a university's own league:
+collapsible group tables, the All-Star XI, the roll of winning teams and the
+player-of-the-week vote. They all live in `src/data/football.ts` and are keyed
+by club, so they appear only for the campus those clubs belong to.
+
+Team crests and squad photos sit in `public/teams/`. All-Star slots start empty
+on purpose — the pitch is drawn from `allstarSquad.slots`, and filling in
+`playerName` / `clubId` is what announces the line-up.
 
 ### Section styling
 

@@ -291,7 +291,7 @@ export function RegisterPage() {
                   <p className="mt-1 text-sm text-slate">
                     {formatRange(selected.startDate, selected.endDate, lang)}
                   </p>
-                  <dl className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
+                  <dl className="mt-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 border-t border-line pt-4 text-sm">
                     <SummaryRow label={t('label.venue')} value={l(selected.venue)} />
                     <SummaryRow
                       label={t('label.fee')}
@@ -376,10 +376,10 @@ function Field({
 
 function SummaryRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-3">
-      <dt className="w-24 shrink-0 text-slate">{label}</dt>
-      <dd className="min-w-0 flex-1 font-medium">{value}</dd>
-    </div>
+    <>
+      <dt className="text-slate">{label}</dt>
+      <dd className="min-w-0 font-medium">{value}</dd>
+    </>
   )
 }
 

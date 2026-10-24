@@ -52,7 +52,7 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
           {l(tournament.summary)}
         </p>
 
-        <dl className="mt-4 space-y-1.5 text-sm">
+        <dl className="mt-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1.5 text-sm">
           <Row label={t('label.format')} value={l(tournament.format)} />
           <Row
             label={t('label.dates')}
@@ -97,12 +97,14 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
   )
 }
 
+/* A two-column grid on the parent <dl> keeps every label aligned, whatever its
+   length — Georgian labels run much longer than their English counterparts. */
 function Row({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-3">
-      <dt className="w-20 shrink-0 text-slate">{label}</dt>
-      <dd className="min-w-0 flex-1 font-medium">{value}</dd>
-    </div>
+    <>
+      <dt className="text-slate">{label}</dt>
+      <dd className="min-w-0 font-medium">{value}</dd>
+    </>
   )
 }
 
