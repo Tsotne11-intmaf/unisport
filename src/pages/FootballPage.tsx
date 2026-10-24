@@ -5,7 +5,7 @@ import { NewsCard, TournamentCard } from '@/components/cards'
 import { MatchGallery } from '@/components/MatchGallery'
 import { PlayerVote } from '@/components/PlayerVote'
 import { TournamentGroups } from '@/components/TournamentGroups'
-import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
+import { EmptyState, SectionHeading, Themed, UniversityMark } from '@/components/ui'
 import { UniversityPicker } from '@/components/UniversityPicker'
 import { WinnerTeams } from '@/components/WinnerTeams'
 import { useHub } from '@/data/HubProvider'
@@ -81,12 +81,21 @@ export function FootballPage() {
             className="absolute inset-0 size-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/55 to-ink/15" />
-          <div className="relative px-6 py-14 sm:px-10 sm:py-20">
-            <Pill variant="accent">{l(sport?.name)}</Pill>
-            <h1 className="mt-4 text-4xl font-semibold text-white sm:text-5xl">
+          <div className="relative px-6 py-14 sm:px-10 sm:py-24">
+            {/* The badge names the campus, not the sport — the heading already does that. */}
+            {picked && (
+              <span className="inline-flex items-center gap-2.5 rounded-pill bg-white/15 py-1.5 pr-4 pl-1.5 ring-1 ring-white/25 backdrop-blur-sm">
+                <UniversityMark university={picked} className="size-7 rounded-full" />
+                <span className="text-xs font-bold text-white">{l(picked.name)}</span>
+              </span>
+            )}
+            <h1
+              className={`text-5xl font-bold text-white sm:text-7xl ${picked ? 'mt-5' : ''}`}
+              style={{ textShadow: '0 2px 24px rgb(0 0 0 / 0.45)' }}
+            >
               {l(sport?.name)}
             </h1>
-            <p className="mt-2 max-w-xl text-white/80">{l(sport?.blurb)}</p>
+            <p className="mt-4 max-w-xl text-white/85">{l(sport?.blurb)}</p>
           </div>
         </div>
       </section>
