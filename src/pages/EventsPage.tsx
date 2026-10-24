@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 
 import { EventCard } from '@/components/cards'
-import { UniversityFilter } from '@/components/UniversityFilter'
+import { UniversityPicker } from '@/components/UniversityPicker'
 import { Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { ALL, filterEvents } from '@/data/selectors'
@@ -9,7 +9,7 @@ import { useI18n } from '@/lib/i18n'
 
 export function EventsPage() {
   const [params, setParams] = useSearchParams()
-  const { t } = useI18n()
+  const { t, l } = useI18n()
   const hub = useHub()
 
   const universityId = params.get('uni') ?? hub.myUniversityId
@@ -38,20 +38,33 @@ export function EventsPage() {
           <p className="mt-2 text-sm text-slate">
             {t('filter.showing')}: {events.length}
           </p>
-          {hub.universities.length > 1 && (
-            <div className="mt-8">
-              <UniversityFilter
-                universities={hub.universities}
-                value={universityId}
-                onChange={setUniversity}
-              />
-            </div>
-          )}
         </div>
       </section>
 
+      {/* Events run under their own brand, so the picker shows that name and mark. */}
       <section className="shell py-12">
-        <SectionHeading index={1} title={t('section.upcomingEvents')} />
+        <SectionHeading
+          index={1}
+          eyebrow={t('nav.universities')}
+          title={t('section.pickUniversity')}
+        />
+        <UniversityPicker
+          universities={hub.universities}
+          value={universityId}
+          onChange={setUniversity}
+          nameOf={(university) => l(university.eventsName ?? university.name)}
+          logoOf={(university) => university.eventsLogoUrl ?? university.logoUrl}
+          counts={Object.fromEntries(
+            hub.universities.map((university) => [
+              university.id,
+              hub.events.filter((event) => event.universityId === university.id).length,
+            ]),
+          )}
+        />
+      </section>
+
+      <section className="shell pb-12">
+        <SectionHeading index={2} title={t('section.upcomingEvents')} />
         {upcoming.length ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((event) => (
@@ -67,7 +80,7 @@ export function EventsPage() {
 
       {past.length > 0 && (
         <section className="shell pb-14">
-          <SectionHeading index={2} title={t('section.pastEvents')} />
+          <SectionHeading index={3} title={t('section.pastEvents')} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {past.map((event) => (
               <EventCard key={event.id} event={event} />

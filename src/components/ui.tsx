@@ -119,17 +119,21 @@ export function EmptyState() {
  */
 export function UniversityMark({
   university,
+  logoUrl,
   className = 'size-10 text-xs',
 }: {
   university: University
+  /** Overrides the crest — the events arm has its own mark. */
+  logoUrl?: string | null
   className?: string
 }) {
   const [failed, setFailed] = useState(false)
+  const src = logoUrl === undefined ? university.logoUrl : logoUrl
 
-  if (university.logoUrl && !failed) {
+  if (src && !failed) {
     return (
       <img
-        src={university.logoUrl}
+        src={src}
         alt={university.shortName}
         loading="lazy"
         onError={() => setFailed(true)}

@@ -25,6 +25,9 @@ export interface University {
   logoUrl: string | null
   /** Wide campus photo used as the hero banner once this university is picked. */
   bannerUrl: string | null
+  /** The events arm trades under its own name and mark; null falls back to the university's. */
+  eventsName: Localized | null
+  eventsLogoUrl: string | null
 }
 
 export interface Sport {

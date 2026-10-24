@@ -16,6 +16,8 @@ export const universities: University[] = [
     color: '#c8102e',
     logoUrl: '/universities/btu.png',
     bannerUrl: '/banners/btu-campus.png',
+    eventsName: { en: 'Bitiuelebis Events', ka: 'ბითიუელების ივენთები' },
+    eventsLogoUrl: '/universities/btu-events.png',
   },
 ]
 

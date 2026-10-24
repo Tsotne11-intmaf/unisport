@@ -13,12 +13,17 @@ export function UniversityPicker({
   value,
   onChange,
   counts,
+  nameOf,
+  logoOf,
 }: {
   universities: University[]
   value: string
   onChange: (next: string) => void
   /** Optional per-university tally shown under the name, e.g. tournaments hosted. */
   counts?: Record<string, number>
+  /** Override the displayed name and mark, for sections with their own brand. */
+  nameOf?: (university: University) => string
+  logoOf?: (university: University) => string | null
 }) {
   const { t, l } = useI18n()
 
@@ -40,9 +45,10 @@ export function UniversityPicker({
         <PickerCard
           key={university.id}
           active={value === university.id}
-          title={l(university.name)}
+          title={nameOf ? nameOf(university) : l(university.name)}
           subtitle={l(university.city)}
           university={university}
+          logoUrl={logoOf ? logoOf(university) : undefined}
           count={counts?.[university.id]}
           onClick={() => onChange(university.id)}
         />
@@ -56,6 +62,7 @@ function PickerCard({
   title,
   subtitle,
   university,
+  logoUrl,
   count,
   onClick,
 }: {
@@ -63,6 +70,7 @@ function PickerCard({
   title: string
   subtitle: string
   university?: University
+  logoUrl?: string | null
   count?: number
   onClick: () => void
 }) {
@@ -76,7 +84,11 @@ function PickerCard({
       }`}
     >
       {university ? (
-        <UniversityMark university={university} className="size-16 rounded-2xl text-sm" />
+        <UniversityMark
+          university={university}
+          logoUrl={logoUrl}
+          className="size-16 rounded-2xl text-sm"
+        />
       ) : (
         <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-mist text-sm font-bold text-slate">
           ★

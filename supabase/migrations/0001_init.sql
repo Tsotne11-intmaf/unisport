@@ -12,6 +12,9 @@ create table if not exists universities (
   color       text not null default '#6b7280',
   logo_url    text,
   banner_url  text,
+  events_name_en  text,
+  events_name_ka  text,
+  events_logo_url text,
   created_at  timestamptz not null default now()
 );
 
