@@ -61,6 +61,8 @@ export interface VoteCandidate {
   id: string
   name: string | null
   logoUrl: string | null
+  /** Portrait for the leader crest; the crest stays empty without one. */
+  photoUrl: string | null
   votes: number
 }
 
@@ -257,9 +259,9 @@ export const winnerTeams: WinnerTeam[] = [
 
 /** Five empty slots — fill in `name` and `logoUrl` to open the vote. */
 export const voteCandidates: VoteCandidate[] = [
-  { id: 'cand-1', name: null, logoUrl: null, votes: 0 },
-  { id: 'cand-2', name: null, logoUrl: null, votes: 0 },
-  { id: 'cand-3', name: null, logoUrl: null, votes: 0 },
-  { id: 'cand-4', name: null, logoUrl: null, votes: 0 },
-  { id: 'cand-5', name: null, logoUrl: null, votes: 0 },
+  { id: 'cand-1', name: null, logoUrl: null, photoUrl: null, votes: 0 },
+  { id: 'cand-2', name: null, logoUrl: null, photoUrl: null, votes: 0 },
+  { id: 'cand-3', name: null, logoUrl: null, photoUrl: null, votes: 0 },
+  { id: 'cand-4', name: null, logoUrl: null, photoUrl: null, votes: 0 },
+  { id: 'cand-5', name: null, logoUrl: null, photoUrl: null, votes: 0 },
 ]

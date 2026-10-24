@@ -122,6 +122,8 @@ const dictionary = {
   },
   'vote.cta': { en: 'Vote', ka: 'მიეცი ხმა' },
   'vote.placeholderName': { en: 'Name Surname', ka: 'სახელი და გვარი' },
+  'vote.leader': { en: 'Leading', ka: 'ლიდერობს' },
+  'vote.noLeader': { en: 'No votes yet', ka: 'ხმები ჯერ არ არის' },
   'vote.pending': {
     en: 'Nominees are announced before each round.',
     ka: 'კანდიდატები ყოველი ტურის წინ ცხადდება.',

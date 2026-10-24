@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { VoteCandidate } from '@/data/football'
+import { LeaderCrest } from './LeaderCrest'
 import { submitVote } from '@/data/repository'
 import { useI18n } from '@/lib/i18n'
 
@@ -46,7 +47,11 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
     setStoredRemotely(result.ok && result.stored === 'supabase')
   }
 
+  // Only a named candidate with votes counts as leading the week.
+  const leader = ranked.find((candidate) => candidate.name && tally(candidate) > 0) ?? null
+
   return (
+    <div className="grid gap-5 lg:grid-cols-[1fr_17rem] lg:items-start">
     <div className="overflow-hidden rounded-card border border-line bg-paper">
       <ul>
         {ranked.map((candidate, index) => {
@@ -123,6 +128,9 @@ export function PlayerVote({ candidates }: { candidates: VoteCandidate[] }) {
         </p>
       )}
     </div>
+
+      <LeaderCrest leader={leader} votes={leader ? tally(leader) : 0} />
+    </div>
   )
 }
 
@@ -133,16 +141,16 @@ function CrestFrame({ src, alt }: { src: string | null; alt: string }) {
       <img
         src={src}
         alt={alt}
-        width={40}
-        height={40}
+        width={32}
+        height={32}
         loading="lazy"
-        className="size-10 shrink-0 rounded-lg bg-mist object-contain"
+        className="size-8 shrink-0 rounded-lg bg-mist object-contain"
       />
     )
   }
   return (
     <span
-      className="size-10 shrink-0 rounded-lg border-2 border-dashed border-line bg-mist"
+      className="size-8 shrink-0 rounded-lg border-2 border-dashed border-line bg-mist"
       aria-hidden="true"
     />
   )
