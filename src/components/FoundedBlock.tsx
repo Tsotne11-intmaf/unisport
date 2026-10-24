@@ -8,7 +8,7 @@ export function FoundedBlock() {
   const { t } = useI18n()
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[13rem_1fr] lg:gap-14">
+    <div className="grid gap-10 rounded-[2rem] border border-line bg-mist p-7 sm:p-10 lg:grid-cols-[13rem_1fr] lg:gap-14 lg:p-14">
       <div>
         <p className="text-sm font-medium text-slate">{t('about.foundedLabel')}</p>
         <p className="mt-3 inline-block rounded-xl bg-padel px-5 py-2 text-5xl font-bold text-ink tabular-nums sm:text-6xl">
@@ -17,10 +17,7 @@ export function FoundedBlock() {
       </div>
 
       <div>
-        <div className="mb-4 flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-full bg-ink text-[11px] font-bold text-white">
-            1
-          </span>
+        <div className="mb-4">
           <Pill>{t('about.eyebrow')}</Pill>
         </div>
 
@@ -33,7 +30,7 @@ export function FoundedBlock() {
             src="/gallery/about-1.webp"
             alt=""
             loading="lazy"
-            className="aspect-[3/4] w-full rounded-2xl object-cover"
+            className="aspect-[3/4] w-full rounded-2xl border-4 border-paper object-cover"
             style={{ objectPosition: '55% 50%' }}
           />
           <div className="flex flex-col gap-4">
@@ -41,7 +38,7 @@ export function FoundedBlock() {
               src="/gallery/about-2.webp"
               alt=""
               loading="lazy"
-              className="aspect-[4/3] w-full rounded-2xl object-cover"
+              className="aspect-[4/3] w-full rounded-2xl border-4 border-paper object-cover"
               style={{ objectPosition: '50% 45%' }}
             />
             <p className="text-sm leading-relaxed text-slate">{t('about.body')}</p>

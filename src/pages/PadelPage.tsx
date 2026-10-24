@@ -123,6 +123,10 @@ export function PadelPage() {
         <InstagramCard />
       </section>
 
+      <section className="shell pb-14">
+        <FoundedBlock />
+      </section>
+
       {news.length > 0 && (
         <section className="shell pb-14">
           <SectionHeading
@@ -138,10 +142,6 @@ export function PadelPage() {
           </div>
         </section>
       )}
-
-      <section className="shell border-t border-line py-14">
-        <FoundedBlock />
-      </section>
     </Themed>
   )
 }
