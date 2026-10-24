@@ -27,3 +27,6 @@ dist-ssr
 .env.local
 .env
 .vercel
+
+# Scratch folders that are not part of the site
+praqtika2/
