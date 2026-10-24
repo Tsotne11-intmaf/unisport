@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { EventCard, NewsCard, TournamentCard } from '@/components/cards'
 import { UniversityPicker } from '@/components/UniversityPicker'
 import { UniteBlock } from '@/components/UniteBlock'
-import { Pill, SectionHeading, Themed } from '@/components/ui'
+import { SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import {
   ALL,
@@ -42,18 +42,32 @@ export function Home() {
 
   return (
     <Themed theme="neutral">
-      <section className="border-b border-line">
-        <div className="shell py-14 sm:py-20">
-          <Pill variant="solid">{t('hero.eyebrow')}</Pill>
-          <h1 className="mt-5 max-w-3xl text-5xl leading-[1.03] font-semibold sm:text-6xl lg:text-7xl">
+      {/* A photograph carries the hero. The copy is one line and three buttons. */}
+      <section className="relative isolate overflow-hidden bg-ink">
+        <img
+          src="/gallery/match-1.webp"
+          alt=""
+          className="absolute inset-0 -z-10 size-full object-cover"
+          style={{ objectPosition: '50% 30%' }}
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink/95 via-ink/80 to-ink/50" />
+
+        <div className="shell py-24 sm:py-32 lg:py-40">
+          <span className="inline-flex items-center rounded-pill bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white ring-1 ring-white/25 backdrop-blur-sm">
+            {t('hero.eyebrow')}
+          </span>
+
+          <h1
+            className="mt-6 max-w-4xl text-5xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl"
+            style={{ textShadow: '0 2px 32px rgb(0 0 0 / 0.5)' }}
+          >
             {t('hero.title')}
           </h1>
-          <p className="mt-5 max-w-xl text-lg text-slate">{t('hero.lede')}</p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap gap-3">
             <Link
               to="/register"
-              className="rounded-pill bg-ink px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="rounded-pill bg-paper px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
             >
               {t('hero.ctaRegister')} ↗
             </Link>
@@ -70,16 +84,6 @@ export function Home() {
               {t('hero.ctaFootball')}
             </Link>
           </div>
-
-          <dl className="mt-14 grid grid-cols-2 gap-6 sm:max-w-2xl sm:grid-cols-4">
-            <Stat value={hub.universities.length} label={t('stat.universities')} />
-            <Stat value={hub.tournaments.length} label={t('stat.tournaments')} />
-            <Stat
-              value={openForRegistration(hub.tournaments).length}
-              label={t('stat.open')}
-            />
-            <Stat value={hub.events.length} label={t('stat.events')} />
-          </dl>
         </div>
       </section>
 
@@ -203,15 +207,6 @@ export function Home() {
         </Themed>
       </section>
     </Themed>
-  )
-}
-
-function Stat({ value, label }: { value: number; label: string }) {
-  return (
-    <div>
-      <dd className="text-4xl font-semibold">{value}</dd>
-      <dt className="mt-1 text-xs text-slate">{label}</dt>
-    </div>
   )
 }
 

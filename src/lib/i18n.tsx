@@ -20,14 +20,10 @@ const dictionary = {
   'nav.register': { en: 'Register', ka: 'რეგისტრაცია' },
   'nav.menu': { en: 'Menu', ka: 'მენიუ' },
 
-  'hero.eyebrow': { en: 'Student sport, every university', ka: 'სტუდენტური სპორტი, ყველა უნივერსიტეტი' },
+  'hero.eyebrow': { en: 'Student sport', ka: 'სტუდენტური სპორტი' },
   'hero.title': {
-    en: 'Every university’s sport, in one place.',
-    ka: 'ყველა უნივერსიტეტის სპორტი ერთ სივრცეში.',
-  },
-  'hero.lede': {
-    en: 'Padel cups, football leagues, parties and announcements from universities across Tbilisi. Pick your university and the whole site follows it.',
-    ka: 'პადელის თასები, ფეხბურთის ლიგა, წვეულებები და განცხადებები თბილისის უნივერსიტეტებიდან. აირჩიე შენი უნივერსიტეტი და მთელი საიტი მას მოერგება.',
+    en: 'Every university, in one place.',
+    ka: 'ყველა უნივერსიტეტი ერთ სივრცეში.',
   },
   'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
   'padel.aboutEyebrow': { en: 'The challenge', ka: 'გამოწვევა' },

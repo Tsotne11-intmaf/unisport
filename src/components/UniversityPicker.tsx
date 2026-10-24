@@ -34,8 +34,14 @@ export function UniversityPicker({
   // duplicates it, so it appears once there is a second campus to compare.
   const showAll = universities.length > 1
 
+  // A lone card stretched across a third of the page looks stranded, so the
+  // grid only opens up once there are enough cards to fill it.
+  const cards = universities.length + (showAll ? 1 : 0)
+  const columns =
+    cards === 1 ? 'max-w-md' : cards === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
+
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className={`grid gap-3 ${columns}`}>
       {showAll && (
         <PickerCard
           active={value === ALL}
@@ -102,7 +108,7 @@ function PickerCard({
       )}
 
       <span className="min-w-0 flex-1 pr-6">
-        <span className="block truncate text-[15px] leading-snug font-bold">{title}</span>
+        <span className="line-clamp-2 block text-[15px] leading-snug font-bold">{title}</span>
         <span className="mt-1 flex items-center gap-1 text-xs text-slate">
           <PinIcon />
           <span className="truncate">{subtitle}</span>
