@@ -24,7 +24,7 @@ const levelKey: Record<SkillLevel, TranslationKey> = {
   open: 'level.open',
 }
 
-const levels: SkillLevel[] = ['beginner', 'intermediate', 'advanced']
+const levels: SkillLevel[] = ['open', 'beginner', 'intermediate', 'advanced']
 
 const inputClass =
   'w-full rounded-xl border border-line bg-paper px-3.5 py-2.5 text-sm outline-none focus:border-ink'

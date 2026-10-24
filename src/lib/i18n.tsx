@@ -198,7 +198,7 @@ const dictionary = {
   'level.beginner': { en: 'Beginner', ka: 'დამწყები' },
   'level.intermediate': { en: 'Intermediate', ka: 'საშუალო' },
   'level.advanced': { en: 'Advanced', ka: 'გამოცდილი' },
-  'level.open': { en: 'All levels', ka: 'ყველა დონე' },
+  'level.open': { en: 'Amateur level', ka: 'მოყვარულთა დონე' },
 
   'kind.party': { en: 'Party', ka: 'წვეულება' },
   'kind.ceremony': { en: 'Ceremony', ka: 'ცერემონია' },
@@ -345,6 +345,17 @@ const dictionary = {
     en: 'Running on seed data — connect Supabase to go live.',
     ka: 'მუშაობს სატესტო მონაცემებზე — დააკავშირე Supabase გასაშვებად.',
   },
+
+  'cookie.title': {
+    en: 'Cookies on this site',
+    ka: 'ქუქი-ფაილები ამ საიტზე',
+  },
+  'cookie.body': {
+    en: 'We keep a little data in your browser so the site remembers your choices. Accept and we may also use it to improve the site.',
+    ka: 'საიტი მცირე მონაცემებს ინახავს შენს ბრაუზერში, რომ შენი არჩევანი დაიმახსოვროს. თანხმობით ამ მონაცემებს საიტის გასაუმჯობესებლადაც გამოვიყენებთ.',
+  },
+  'cookie.accept': { en: 'Accept', ka: 'ვეთანხმები' },
+  'cookie.essential': { en: 'Essential only', ka: 'მხოლოდ აუცილებელი' },
 
   'notFound.title': { en: 'Page not found', ka: 'გვერდი ვერ მოიძებნა' },
   'notFound.body': {
