@@ -46,6 +46,14 @@ The site reads Supabase when those variables are set and falls back to the seed
 data whenever a query fails, so a half-finished setup never shows an empty page.
 The footer says which source is live.
 
+### Team registrations need a storage bucket
+
+Squad sheets upload a team crest and a photo per player. In the Supabase
+dashboard create **Storage → New bucket → `registrations`**, mark it public,
+then run the two storage policies written at the bottom of
+`supabase/migrations/0001_init.sql`. Without the bucket the text still sends
+and only the images fail.
+
 Row level security is on: the content tables are world-readable with the anon
 key, `registrations` accepts inserts but cannot be read back with it, so one
 student can't list everyone else's contact details. Read entries in the Supabase

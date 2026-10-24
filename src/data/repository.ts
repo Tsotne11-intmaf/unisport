@@ -4,6 +4,7 @@ import type {
   NewsItem,
   RegistrationDraft,
   Sport,
+  TeamRegistrationDraft,
   Tournament,
   University,
 } from '@/types'
@@ -76,7 +77,11 @@ const toTournament = (row: Row): Tournament => ({
   fee: nullableNum(row, 'fee'),
   slots: nullableNum(row, 'slots'),
   slotsTaken: Number(row.slots_taken ?? 0),
+  registrationOpensAt: nullableStr(row, 'registration_opens_at'),
   registrationDeadline: nullableStr(row, 'registration_deadline'),
+  teamBased: Boolean(row.team_based),
+  squadMin: nullableNum(row, 'squad_min'),
+  squadMax: nullableNum(row, 'squad_max'),
   imageUrl: nullableStr(row, 'image_url'),
 })
 
@@ -208,4 +213,109 @@ export async function submitVote(candidateId: string): Promise<SubmitResult> {
   const { error } = await supabase.from('player_votes').insert({ candidate_id: candidateId })
   if (error) return { ok: false, error: error.message }
   return { ok: true, stored: 'supabase' }
+}
+
+const BUCKET = 'registrations'
+
+/** Keeps storage keys ASCII and predictable, whatever the original filename was. */
+function extensionOf(file: File): string {
+  const match = /\.([a-z0-9]{1,5})$/i.exec(file.name)
+  return match ? match[1].toLowerCase() : 'jpg'
+}
+
+async function uploadImage(file: File, path: string): Promise<string | null> {
+  if (!supabase) return null
+  const { error } = await supabase.storage
+    .from(BUCKET)
+    .upload(path, file, { upsert: true, contentType: file.type || undefined })
+  if (error) throw new Error(error.message)
+  return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl
+}
+
+/**
+ * Sends a squad sheet: the team row first, then its players, with the crest and
+ * player photos uploaded to storage. Without Supabase the text is kept in this
+ * browser — files cannot be, so only their names are recorded.
+ */
+export async function submitTeamRegistration(
+  draft: TeamRegistrationDraft,
+): Promise<SubmitResult> {
+  if (!supabase) {
+    try {
+      const key = 'campus-hub-team-registrations'
+      const existing = JSON.parse(localStorage.getItem(key) ?? '[]') as unknown[]
+      localStorage.setItem(
+        key,
+        JSON.stringify([
+          ...existing,
+          {
+            tournamentId: draft.tournamentId,
+            universityId: draft.universityId,
+            teamName: draft.teamName,
+            logoName: draft.logo?.name ?? null,
+            contactEmail: draft.contactEmail,
+            contactPhone: draft.contactPhone,
+            notes: draft.notes,
+            players: draft.players.map((player) => ({
+              firstName: player.firstName,
+              lastName: player.lastName,
+              email: player.email,
+              photoName: player.photo?.name ?? null,
+            })),
+          },
+        ]),
+      )
+    } catch {
+      // Storage blocked — the submission simply isn't kept anywhere.
+    }
+    return { ok: true, stored: 'local' }
+  }
+
+  try {
+    const folder = `${draft.tournamentId}/${Date.now()}`
+    const logoUrl = draft.logo
+      ? await uploadImage(draft.logo, `${folder}/crest.${extensionOf(draft.logo)}`)
+      : null
+
+    const { data, error } = await supabase
+      .from('team_registrations')
+      .insert({
+        tournament_id: draft.tournamentId,
+        university_id: draft.universityId,
+        team_name: draft.teamName,
+        logo_url: logoUrl,
+        contact_email: draft.contactEmail,
+        contact_phone: draft.contactPhone,
+        notes: draft.notes || null,
+      })
+      .select('id')
+      .single()
+
+    if (error) throw new Error(error.message)
+
+    const players = await Promise.all(
+      draft.players.map(async (player, index) => ({
+        registration_id: data.id as string,
+        first_name: player.firstName,
+        last_name: player.lastName,
+        email: player.email,
+        photo_url: player.photo
+          ? await uploadImage(
+              player.photo,
+              `${folder}/player-${index + 1}.${extensionOf(player.photo)}`,
+            )
+          : null,
+        shirt_order: index + 1,
+      })),
+    )
+
+    const { error: playerError } = await supabase
+      .from('team_registration_players')
+      .insert(players)
+    if (playerError) throw new Error(playerError.message)
+
+    return { ok: true, stored: 'supabase' }
+  } catch (cause) {
+    return { ok: false, error: cause instanceof Error ? cause.message : 'Upload failed' }
+  }
 }

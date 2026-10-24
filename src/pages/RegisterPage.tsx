@@ -1,10 +1,16 @@
-import { useMemo, useState, type FormEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { Card, Media, Pill, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { ALL, placesLeft } from '@/data/selectors'
-import { submitRegistration } from '@/data/repository'
+import {
+  emptyTeamForm,
+  isTeamFormComplete,
+  TeamRegistrationForm,
+  type TeamFormValue,
+} from '@/components/TeamRegistrationForm'
+import { submitRegistration, submitTeamRegistration } from '@/data/repository'
 import { formatDate, formatRange } from '@/lib/format'
 import { useI18n, type TranslationKey } from '@/lib/i18n'
 import type { SkillLevel, Tournament } from '@/types'
@@ -39,6 +45,9 @@ export function RegisterPage() {
   const [notes, setNotes] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [storedIn, setStoredIn] = useState<'supabase' | 'local'>('local')
+  const [team, setTeam] = useState<TeamFormValue>(() =>
+    emptyTeamForm(preselected?.squadMin ?? null),
+  )
 
   /* A student can enter their own university's tournaments plus anything open
      to all campuses — which is exactly what picking a university should reveal. */
@@ -57,6 +66,12 @@ export function RegisterPage() {
 
   const selected = available.find((tournament) => tournament.id === tournamentId)
 
+  const isTeam = selected?.teamBased ?? false
+
+  useEffect(() => {
+    if (selected?.teamBased) setTeam(emptyTeamForm(selected.squadMin))
+  }, [selected?.id, selected?.teamBased, selected?.squadMin])
+
   const onPickUniversity = (id: string) => {
     setUniversityId(id)
     hub.setMyUniversityId(id)
@@ -69,17 +84,28 @@ export function RegisterPage() {
     if (!selected) return
 
     setStatus('sending')
-    const result = await submitRegistration({
-      sportId: selected.sportId,
-      tournamentId: selected.id,
-      universityId,
-      fullName,
-      email,
-      phone,
-      level,
-      partnerName,
-      notes,
-    })
+    const result = selected.teamBased
+      ? await submitTeamRegistration({
+          tournamentId: selected.id,
+          universityId,
+          teamName: team.teamName,
+          logo: team.logo,
+          contactEmail: team.contactEmail,
+          contactPhone: team.contactPhone,
+          notes: team.notes,
+          players: team.players,
+        })
+      : await submitRegistration({
+          sportId: selected.sportId,
+          tournamentId: selected.id,
+          universityId,
+          fullName,
+          email,
+          phone,
+          level,
+          partnerName,
+          notes,
+        })
 
     if (result.ok) {
       setStoredIn(result.stored)
@@ -199,6 +225,9 @@ export function RegisterPage() {
           </Step>
 
           <Step index={3} title={t('reg.step3')}>
+            {isTeam && selected ? (
+              <TeamRegistrationForm tournament={selected} value={team} onChange={setTeam} />
+            ) : (
             <fieldset
               disabled={!selected}
               className="grid gap-4 sm:grid-cols-2 disabled:opacity-45"
@@ -263,6 +292,7 @@ export function RegisterPage() {
                 />
               </Field>
             </fieldset>
+            )}
           </Step>
         </div>
 
@@ -289,11 +319,28 @@ export function RegisterPage() {
                       label={t('label.fee')}
                       value={selected.fee === null ? t('label.free') : `${selected.fee} ₾`}
                     />
-                    {selected.registrationDeadline && (
+                    {selected.squadMax && (
                       <SummaryRow
-                        label={t('label.deadline')}
-                        value={formatDate(selected.registrationDeadline, lang)}
+                        label={t('reg.squad')}
+                        value={`${selected.squadMin ?? 1}–${selected.squadMax}`}
                       />
+                    )}
+                    {selected.registrationOpensAt && selected.registrationDeadline ? (
+                      <SummaryRow
+                        label={t('reg.window')}
+                        value={formatRange(
+                          selected.registrationOpensAt,
+                          selected.registrationDeadline,
+                          lang,
+                        )}
+                      />
+                    ) : (
+                      selected.registrationDeadline && (
+                        <SummaryRow
+                          label={t('label.deadline')}
+                          value={formatDate(selected.registrationDeadline, lang)}
+                        />
+                      )
                     )}
                   </dl>
                 </div>
@@ -306,9 +353,16 @@ export function RegisterPage() {
               {status === 'error' && (
                 <p className="mb-3 text-sm font-medium text-football">{t('reg.failed')}</p>
               )}
+              {isTeam && selected && !isTeamFormComplete(team, selected.squadMin) && (
+                <p className="mb-3 text-xs text-slate">{t('reg.needMorePlayers')}</p>
+              )}
               <button
                 type="submit"
-                disabled={!selected || status === 'sending'}
+                disabled={
+                  !selected ||
+                  status === 'sending' ||
+                  (isTeam && !isTeamFormComplete(team, selected.squadMin))
+                }
                 className="w-full cursor-pointer rounded-pill bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-[var(--accent-ink)] transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {status === 'sending' ? t('reg.sending') : t('reg.submit')}

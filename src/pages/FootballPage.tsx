@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import { AllstarPitch } from '@/components/AllstarPitch'
 import { NewsCard, TournamentCard } from '@/components/cards'
+import { LeagueRules } from '@/components/LeagueRules'
 import { MatchGallery } from '@/components/MatchGallery'
 import { PlayerVote } from '@/components/PlayerVote'
 import { TournamentGroups } from '@/components/TournamentGroups'
@@ -131,9 +132,15 @@ export function FootballPage() {
         )}
       </section>
 
+      <section className="shell py-8">
+        <SectionHeading index={3} eyebrow="BTU Uni League" title={t('section.rules')} />
+        <p className="mb-5 -mt-2 text-sm text-slate">{t('rules.lede')}</p>
+        <LeagueRules />
+      </section>
+
       {groups.length > 0 && (
         <section className="shell py-8">
-          <SectionHeading index={3} title={t('section.groups')} />
+          <SectionHeading index={4} title={t('section.groups')} />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('groups.lede')}</p>
           <TournamentGroups groups={groups} />
         </section>
@@ -142,7 +149,7 @@ export function FootballPage() {
       {showSquad && (
         <section className="shell py-8">
           <SectionHeading
-            index={4}
+            index={5}
             eyebrow={l(currentSeason)}
             eyebrowStrong
             title={t('section.allstar')}
@@ -154,7 +161,7 @@ export function FootballPage() {
       {winners.length > 0 && (
         <section className="shell py-8">
           <SectionHeading
-            index={5}
+            index={6}
             eyebrow={l(currentSeason)}
             eyebrowStrong
             title={t('section.winners')}
@@ -166,7 +173,7 @@ export function FootballPage() {
       {candidates.length > 0 && (
         <section className="shell py-8">
           <SectionHeading
-            index={6}
+            index={7}
             eyebrow={l(currentSeason)}
             eyebrowStrong
             title={t('section.vote')}
@@ -178,7 +185,7 @@ export function FootballPage() {
 
       <section className="shell py-8">
         <SectionHeading
-          index={7}
+          index={8}
           eyebrow={t('gallery.eyebrow')}
           title={t('section.gallery')}
         />
@@ -189,7 +196,7 @@ export function FootballPage() {
       {news.length > 0 && (
         <section className="shell py-8 pb-14">
           <SectionHeading
-            index={8}
+            index={9}
             eyebrow={t('nav.news')}
             title={t('section.news')}
             action={{ to: '/news?sport=football', label: t('action.viewAll') }}

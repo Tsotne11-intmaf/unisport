@@ -47,7 +47,11 @@ create table if not exists tournaments (
   fee                   integer,
   slots                 integer,
   slots_taken           integer not null default 0,
+  registration_opens_at date,
   registration_deadline date,
+  team_based            boolean not null default false,
+  squad_min             integer,
+  squad_max             integer,
   image_url             text,
   created_at            timestamptz not null default now()
 );
@@ -162,3 +166,49 @@ create or replace view vote_tallies as
   from vote_candidates c
   left join player_votes v on v.candidate_id = c.id
   group by c.id;
+
+-- Team entries ------------------------------------------------------------
+
+create table if not exists team_registrations (
+  id            uuid primary key default gen_random_uuid(),
+  tournament_id text not null references tournaments (id) on delete cascade,
+  university_id text not null references universities (id) on delete restrict,
+  team_name     text not null,
+  logo_url      text,
+  contact_email text not null,
+  contact_phone text not null,
+  notes         text,
+  created_at    timestamptz not null default now()
+);
+
+create table if not exists team_registration_players (
+  id              uuid primary key default gen_random_uuid(),
+  registration_id uuid not null references team_registrations (id) on delete cascade,
+  first_name      text not null,
+  last_name       text not null,
+  email           text not null,
+  photo_url       text,
+  shirt_order     integer not null
+);
+
+create index if not exists team_registrations_tournament_idx
+  on team_registrations (tournament_id);
+create index if not exists team_registration_players_registration_idx
+  on team_registration_players (registration_id);
+
+alter table team_registrations        enable row level security;
+alter table team_registration_players enable row level security;
+
+-- Squads may be submitted by anyone; like individual entries they cannot be
+-- read back with the anon key, so one captain cannot list other teams.
+create policy "public insert team registrations"
+  on team_registrations for insert with check (true);
+create policy "public insert team players"
+  on team_registration_players for insert with check (true);
+
+-- Storage for crests and player photos. Create the bucket first in the
+-- dashboard (Storage -> New bucket -> name "registrations", public), then run:
+--   create policy "public upload registrations" on storage.objects
+--     for insert to anon with check (bucket_id = 'registrations');
+--   create policy "public read registrations" on storage.objects
+--     for select to anon using (bucket_id = 'registrations');

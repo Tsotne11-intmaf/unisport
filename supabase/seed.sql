@@ -24,10 +24,10 @@ on conflict (id) do update set
   blurb_ka = excluded.blurb_ka
 ;
 
-insert into tournaments (id, sport_id, host_university_id, title_en, title_ka, summary_en, summary_ka, format_en, format_ka, status, start_date, end_date, venue_en, venue_ka, city_en, city_ka, level, fee, slots, slots_taken, registration_deadline, image_url) values
-  ('btu-padel-cup', 'padel', 'btu', 'BTU Padel Cup', 'BTU-ს პადელის თასი', 'Two days of mixed doubles on four courts. Group stage on Saturday, knockout on Sunday.', 'ორი დღე შერეული წყვილების ოთხ კორტზე. შაბათს ჯგუფური ეტაპი, კვირას ნოკაუტი.', 'Mixed doubles · groups into knockout', 'შერეული წყვილები · ჯგუფები და ნოკაუტი', 'registration_open', '2026-11-15', '2026-11-16', 'Padel Park Saburtalo', 'პადელ პარკი, საბურთალო', 'Tbilisi', 'თბილისი', 'open', 40, 32, 18, '2026-11-10', null),
-  ('student-padel-night', 'padel', null, 'Tbilisi Student Padel Night', 'თბილისის სტუდენტური პადელის ღამე', 'Open to every campus. Pairs are drawn on the night, so come alone or bring a partner.', 'ღიაა ყველა კამპუსისთვის. წყვილები ადგილზე ისაზღვრება — მოდი მარტო ან პარტნიორთან ერთად.', 'Open draw · random pairs', 'ღია ბადე · შემთხვევითი წყვილები', 'registration_open', '2026-11-22', '2026-11-22', 'Padel Park Saburtalo', 'პადელ პარკი, საბურთალო', 'Tbilisi', 'თბილისი', 'open', 30, 40, 27, '2026-11-18', null),
-  ('btu-football-league', 'football', 'btu', 'BTU Football League', 'BTU-ს ფეხბურთის ლიგა', 'The federation league: twenty-five student clubs across five groups, then a knockout for the title.', 'ფედერაციის ლიგა: ოცდახუთი სტუდენტური კლუბი ხუთ ჯგუფად, შემდეგ ნოკაუტი ტიტულისთვის.', 'Five groups of five · knockout final', 'ხუთი ხუთგუნდიანი ჯგუფი · ნოკაუტ ფინალი', 'finished', '2026-06-07', '2026-08-23', 'BTU Campus Pitch', 'BTU-ს კამპუსის მოედანი', 'Tbilisi', 'თბილისი', 'open', null, 25, 25, null, null)
+insert into tournaments (id, sport_id, host_university_id, title_en, title_ka, summary_en, summary_ka, format_en, format_ka, status, start_date, end_date, venue_en, venue_ka, city_en, city_ka, level, fee, slots, slots_taken, registration_opens_at, registration_deadline, team_based, squad_min, squad_max, image_url) values
+  ('btu-padel-cup', 'padel', 'btu', 'BTU Padel Cup', 'BTU-ს პადელის თასი', 'Two days of mixed doubles on four courts. Group stage on Saturday, knockout on Sunday.', 'ორი დღე შერეული წყვილების ოთხ კორტზე. შაბათს ჯგუფური ეტაპი, კვირას ნოკაუტი.', 'Mixed doubles · groups into knockout', 'შერეული წყვილები · ჯგუფები და ნოკაუტი', 'registration_open', '2026-11-15', '2026-11-16', 'Padel Park Saburtalo', 'პადელ პარკი, საბურთალო', 'Tbilisi', 'თბილისი', 'open', 40, 32, 18, null, '2026-11-10', false, null, null, null),
+  ('student-padel-night', 'padel', null, 'Tbilisi Student Padel Night', 'თბილისის სტუდენტური პადელის ღამე', 'Open to every campus. Pairs are drawn on the night, so come alone or bring a partner.', 'ღიაა ყველა კამპუსისთვის. წყვილები ადგილზე ისაზღვრება — მოდი მარტო ან პარტნიორთან ერთად.', 'Open draw · random pairs', 'ღია ბადე · შემთხვევითი წყვილები', 'registration_open', '2026-11-22', '2026-11-22', 'Padel Park Saburtalo', 'პადელ პარკი, საბურთალო', 'Tbilisi', 'თბილისი', 'open', 30, 40, 27, null, '2026-11-18', false, null, null, null),
+  ('btu-football-league', 'football', 'btu', 'BTU Football League', 'BTU-ს ფეხბურთის ლიგა', 'The federation league: twenty-five student clubs across five groups, then a knockout for the title.', 'ფედერაციის ლიგა: ოცდახუთი სტუდენტური კლუბი ხუთ ჯგუფად, შემდეგ ნოკაუტი ტიტულისთვის.', 'Five groups of five · knockout final', 'ხუთი ხუთგუნდიანი ჯგუფი · ნოკაუტ ფინალი', 'registration_open', '2026-06-07', '2026-08-23', 'BTU Campus Pitch', 'BTU-ს კამპუსის მოედანი', 'Tbilisi', 'თბილისი', 'open', 210, 25, 0, '2026-11-01', '2026-11-10', true, 6, 9, null)
 on conflict (id) do update set
   sport_id = excluded.sport_id,
   host_university_id = excluded.host_university_id,
@@ -48,7 +48,11 @@ on conflict (id) do update set
   fee = excluded.fee,
   slots = excluded.slots,
   slots_taken = excluded.slots_taken,
+  registration_opens_at = excluded.registration_opens_at,
   registration_deadline = excluded.registration_deadline,
+  team_based = excluded.team_based,
+  squad_min = excluded.squad_min,
+  squad_max = excluded.squad_max,
   image_url = excluded.image_url
 ;
 

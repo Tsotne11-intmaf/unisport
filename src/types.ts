@@ -55,7 +55,13 @@ export interface Tournament {
   fee: number | null
   slots: number | null
   slotsTaken: number
+  /** When entries open; null means they are open as soon as the status says so. */
+  registrationOpensAt: string | null
   registrationDeadline: string | null
+  /** Team tournaments collect a squad; individual ones collect one person. */
+  teamBased: boolean
+  squadMin: number | null
+  squadMax: number | null
   imageUrl: string | null
 }
 
@@ -88,7 +94,28 @@ export interface NewsItem {
   imageUrl: string | null
 }
 
-/** What the registration form collects before it is sent to Supabase. */
+/** One player on a squad sheet. */
+export interface SquadPlayer {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  photo: File | null
+}
+
+/** What the team registration form collects before it is sent to Supabase. */
+export interface TeamRegistrationDraft {
+  tournamentId: string
+  universityId: string
+  teamName: string
+  logo: File | null
+  contactEmail: string
+  contactPhone: string
+  notes: string
+  players: SquadPlayer[]
+}
+
+/** What the individual registration form collects before it is sent to Supabase. */
 export interface RegistrationDraft {
   sportId: SportId
   tournamentId: string

@@ -203,6 +203,38 @@ const dictionary = {
   'reg.another': { en: 'Register someone else', ka: 'დაარეგისტრირე სხვა' },
   'reg.failed': { en: 'That did not send. Please try again.', ka: 'გაგზავნა ვერ მოხერხდა. სცადე თავიდან.' },
 
+  'reg.teamName': { en: 'Team name', ka: 'გუნდის სახელი' },
+  'reg.teamLogo': { en: 'Team crest', ka: 'გუნდის ლოგო' },
+  'reg.logoHint': {
+    en: 'PNG or JPG. A square image works best.',
+    ka: 'PNG ან JPG. კვადრატული სურათი საუკეთესოდ გამოიყურება.',
+  },
+  'reg.contact': { en: 'Captain’s contact', ka: 'კაპიტნის საკონტაქტო' },
+  'reg.squad': { en: 'Squad', ka: 'შემადგენლობა' },
+  'reg.squadRange': { en: 'players', ka: 'მოთამაშე' },
+  'reg.player': { en: 'Player', ka: 'მოთამაშე' },
+  'reg.firstName': { en: 'First name', ka: 'სახელი' },
+  'reg.lastName': { en: 'Last name', ka: 'გვარი' },
+  'reg.playerPhoto': { en: 'Photo', ka: 'ფოტო' },
+  'reg.addPlayer': { en: 'Add player', ka: 'მოთამაშის დამატება' },
+  'reg.removePlayer': { en: 'Remove', ka: 'წაშლა' },
+  'reg.chooseFile': { en: 'Choose image', ka: 'აირჩიე სურათი' },
+  'reg.changeFile': { en: 'Change', ka: 'შეცვლა' },
+  'reg.needMorePlayers': {
+    en: 'Fill in every player before sending.',
+    ka: 'გაგზავნამდე შეავსე ყველა მოთამაშის ველი.',
+  },
+  'reg.opensOn': { en: 'Entries open', ka: 'რეგისტრაცია იხსნება' },
+  'reg.window': { en: 'Entry window', ka: 'რეგისტრაციის პერიოდი' },
+
+  'section.rules': { en: 'Tournament rules', ka: 'ტურნირის წესები' },
+  'rules.lede': {
+    en: 'The federation’s official regulations.',
+    ka: 'ფედერაციის ოფიციალური რეგლამენტი.',
+  },
+  'rules.duration': { en: 'Match length', ka: 'მატჩის ხანგრძლივობა' },
+  'rules.minutes': { en: 'min', ka: 'წთ' },
+
   'join.step1': { en: 'Pick your university', ka: 'აირჩიე შენი უნივერსიტეტი' },
   'join.step1Body': {
     en: 'One tap and the hub filters down to your campus everywhere.',
