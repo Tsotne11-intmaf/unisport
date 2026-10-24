@@ -27,11 +27,11 @@ export function PadelAbout({ tournaments }: { tournaments: Tournament[] }) {
       <div className="mt-10 grid gap-4">
         <figure className="relative overflow-hidden rounded-[1.75rem]">
           <img
-            src="/gallery/padel-2.webp"
+            src="/gallery/padel-feature.webp"
             alt=""
             loading="lazy"
             className="aspect-[16/9] w-full object-cover"
-            style={{ objectPosition: '50% 40%' }}
+            style={{ objectPosition: '50% 32%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-ink/25" />
 
