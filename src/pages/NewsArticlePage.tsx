@@ -3,7 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { NewsCard } from '@/components/cards'
 import { Media, Pill, SectionHeading, Themed, UniversityChip } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
-import { formatDate } from '@/lib/format'
+import { formatDate, formatDayMonth } from '@/lib/format'
 import { useI18n } from '@/lib/i18n'
 
 export function NewsArticlePage() {
@@ -41,7 +41,8 @@ export function NewsArticlePage() {
           ← {t('nav.news')}
         </Link>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2">
+        <div className="mt-6 rounded-[2rem] border border-line bg-paper p-6 sm:p-10">
+        <div className="flex flex-wrap items-center gap-2">
           {item.isAnnouncement && <Pill variant="accent">{t('label.announcement')}</Pill>}
           {sport && <Pill>{l(sport.name)}</Pill>}
           <span className="text-xs text-slate">
@@ -81,6 +82,28 @@ export function NewsArticlePage() {
         )}
 
         <p className="mt-8 text-[17px] leading-loose">{l(item.body)}</p>
+
+        {/* Milestones pinned at the foot, set right so they read as markers
+            rather than another paragraph. */}
+        {item.keyDates.length > 0 && (
+          <div className="mt-8 flex flex-wrap items-center justify-end gap-2 border-t border-line pt-6">
+            <span className="mr-auto text-xs font-bold tracking-wide text-slate uppercase">
+              {t('news.keyDates')}
+            </span>
+            {item.keyDates.map((entry) => (
+              <span
+                key={entry.date + l(entry.label)}
+                className="inline-flex items-center gap-2 rounded-pill bg-[var(--accent-soft)] py-1.5 pr-3 pl-2.5 text-xs font-semibold"
+              >
+                <span className="rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-bold text-[var(--accent-ink)] tabular-nums">
+                  {formatDayMonth(entry.date, lang)}
+                </span>
+                {l(entry.label)}
+              </span>
+            ))}
+          </div>
+        )}
+        </div>
       </article>
 
       {related.length > 0 && (

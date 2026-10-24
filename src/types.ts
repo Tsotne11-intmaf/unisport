@@ -103,6 +103,8 @@ export interface NewsItem {
   isAnnouncement: boolean
   readMinutes: number
   imageUrl: string | null
+  /** Milestones worth pinning under the story — entries opening, match day. */
+  keyDates: Array<{ label: Localized; date: string }>
 }
 
 /** One player on a squad sheet. */

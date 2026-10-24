@@ -96,7 +96,9 @@ create table if not exists news (
   published_at    timestamptz not null default now(),
   is_announcement boolean not null default false,
   read_minutes    integer not null default 2,
-  image_url       text
+  image_url       text,
+  -- [{ "label": { "en": "...", "ka": "..." }, "date": "2026-11-01" }]
+  key_dates       jsonb not null default '[]'::jsonb
 );
 
 create table if not exists registrations (

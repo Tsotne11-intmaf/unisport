@@ -16,7 +16,7 @@ export function EventsPage() {
   const universityId = params.get('uni') ?? hub.myUniversityId
   const events = filterEvents(hub.events, { universityId })
   // No sport filter here — events are not tied to one.
-  const news = filterNews(hub.news, { universityId }).slice(0, 3)
+  const news = filterNews(hub.news, { universityId }).slice(0, 4)
 
   const now = Date.now()
   const upcoming = events.filter((event) => new Date(event.startsAt).getTime() >= now)
@@ -123,7 +123,7 @@ export function EventsPage() {
             title={t('section.news')}
             action={{ to: '/news', label: t('action.viewAll') }}
           />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {news.map((item) => (
               <NewsCard key={item.id} item={item} />
             ))}

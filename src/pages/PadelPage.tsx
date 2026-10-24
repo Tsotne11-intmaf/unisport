@@ -21,7 +21,7 @@ export function PadelPage() {
   const tournaments = sortByUrgency(
     filterTournaments(hub.tournaments, { sportId: 'padel', universityId }),
   )
-  const news = filterNews(hub.news, { sportId: 'padel', universityId }).slice(0, 3)
+  const news = filterNews(hub.news, { universityId }).slice(0, 4)
 
   const hostedCounts = Object.fromEntries(
     hub.universities.map((university) => [
@@ -133,9 +133,9 @@ export function PadelPage() {
             index={3}
             eyebrow={t('nav.news')}
             title={t('section.news')}
-            action={{ to: '/news?sport=padel', label: t('action.viewAll') }}
+            action={{ to: '/news', label: t('action.viewAll') }}
           />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {news.map((item) => (
               <NewsCard key={item.id} item={item} />
             ))}

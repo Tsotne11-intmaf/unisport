@@ -97,6 +97,7 @@ const dictionary = {
   'section.latest': { en: 'Latest', ka: 'უახლესი' },
   'section.mustRead': { en: 'Must read', ka: 'აუცილებლად წასაკითხი' },
   'section.fromCampus': { en: 'From the campuses', ka: 'კამპუსებიდან' },
+  'news.keyDates': { en: 'Key dates', ka: 'მნიშვნელოვანი თარიღები' },
 
   'section.pickUniversity': { en: 'Choose a university', ka: 'აირჩიე უნივერსიტეტი' },
   'section.groups': { en: 'Tournament groups', ka: 'ტურნირის ჯგუფები' },

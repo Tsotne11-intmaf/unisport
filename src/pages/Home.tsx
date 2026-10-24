@@ -142,24 +142,9 @@ export function Home() {
         </Themed>
       </section>
 
-      <section className="shell py-10">
-        <Themed theme="news">
-          <SectionHeading
-            index={3}
-            eyebrow={t('nav.news')}
-            title={t('section.news')}
-            action={{ to: '/news', label: t('action.viewAll') }}
-          />
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {news.map((item) => (
-              <NewsCard key={item.id} item={item} />
-            ))}
-          </div>
-        </Themed>
-      </section>
 
       <section className="shell py-14">
-        <SectionHeading index={4} eyebrow={t('nav.register')} title={t('section.howToJoin')} />
+        <SectionHeading index={3} eyebrow={t('nav.register')} title={t('section.howToJoin')} />
         <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
             <li key={step.title}>
@@ -173,6 +158,22 @@ export function Home() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="shell py-10">
+        <Themed theme="news">
+          <SectionHeading
+            index={4}
+            eyebrow={t('nav.news')}
+            title={t('section.news')}
+            action={{ to: '/news', label: t('action.viewAll') }}
+          />
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {news.map((item) => (
+              <NewsCard key={item.id} item={item} />
+            ))}
+          </div>
+        </Themed>
       </section>
     </Themed>
   )

@@ -2,7 +2,7 @@
 
 @theme {
   --font-sans: 'Archivo', 'Noto Sans Georgian', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Archivo', 'Noto Serif Georgian', ui-serif, Georgia, serif;
+  --font-display: 'Noto Serif', 'Noto Serif Georgian', ui-serif, Georgia, serif;
 
   /* Neutrals — the whole site is light; sections earn their character from accents. */
   --color-ink: #0d0e11;

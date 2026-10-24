@@ -13,12 +13,25 @@ import { events, news } from '../src/data/content.ts'
 import { tournaments } from '../src/data/tournaments.ts'
 import { sports, universities } from '../src/data/universities.ts'
 
-type Value = string | number | boolean | null | undefined | string[]
+/** Marks a value that is already SQL and must not be quoted again. A plain
+    object rather than a class, since Node strips types without compiling. */
+interface Raw {
+  readonly sql: string
+}
+const isRaw = (value: unknown): value is Raw =>
+  typeof value === 'object' && value !== null && 'sql' in value
+
+const json = (value: unknown): Raw => ({
+  sql: `'${JSON.stringify(value).replace(/'/g, "''")}'::jsonb`,
+})
+
+type Value = string | number | boolean | null | undefined | string[] | Raw
 
 const quote = (value: string) => `'${value.replace(/'/g, "''")}'`
 
 const q = (value: Value): string => {
   if (value === null || value === undefined) return 'null'
+  if (isRaw(value)) return value.sql
   if (typeof value === 'number') return String(value)
   if (typeof value === 'boolean') return value ? 'true' : 'false'
   // Postgres text[] literal, so a line-up round-trips as an array.
@@ -188,6 +201,7 @@ const sql = [
       'is_announcement',
       'read_minutes',
       'image_url',
+      'key_dates',
     ],
     news.map((item) => [
       item.id,
@@ -204,6 +218,7 @@ const sql = [
       item.isAnnouncement,
       item.readMinutes,
       item.imageUrl,
+      json(item.keyDates),
     ]),
   ),
 ].join('\n')

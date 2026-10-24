@@ -116,6 +116,7 @@ const toNews = (row: Row): NewsItem => ({
   isAnnouncement: Boolean(row.is_announcement),
   readMinutes: Number(row.read_minutes ?? 2),
   imageUrl: nullableStr(row, 'image_url'),
+  keyDates: (row.key_dates as NewsItem['keyDates'] | null) ?? [],
 })
 
 export type DataSource = 'seed' | 'supabase'

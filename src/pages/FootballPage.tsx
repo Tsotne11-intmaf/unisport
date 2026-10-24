@@ -42,7 +42,7 @@ export function FootballPage() {
     filterTournaments(hub.tournaments, { sportId: 'football', universityId }),
   )
   const open = openForRegistration(tournaments)
-  const news = filterNews(hub.news, { sportId: 'football', universityId }).slice(0, 4)
+  const news = filterNews(hub.news, { universityId }).slice(0, 4)
 
   const visibleIds = new Set(tournaments.map((tournament) => tournament.id))
   const groups = tournamentGroups.filter((group) => visibleIds.has(group.tournamentId))
@@ -200,7 +200,7 @@ export function FootballPage() {
             index={8}
             eyebrow={t('nav.news')}
             title={t('section.news')}
-            action={{ to: '/news?sport=football', label: t('action.viewAll') }}
+            action={{ to: '/news', label: t('action.viewAll') }}
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {news.map((item) => (
