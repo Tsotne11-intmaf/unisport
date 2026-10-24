@@ -70,33 +70,40 @@ export function TournamentCard({ tournament }: { tournament: Tournament }) {
           />
         </dl>
 
-        <div className="mt-5 flex items-center gap-2 border-t border-line pt-4">
-          {host ? (
-            <>
-              <UniversityChip university={host} size="sm" />
-              <span className="min-w-0 truncate text-xs font-semibold">{host.shortName}</span>
-            </>
-          ) : (
-            <span className="truncate text-xs font-semibold text-slate">
-              {t('label.openToAll')}
-            </span>
-          )}
+        {/* The host row and the button are one block pinned to the bottom, so
+            cards with a different number of detail rows still line their
+            buttons up with each other. */}
+        <div className="mt-auto pt-5">
+          <div className="flex items-center gap-2 border-t border-line pt-4">
+            {host ? (
+              <>
+                <UniversityChip university={host} size="sm" />
+                <span className="min-w-0 truncate text-xs font-semibold">
+                  {host.shortName}
+                </span>
+              </>
+            ) : (
+              <span className="truncate text-xs font-semibold text-slate">
+                {t('label.openToAll')}
+              </span>
+            )}
 
-          {left !== null && (
-            <span className="ml-auto text-xs font-semibold text-slate">
-              {left > 0 ? `${left} ${t('label.placesLeft')}` : t('label.full')}
-            </span>
+            {left !== null && (
+              <span className="ml-auto text-xs font-semibold text-slate">
+                {left > 0 ? `${left} ${t('label.placesLeft')}` : t('label.full')}
+              </span>
+            )}
+          </div>
+
+          {open && (
+            <Link
+              to={`/register/${tournament.id}`}
+              className="mt-4 block rounded-pill bg-[var(--accent)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--accent-ink)] transition-opacity hover:opacity-90"
+            >
+              {t('action.registerFor')} →
+            </Link>
           )}
         </div>
-
-        {open && (
-          <Link
-            to={`/register/${tournament.id}`}
-            className="mt-4 rounded-pill bg-[var(--accent)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--accent-ink)] transition-opacity hover:opacity-90"
-          >
-            {t('action.registerFor')} →
-          </Link>
-        )}
       </div>
     </Card>
   )
