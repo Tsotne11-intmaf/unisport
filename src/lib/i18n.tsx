@@ -21,11 +21,8 @@ const dictionary = {
   'nav.menu': { en: 'Menu', ka: 'მენიუ' },
 
   'hero.eyebrow': { en: 'Student sport', ka: 'სტუდენტური სპორტი' },
-  'hero.title': {
-    en: 'Every university, in one place.',
-    ka: 'ყველა უნივერსიტეტი ერთ სივრცეში.',
-  },
-  'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
+  'hero.titleLead': { en: 'Every university,', ka: 'ყველა უნივერსიტეტი' },
+  'hero.titleMark': { en: 'in one place.', ka: 'ერთ სივრცეში.' },
   'padel.aboutEyebrow': { en: 'The challenge', ka: 'გამოწვევა' },
   'padel.aboutLead': {
     en: 'Step onto the court and prove that',
@@ -36,7 +33,6 @@ const dictionary = {
   'padel.placesLeft': { en: 'Places left', ka: 'თავისუფალი ადგილი' },
   'padel.openTournaments': { en: 'Open for entry', ka: 'ღია რეგისტრაციით' },
   'padel.totalPlaces': { en: 'Places in total', ka: 'ადგილი სულ' },
-  'hero.ctaFootball': { en: 'Football', ka: 'ფეხბურთი' },
   'hero.ctaRegister': { en: 'Register for a tournament', ka: 'დარეგისტრირდი ტურნირზე' },
 
   'unite.eyebrow': { en: 'Our mission', ka: 'ჩვენი მისია' },

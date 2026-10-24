@@ -62,35 +62,16 @@ export function Home() {
             {t('hero.eyebrow')}
           </span>
 
-          {/* "უნივერსიტეტი" is one long unbreakable word, so the phone size has
-              to come down rather than rely on wrapping. */}
+          {/* Two lines, the second in the lime that already divides the panels.
+              "უნივერსიტეტი" is one long unbreakable word, so the phone
+              size has to come down rather than rely on wrapping. */}
           <h1
-            className="mt-6 max-w-4xl text-4xl leading-[1.05] font-semibold text-balance text-white sm:text-6xl lg:text-7xl"
-            style={{ textShadow: '0 2px 36px rgb(0 0 0 / 0.55)' }}
+            className="mt-7 text-[2.35rem] leading-[1] font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl"
+            style={{ textShadow: '0 2px 40px rgb(0 0 0 / 0.6)' }}
           >
-            {t('hero.title')}
+            {t('hero.titleLead')}
+            <span className="mt-1 block text-padel">{t('hero.titleMark')}</span>
           </h1>
-
-          <div className="mt-10 flex flex-wrap gap-3">
-            <Link
-              to="/register"
-              className="rounded-pill bg-paper px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
-            >
-              {t('hero.ctaRegister')} ↗
-            </Link>
-            <Link
-              to="/padel"
-              className="rounded-pill bg-padel px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
-            >
-              {t('hero.ctaPadel')}
-            </Link>
-            <Link
-              to="/football"
-              className="rounded-pill bg-football px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              {t('hero.ctaFootball')}
-            </Link>
-          </div>
         </div>
       </section>
 
