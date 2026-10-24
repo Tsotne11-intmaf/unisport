@@ -249,8 +249,8 @@ export const winnerTeams: WinnerTeam[] = [
     bronze: 2,
     photoUrl: '/teams/galacticos-team.webp',
     highlight: {
-      en: 'Champions once, on the podium three seasons running.',
-      ka: 'ერთხელ ჩემპიონები, სამი სეზონია კვარცხლბეკზე.',
+      en: 'One title and two third places — the league’s underdogs.',
+      ka: 'ერთი ტიტული და ორჯერ მესამე ადგილი — ლიგის უნდერდოგები.',
     },
   },
 ]
