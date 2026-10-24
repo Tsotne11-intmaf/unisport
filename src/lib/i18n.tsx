@@ -66,6 +66,21 @@ const dictionary = {
   'section.allstar': { en: 'All-Star XI', ka: 'ALLSTAR შემადგენლობა' },
   'section.winners': { en: 'Winner teams', ka: 'გამარჯვებული გუნდები' },
   'section.vote': { en: 'Player of the week', ka: 'კვირის საუკეთესო მოთამაშე' },
+  'section.gallery': { en: 'From the pitch', ka: 'მოედნიდან' },
+
+  'gallery.lede': {
+    en: 'Shots from this season’s matchdays.',
+    ka: 'კადრები ამ სეზონის ტურებიდან.',
+  },
+  'social.title': {
+    en: 'BTU Football Federation',
+    ka: 'BTU-ს ფეხბურთის ფედერაცია',
+  },
+  'social.body': {
+    en: 'Fixtures, results, line-ups and photos from every matchday.',
+    ka: 'მატჩები, შედეგები, შემადგენლობები და ფოტოები ყოველი ტურიდან.',
+  },
+  'social.cta': { en: 'Follow on Instagram', ka: 'გამოგვყევი Instagram-ზე' },
 
   'groups.lede': {
     en: 'Five groups, five clubs in each.',

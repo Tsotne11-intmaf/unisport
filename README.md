@@ -100,7 +100,9 @@ collapsible group tables, the All-Star XI, the roll of winning teams and the
 player-of-the-week vote. They all live in `src/data/football.ts` and are keyed
 by club, so they appear only for the campus those clubs belong to.
 
-Team crests and squad photos sit in `public/teams/`. All-Star slots start empty
+Team crests and squad photos sit in `public/teams/`, matchday photos in
+`public/gallery/`, and university crests in `public/universities/` (a missing
+file falls back to the short-name tile rather than a broken image). All-Star slots start empty
 on purpose — the pitch is drawn from `allstarSquad.slots`, and filling in
 `playerName` / `clubId` is what announces the line-up.
 

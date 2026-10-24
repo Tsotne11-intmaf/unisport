@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { AllstarPitch } from '@/components/AllstarPitch'
 import { NewsCard, TournamentCard } from '@/components/cards'
+import { MatchGallery } from '@/components/MatchGallery'
 import { PlayerVote } from '@/components/PlayerVote'
 import { TournamentGroups } from '@/components/TournamentGroups'
 import { EmptyState, Pill, SectionHeading, Themed } from '@/components/ui'
@@ -156,7 +157,7 @@ export function FootballPage() {
       )}
 
       {news.length > 0 && (
-        <section className="shell py-8 pb-14">
+        <section className="shell py-8">
           <SectionHeading
             index={7}
             eyebrow={t('nav.news')}
@@ -170,6 +171,16 @@ export function FootballPage() {
           </div>
         </section>
       )}
+
+      <section className="shell py-8 pb-14">
+        <SectionHeading
+          index={news.length > 0 ? 8 : 7}
+          eyebrow={l(currentSeason)}
+          title={t('section.gallery')}
+        />
+        <p className="mb-5 -mt-2 text-sm text-slate">{t('gallery.lede')}</p>
+        <MatchGallery />
+      </section>
     </Themed>
   )
 }
