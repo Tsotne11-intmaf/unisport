@@ -75,6 +75,7 @@ create table if not exists events (
   university_id text references universities (id) on delete set null,
   ticket_url    text,
   image_url     text,
+  lineup        text[] not null default '{}',
   created_at    timestamptz not null default now()
 );
 

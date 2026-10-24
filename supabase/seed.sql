@@ -58,10 +58,8 @@ on conflict (id) do update set
   image_focus = excluded.image_focus
 ;
 
-insert into events (id, title_en, title_ka, summary_en, summary_ka, kind, starts_at, venue_en, venue_ka, city_en, city_ka, university_id, ticket_url, image_url) values
-  ('btu-rooftop-opening', 'BTU Rooftop Season Opening', 'BTU-ს სახურავის სეზონის გახსნა', 'The padel cup squads get their photos taken at 21:00, then the rooftop turns into a dancefloor.', 'პადელის თასის გუნდები 21:00-ზე ფოტოსესიას გადიან, შემდეგ სახურავი საცეკვაო მოედნად იქცევა.', 'party', '2026-11-07T21:00:00+04:00', 'BTU Rooftop', 'BTU-ს სახურავი', 'Tbilisi', 'თბილისი', 'btu', 'https://tkt.ge', null),
-  ('padel-night-after-party', 'Student Padel Night After-Party', 'სტუდენტური პადელის ღამის აფთერ-პარტი', 'Last point of the night, then straight to the lounge. Players free, guests on the list.', 'ღამის ბოლო ქულა და პირდაპირ ლაუნჯში. მოთამაშეები უფასოდ, სტუმრები სიით.', 'party', '2026-11-22T20:00:00+04:00', 'Padel Park Lounge', 'პადელ პარკის ლაუნჯი', 'Tbilisi', 'თბილისი', null, null, null),
-  ('awards-night-2026', 'Student Sport Awards Night', 'სტუდენტური სპორტის დაჯილდოების საღამო', 'One prize from every campus, plus the padel pair and futsal squad of the year.', 'თითო პრიზი ყველა კამპუსიდან, პლუს წლის საუკეთესო პადელის წყვილი და ფუტსალის გუნდი.', 'ceremony', '2026-12-19T19:00:00+04:00', 'Event Hall, Tbilisi', 'ივენთ ჰოლი, თბილისი', 'Tbilisi', 'თბილისი', null, null, null)
+insert into events (id, title_en, title_ka, summary_en, summary_ka, kind, starts_at, venue_en, venue_ka, city_en, city_ka, university_id, ticket_url, image_url, lineup) values
+  ('btu-welcome-party-2026', 'BTU Welcome Party', 'ბითიუელების ველქამ ფართი', 'The students’ welcome party, where BTU students get to know each other, make new friends and build memories worth keeping.', 'სტუდენტების ველქამ ფართი, სადაც ბითიუელები ერთმანეთს უკეთ გაიცნობენ, ახალ მეგობრებს შეიძენენ და დაუვიწყარ მოგონებებს შექმნიან.', 'party', '2026-10-11T21:00:00+04:00', 'Tsameti', 'ცამეტი', 'Tbilisi', 'თბილისი', 'btu', 'https://biletebi.ge/concerts/btu-welcome-party', '/events/welcome-party-2026.webp', array['TOBIASS', 'TAMTA', 'LOMJ']::text[])
 on conflict (id) do update set
   title_en = excluded.title_en,
   title_ka = excluded.title_ka,
@@ -75,7 +73,8 @@ on conflict (id) do update set
   city_ka = excluded.city_ka,
   university_id = excluded.university_id,
   ticket_url = excluded.ticket_url,
-  image_url = excluded.image_url
+  image_url = excluded.image_url,
+  lineup = excluded.lineup
 ;
 
 insert into news (id, slug, title_en, title_ka, excerpt_en, excerpt_ka, body_en, body_ka, sport_id, university_id, published_at, is_announcement, read_minutes, image_url) values

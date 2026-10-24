@@ -13,13 +13,17 @@ import { events, news } from '../src/data/content.ts'
 import { tournaments } from '../src/data/tournaments.ts'
 import { sports, universities } from '../src/data/universities.ts'
 
-type Value = string | number | boolean | null | undefined
+type Value = string | number | boolean | null | undefined | string[]
+
+const quote = (value: string) => `'${value.replace(/'/g, "''")}'`
 
 const q = (value: Value): string => {
   if (value === null || value === undefined) return 'null'
   if (typeof value === 'number') return String(value)
   if (typeof value === 'boolean') return value ? 'true' : 'false'
-  return `'${value.replace(/'/g, "''")}'`
+  // Postgres text[] literal, so a line-up round-trips as an array.
+  if (Array.isArray(value)) return `array[${value.map(quote).join(', ')}]::text[]`
+  return quote(value)
 }
 
 const row = (values: Value[]) => `  (${values.map(q).join(', ')})`
@@ -144,6 +148,7 @@ const sql = [
       'university_id',
       'ticket_url',
       'image_url',
+      'lineup',
     ],
     events.map((item) => [
       item.id,
@@ -160,6 +165,7 @@ const sql = [
       item.universityId,
       item.ticketUrl,
       item.imageUrl,
+      item.lineup,
     ]),
   ),
   insert(

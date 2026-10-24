@@ -4,49 +4,20 @@ const tbilisi = { en: 'Tbilisi', ka: 'თბილისი' }
 
 export const events: CampusEvent[] = [
   {
-    id: 'btu-rooftop-opening',
-    title: { en: 'BTU Rooftop Season Opening', ka: 'BTU-ს სახურავის სეზონის გახსნა' },
+    id: 'btu-welcome-party-2026',
+    title: { en: 'BTU Welcome Party', ka: 'ბითიუელების ველქამ ფართი' },
     summary: {
-      en: 'The padel cup squads get their photos taken at 21:00, then the rooftop turns into a dancefloor.',
-      ka: 'პადელის თასის გუნდები 21:00-ზე ფოტოსესიას გადიან, შემდეგ სახურავი საცეკვაო მოედნად იქცევა.',
+      en: 'The students’ welcome party, where BTU students get to know each other, make new friends and build memories worth keeping.',
+      ka: 'სტუდენტების ველქამ ფართი, სადაც ბითიუელები ერთმანეთს უკეთ გაიცნობენ, ახალ მეგობრებს შეიძენენ და დაუვიწყარ მოგონებებს შექმნიან.',
     },
     kind: 'party',
-    startsAt: '2026-11-07T21:00:00+04:00',
-    venue: { en: 'BTU Rooftop', ka: 'BTU-ს სახურავი' },
+    startsAt: '2026-10-11T21:00:00+04:00',
+    venue: { en: 'Tsameti', ka: 'ცამეტი' },
     city: tbilisi,
     universityId: 'btu',
-    ticketUrl: 'https://tkt.ge',
-    imageUrl: null,
-  },
-  {
-    id: 'padel-night-after-party',
-    title: { en: 'Student Padel Night After-Party', ka: 'სტუდენტური პადელის ღამის აფთერ-პარტი' },
-    summary: {
-      en: 'Last point of the night, then straight to the lounge. Players free, guests on the list.',
-      ka: 'ღამის ბოლო ქულა და პირდაპირ ლაუნჯში. მოთამაშეები უფასოდ, სტუმრები სიით.',
-    },
-    kind: 'party',
-    startsAt: '2026-11-22T20:00:00+04:00',
-    venue: { en: 'Padel Park Lounge', ka: 'პადელ პარკის ლაუნჯი' },
-    city: tbilisi,
-    universityId: null,
-    ticketUrl: null,
-    imageUrl: null,
-  },
-  {
-    id: 'awards-night-2026',
-    title: { en: 'Student Sport Awards Night', ka: 'სტუდენტური სპორტის დაჯილდოების საღამო' },
-    summary: {
-      en: 'One prize from every campus, plus the padel pair and futsal squad of the year.',
-      ka: 'თითო პრიზი ყველა კამპუსიდან, პლუს წლის საუკეთესო პადელის წყვილი და ფუტსალის გუნდი.',
-    },
-    kind: 'ceremony',
-    startsAt: '2026-12-19T19:00:00+04:00',
-    venue: { en: 'Event Hall, Tbilisi', ka: 'ივენთ ჰოლი, თბილისი' },
-    city: tbilisi,
-    universityId: null,
-    ticketUrl: null,
-    imageUrl: null,
+    ticketUrl: 'https://biletebi.ge/concerts/btu-welcome-party',
+    imageUrl: '/events/welcome-party-2026.webp',
+    lineup: ['TOBIASS', 'TAMTA', 'LOMJ'],
   },
 ]
 

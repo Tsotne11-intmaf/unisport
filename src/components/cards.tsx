@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 import { useHub } from '@/data/HubProvider'
 import { placesLeft } from '@/data/selectors'
-import { formatDate, formatDateTime, formatRange } from '@/lib/format'
+import { formatDate, formatRange, formatTime } from '@/lib/format'
 import { useI18n, type TranslationKey } from '@/lib/i18n'
 import type { CampusEvent, NewsItem, Tournament } from '@/types'
 
@@ -115,59 +116,147 @@ const eventKey: Record<CampusEvent['kind'], TranslationKey> = {
   social: 'kind.social',
 }
 
+/** Poster on top, the practical details beneath, a ticket bar at the foot. */
 export function EventCard({ event }: { event: CampusEvent }) {
   const { lang, t, l } = useI18n()
   const { universityById } = useHub()
+
   const host = universityById(event.universityId)
+  const past = new Date(event.startsAt).getTime() < Date.now()
 
   return (
-    <Card className="flex h-full flex-col overflow-hidden">
-      <Media
-        src={event.imageUrl}
-        alt={l(event.title)}
-        kind="event"
-        tint={host?.color}
-        label={host?.shortName}
-        ratio="aspect-[16/9]"
-      />
+    <article
+      className={`flex h-full flex-col overflow-hidden rounded-card border border-line bg-paper ${
+        past ? 'opacity-90' : ''
+      }`}
+    >
+      <div className="relative">
+        <Media
+          src={event.imageUrl}
+          alt={l(event.title)}
+          kind="event"
+          tint={host?.color}
+          label={host?.shortName}
+          ratio="aspect-[4/5]"
+        />
+        {past && (
+          <span className="absolute top-3 left-3 rounded-pill bg-ink/85 px-3 py-1.5 text-xs font-bold text-white">
+            {t('event.past')}
+          </span>
+        )}
+      </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <div className="mb-3 flex items-center justify-between gap-2">
+        <h3 className="text-lg leading-snug font-bold">{l(event.title)}</h3>
+
+        <div className="mt-3 flex flex-wrap gap-2">
           <Pill variant="soft">{t(eventKey[event.kind])}</Pill>
-          <span className="text-xs font-semibold text-slate">
-            {formatDateTime(event.startsAt, lang)}
-          </span>
+          {host && <Pill>{host.shortName}</Pill>}
         </div>
 
-        <h3 className="text-xl font-semibold">{l(event.title)}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate">{l(event.summary)}</p>
+        <dl className="mt-4 space-y-2 text-sm">
+          <Detail icon={<CalendarIcon />} value={formatDate(event.startsAt, lang)} />
+          <Detail icon={<ClockIcon />} value={formatTime(event.startsAt)} />
+          <Detail icon={<PinIcon />} value={`${l(event.venue)}, ${l(event.city)}`} />
+        </dl>
 
-        <p className="mt-4 text-xs font-medium text-slate">
-          {l(event.venue)} · {l(event.city)}
-        </p>
+        {event.lineup.length > 0 && (
+          <div className="mt-4">
+            <p className="text-[11px] font-bold tracking-wide text-slate uppercase">
+              {t('event.lineup')}
+            </p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {event.lineup.map((act) => (
+                <span
+                  key={act}
+                  className="rounded-md bg-mist px-2 py-1 text-[11px] font-bold"
+                >
+                  {act}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
-        <div className="mt-4 flex items-center gap-2 border-t border-line pt-4">
-          {host ? (
-            <>
-              <UniversityChip university={host} size="sm" />
-              <span className="truncate text-xs font-semibold">{host.shortName}</span>
-            </>
-          ) : (
-            <span className="text-xs font-semibold text-slate">{t('label.openToAll')}</span>
-          )}
-          {event.ticketUrl && (
-            <a
-              href={event.ticketUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="ml-auto rounded-pill bg-ink px-3 py-1.5 text-xs font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              {t('action.tickets')}
-            </a>
-          )}
-        </div>
+        <p className="mt-4 flex-1 text-sm leading-relaxed text-slate">{l(event.summary)}</p>
       </div>
-    </Card>
+
+      <div className="flex items-center justify-between gap-3 border-t border-line bg-[var(--accent-soft)] px-5 py-4">
+        {past ? (
+          <span className="text-sm font-semibold text-graphite">{t('event.past')}</span>
+        ) : (
+          <span className="text-sm font-semibold text-graphite">{t('action.tickets')}</span>
+        )}
+        {event.ticketUrl && (
+          <a
+            href={event.ticketUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="grid size-9 shrink-0 place-items-center rounded-full bg-[var(--accent)] text-[var(--accent-ink)] transition-opacity hover:opacity-90"
+            aria-label={t('action.tickets')}
+          >
+            <TicketIcon />
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
+
+function Detail({ icon, value }: { icon: ReactNode; value: string }) {
+  return (
+    <div className="flex items-center gap-2.5">
+      <dt className="shrink-0 text-slate">{icon}</dt>
+      <dd className="min-w-0 truncate font-medium">{value}</dd>
+    </div>
+  )
+}
+
+const iconProps = {
+  width: 15,
+  height: 15,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 2,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+  'aria-hidden': true,
+}
+
+function CalendarIcon() {
+  return (
+    <svg {...iconProps}>
+      <rect x="3" y="5" width="18" height="16" rx="3" />
+      <path d="M8 3v4M16 3v4M3 11h18" />
+    </svg>
+  )
+}
+
+function ClockIcon() {
+  return (
+    <svg {...iconProps}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  )
+}
+
+function PinIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  )
+}
+
+function TicketIcon() {
+  return (
+    <svg {...iconProps} width={16} height={16}>
+      <path d="M3 9a2 2 0 0 0 0 6v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a2 2 0 0 1 0-6V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2Z" />
+      <path d="M13 5v14" strokeDasharray="2 2" />
+    </svg>
   )
 }
 

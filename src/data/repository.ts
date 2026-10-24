@@ -99,6 +99,7 @@ const toEvent = (row: Row): CampusEvent => ({
   universityId: nullableStr(row, 'university_id'),
   ticketUrl: nullableStr(row, 'ticket_url'),
   imageUrl: nullableStr(row, 'image_url'),
+  lineup: (row.lineup as string[] | null) ?? [],
 })
 
 const toNews = (row: Row): NewsItem => ({

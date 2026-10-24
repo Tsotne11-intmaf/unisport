@@ -83,6 +83,8 @@ export interface CampusEvent {
   universityId: string | null
   ticketUrl: string | null
   imageUrl: string | null
+  /** Billed acts, in running order. Empty when the event has no line-up. */
+  lineup: string[]
 }
 
 export interface NewsItem {
