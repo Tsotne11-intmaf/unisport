@@ -9,8 +9,8 @@ export const tournaments: Tournament[] = [
     hostUniversityId: 'btu',
     title: { en: 'BTU Padel Cup', ka: 'BTU-ს პადელის თასი' },
     summary: {
-      en: 'Two days of straight knockout on four courts. Lose once and you are out.',
-      ka: 'ორი დღე პირდაპირი ნოკაუტი ოთხ კორტზე. ერთი მარცხი და ბრძოლა დასრულდა.',
+      en: 'Two days of straight knockout. Lose once and your weekend is over.',
+      ka: 'ორი დღე, პირდაპირი ნოკაუტი. ერთი მარცხი და ბრძოლა დასრულებულია.',
     },
     format: { en: 'Knockout', ka: 'ნოკაუტი' },
     status: 'registration_open',
@@ -39,7 +39,7 @@ export const tournaments: Tournament[] = [
     title: { en: 'BTU Football League', ka: 'BTU-ს ფეხბურთის ლიგა' },
     summary: {
       en: 'The federation league: student clubs drawn into five groups, then a knockout for the title. The draw is made once entries close.',
-      ka: 'ფედერაციის ლიგა: სტუდენტური კლუბები ხუთ ჯგუფად, შემდეგ ნოკაუტი ტიტულისთვის. ბადე რეგისტრაციის დასრულების შემდეგ გათამაშდება.',
+      ka: 'ფედერაციის ლიგა: სტუდენტური კლუბები ხუთ ჯგუფად, შემდეგ კი ნოკაუტი ტიტულისთვის. წილისყრა რეგისტრაციის დასრულებისთანავე გაიმართება.',
     },
     format: {
       en: 'Five groups · knockout play-off',
@@ -48,7 +48,7 @@ export const tournaments: Tournament[] = [
     status: 'registration_open',
     startDate: '2026-11-15',
     endDate: '2026-12-20',
-    venue: { en: 'BTU Campus Pitch', ka: 'BTU-ს კამპუსის მოედანი' },
+    venue: { en: 'BTU Pitch', ka: 'BTU-ს მოედანი' },
     city: tbilisi,
     level: 'open',
     fee: 210,

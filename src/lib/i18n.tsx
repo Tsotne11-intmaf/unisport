@@ -20,14 +20,14 @@ const dictionary = {
   'nav.register': { en: 'Register', ka: 'რეგისტრაცია' },
   'nav.menu': { en: 'Menu', ka: 'მენიუ' },
 
-  'hero.eyebrow': { en: 'Student sport, all campuses', ka: 'სტუდენტური სპორტი, ყველა კამპუსი' },
+  'hero.eyebrow': { en: 'Student sport, every university', ka: 'სტუდენტური სპორტი, ყველა უნივერსიტეტი' },
   'hero.title': {
     en: 'Every university’s sport, in one place.',
     ka: 'ყველა უნივერსიტეტის სპორტი ერთ სივრცეში.',
   },
   'hero.lede': {
-    en: 'Padel cups, futsal tournaments, parties and announcements from universities across Tbilisi. Pick your campus and the whole site follows you.',
-    ka: 'პადელის თასები, ფუტსალის ტურნირები, წვეულებები და განცხადებები თბილისის უნივერსიტეტებიდან. აირჩიე შენი კამპუსი და მთელი საიტი მოგყვება.',
+    en: 'Padel cups, football leagues, parties and announcements from universities across Tbilisi. Pick your university and the whole site follows it.',
+    ka: 'პადელის თასები, ფეხბურთის ლიგა, წვეულებები და განცხადებები თბილისის უნივერსიტეტებიდან. აირჩიე შენი უნივერსიტეტი და მთელი საიტი მას მოერგება.',
   },
   'hero.ctaPadel': { en: 'Padel', ka: 'პადელი' },
   'padel.aboutEyebrow': { en: 'The challenge', ka: 'გამოწვევა' },
@@ -52,11 +52,11 @@ const dictionary = {
   },
   'unite.body': {
     en: 'Our main goal is to bring students together — outside lectures and outside the university walls, through the right, healthy kind of activity.',
-    ka: 'ჩვენი მთავარი მიზანი სტუდენტების გაერთიანებაა — ლექციებისა და უნივერსიტეტის კედნების მიღმა, სწორი და ჯანსაღი აქტივობებით.',
+    ka: 'ჩვენი მთავარი მიზანი სტუდენტების გაერთიანებაა — ლექციებისა და აუდიტორიების მიღმა, ჯანსაღი და აქტიური ცხოვრების წესით.',
   },
   'unite.quote': {
-    en: 'A football pitch, a padel court and one night out are enough to turn a campus into a team.',
-    ka: 'ფეხბურთის მოედანი, პადელის კორტი და ერთი საღამო საკმარისია, რომ კამპუსი გუნდად გადაქცეს.',
+    en: 'One match, one tournament and one night out are enough for a room full of strangers to start playing as a team.',
+    ka: 'ერთი მატჩი, ერთი ტურნირი და ერთი საღამო საკმარისია იმისთვის, რომ სტუდენტები ერთმანეთს გაეცნონ და გუნდად შეიკრან.',
   },
   'about.foundedLabel': { en: 'Founded in:', ka: 'დაარსდა:' },
   'about.eyebrow': { en: 'About us', ka: 'ჩვენ შესახებ' },
@@ -66,7 +66,7 @@ const dictionary = {
   },
   'about.body': {
     en: 'It started with weekend matches between friends and grew into a community where beginners and seasoned players share the same court.',
-    ka: 'დავიწყეთ შაბათ-კვირის მატჩებით მეგობრებს შორის და გადავიზარდეთ საზოგადოებად, სადაც დამწყები და გამოცდილი მოთამაშე ერთსა და იმავე კორტზე დგება.',
+    ka: 'ყველაფერი მეგობრებს შორის შაბათ-კვირის მატჩებით დაიწყო და საზოგადოებად გადაიზარდა, სადაც დამწყებიც და გამოცდილი მოთამაშეც ერთსა და იმავე მოედანზე დგება.',
   },
   'cta.title': {
     en: 'Ready to step onto the court?',
@@ -88,7 +88,7 @@ const dictionary = {
   'filter.allSports': { en: 'All sports', ka: 'ყველა სპორტი' },
   'filter.showing': { en: 'Showing', ka: 'ნაჩვენებია' },
   'filter.myUniversity': { en: 'My university', ka: 'ჩემი უნივერსიტეტი' },
-  'filter.saved': { en: 'Saved — the site now opens on your campus.', ka: 'შენახულია — საიტი ახლა შენს კამპუსზე იხსნება.' },
+  'filter.saved': { en: 'Saved — the site now opens on your university.', ka: 'შენახულია — საიტი ახლა შენს უნივერსიტეტზე იხსნება.' },
 
   'tab.tournaments': { en: 'Tournaments', ka: 'ტურნირები' },
   'tab.open': { en: 'Open now', ka: 'ღიაა ახლა' },
@@ -104,14 +104,14 @@ const dictionary = {
   'event.lineup': { en: 'Line-up', ka: 'ლაინაპი' },
   'event.noneUpcoming': {
     en: 'Nothing announced yet. The next one lands here first.',
-    ka: 'ჯერ არაფერია გამოცხადებული. მომდევნო აქ პირველად გამოჩნდება.',
+    ka: 'ჯერ არაფერია გამოცხადებული. მომდევნო სწორედ აქ გამოჩნდება პირველად.',
   },
   'section.news': { en: 'News & announcements', ka: 'სიახლეები და განცხადებები' },
   'section.universities': { en: 'Universities on the hub', ka: 'უნივერსიტეტები ჰაბზე' },
   'section.howToJoin': { en: 'How to join', ka: 'როგორ შემოუერთდე' },
   'section.latest': { en: 'Latest', ka: 'უახლესი' },
   'section.mustRead': { en: 'Must read', ka: 'აუცილებლად წასაკითხი' },
-  'section.fromCampus': { en: 'From the campuses', ka: 'კამპუსებიდან' },
+  'section.fromCampus': { en: 'From the universities', ka: 'უნივერსიტეტებიდან' },
   'news.keyDates': { en: 'Key dates', ka: 'მნიშვნელოვანი თარიღები' },
 
   'section.pickUniversity': { en: 'Choose a university', ka: 'აირჩიე უნივერსიტეტი' },
@@ -143,7 +143,7 @@ const dictionary = {
 
   'groups.lede': {
     en: 'Five groups, five places in each. The draw is announced before the season starts.',
-    ka: 'ხუთი ჯგუფი, თითოში ხუთი ადგილი. ბადე სეზონის დაწყებამდე გამოცხადდება.',
+    ka: 'ხუთი ჯგუფი, თითოეულში ხუთი ადგილი. წილისყრა სეზონის დაწყებამდე გამოცხადდება.',
   },
   'groups.teams': { en: 'teams', ka: 'გუნდი' },
   'groups.places': { en: 'places', ka: 'ადგილი' },
@@ -152,7 +152,7 @@ const dictionary = {
   'allstar.bench': { en: 'Substitutes', ka: 'სათადარიგო' },
   'allstar.invite': {
     en: 'Enter the tournament and you have a shot at next season’s All-Star XI.',
-    ka: 'მიიღე მონაწილეობა ტურნირში და შანსი გექნება მომავალი სეზონის ALLSTAR შემადგენლობაში მოხვდე.',
+    ka: 'მიიღე ტურნირში მონაწილეობა და მომავალი სეზონის ALLSTAR შემადგენლობაში მოხვედრის შანსი გექნება.',
   },
   'allstar.inviteCta': { en: 'Enter now', ka: 'დარეგისტრირდი' },
 
@@ -176,12 +176,12 @@ const dictionary = {
 
   'vote.lede': {
     en: 'Vote for your group’s best player and help decide who takes the award.',
-    ka: 'მიეცი ხმა ჯგუფის საუკეთესო მოთამაშეს და დაგვეხმარე ჯილდოს პრიზიორის გამოვლენაში.',
+    ka: 'მიეცი ხმა შენი ჯგუფის საუკეთესო მოთამაშეს და დაეხმარე გამარჯვებულის გამოვლენას.',
   },
   'vote.cta': { en: 'Vote', ka: 'მიეცი ხმა' },
   'vote.placeholderName': { en: 'Name Surname', ka: 'სახელი და გვარი' },
   'vote.leader': { en: 'Leading', ka: 'ლიდერობს' },
-  'vote.noLeader': { en: 'No votes yet', ka: 'ხმები ჯერ არ არის' },
+  'vote.noLeader': { en: 'No votes yet', ka: 'ხმა ჯერ არავის მიუღია' },
   'vote.pending': {
     en: 'Nominees are announced before each round.',
     ka: 'კანდიდატები ყოველი ტურის წინ ცხადდება.',
@@ -191,7 +191,7 @@ const dictionary = {
   'vote.total': { en: 'votes', ka: 'ხმა' },
   'vote.localOnly': {
     en: 'Counted in this browser only until Supabase is connected.',
-    ka: 'ითვლება მხოლოდ ამ ბრაუზერში, სანამ Supabase არ დაუკავშირდება.',
+    ka: 'ხმა მხოლოდ ამ ბრაუზერში ითვლება, სანამ Supabase დაკავშირებული არ იქნება.',
   },
 
   'status.registration_open': { en: 'Registration open', ka: 'რეგისტრაცია ღიაა' },
@@ -210,7 +210,7 @@ const dictionary = {
 
   'label.announcement': { en: 'Announcement', ka: 'განცხადება' },
   'label.host': { en: 'Hosted by', ka: 'მასპინძელი' },
-  'label.openToAll': { en: 'Open to all campuses', ka: 'ღიაა ყველა კამპუსისთვის' },
+  'label.openToAll': { en: 'Open to all universities', ka: 'ღიაა ყველა უნივერსიტეტისთვის' },
   'label.format': { en: 'Format', ka: 'ფორმატი' },
   'label.venue': { en: 'Venue', ka: 'ადგილი' },
   'label.dates': { en: 'Dates', ka: 'თარიღები' },
@@ -239,15 +239,15 @@ const dictionary = {
   'reg.step3': { en: 'Your details', ka: 'შენი მონაცემები' },
   'reg.chooseUniversity': { en: 'Choose your university to continue', ka: 'გასაგრძელებლად აირჩიე უნივერსიტეტი' },
   'reg.noTournaments': {
-    en: 'No tournaments are open to your campus right now. Try another university or check back soon.',
-    ka: 'ამჟამად შენი კამპუსისთვის ღია ტურნირები არ არის. სცადე სხვა უნივერსიტეტი ან შემოიარე მოგვიანებით.',
+    en: 'No tournaments are open to your university right now. Try another one, or check back soon.',
+    ka: 'ამჟამად შენი უნივერსიტეტისთვის ღია ტურნირი არ არის. სცადე სხვა უნივერსიტეტი ან მოგვიანებით შემოიარე.',
   },
   'reg.fullName': { en: 'Full name', ka: 'სახელი და გვარი' },
   'reg.email': { en: 'Email', ka: 'ელფოსტა' },
   'reg.phone': { en: 'Phone', ka: 'ტელეფონი' },
   'reg.level': { en: 'Your level', ka: 'შენი დონე' },
   'reg.partner': { en: 'Partner name', ka: 'პარტნიორის სახელი' },
-  'reg.partnerHint': { en: 'Leave empty and we will pair you up', ka: 'დატოვე ცარიელი და წყვილს ჩვენ შეგირჩევთ' },
+  'reg.partnerHint': { en: 'Leave empty and we will pair you up', ka: 'დატოვე ცარიელი და პარტნიორს ჩვენ შეგირჩევთ' },
   'reg.notes': { en: 'Anything else?', ka: 'სხვა რამე?' },
   'reg.submit': { en: 'Send registration', ka: 'რეგისტრაციის გაგზავნა' },
   'reg.sending': { en: 'Sending…', ka: 'იგზავნება…' },
@@ -267,7 +267,7 @@ const dictionary = {
   'reg.teamLogo': { en: 'Team crest', ka: 'გუნდის ლოგო' },
   'reg.logoHint': {
     en: 'PNG or JPG. A square image works best.',
-    ka: 'PNG ან JPG. კვადრატული სურათი საუკეთესოდ გამოიყურება.',
+    ka: 'PNG ან JPG. საუკეთესოდ კვადრატული სურათი გამოიყურება.',
   },
   'reg.contact': { en: 'Captain’s contact', ka: 'კაპიტნის საკონტაქტო' },
   'reg.squad': { en: 'Squad', ka: 'შემადგენლობა' },
@@ -315,18 +315,18 @@ const dictionary = {
 
   'join.step1': { en: 'Pick your university', ka: 'აირჩიე შენი უნივერსიტეტი' },
   'join.step1Body': {
-    en: 'One tap and the hub filters down to your campus everywhere.',
-    ka: 'ერთი შეხება და ჰაბი ყველგან შენს კამპუსზე იფილტრება.',
+    en: 'One tap and the whole site narrows down to your university.',
+    ka: 'ერთი შეხებით მთელი საიტი შენს უნივერსიტეტზე გაიფილტრება.',
   },
   'join.step2': { en: 'Find a tournament', ka: 'იპოვე ტურნირი' },
   'join.step2Body': {
-    en: 'Padel cups, beginner nights and futsal weekends, with places left shown up front.',
-    ka: 'პადელის თასები, დამწყებთა საღამოები და ფუტსალის შაბათ-კვირები — დარჩენილი ადგილებით თვალსაჩინოდ.',
+    en: 'Padel cups and the football league, with the places left shown up front.',
+    ka: 'პადელის თასი და ფეხბურთის ლიგა — დარჩენილი ადგილები თავიდანვე ჩანს.',
   },
   'join.step3': { en: 'Register in a minute', ka: 'დარეგისტრირდი წუთში' },
   'join.step3Body': {
-    en: 'Name, email, level. Bring a partner or let the organisers pair you.',
-    ka: 'სახელი, ელფოსტა, დონე. მოიყვანე პარტნიორი ან ორგანიზატორებს მიანდე შერჩევა.',
+    en: 'Name, surname, email and a photo for every player in the squad.',
+    ka: 'სახელი, გვარი, ელფოსტა და ფოტო შემადგენლობის ყოველი წევრისთვის.',
   },
   'join.step4': { en: 'Turn up and play', ka: 'მოდი და ითამაშე' },
   'join.step4Body': {
@@ -337,12 +337,12 @@ const dictionary = {
   'empty.title': { en: 'Nothing here yet', ka: 'ჯერ აქ არაფერია' },
   'empty.body': {
     en: 'Try another university, or check back once the next announcement is published.',
-    ka: 'სცადე სხვა უნივერსიტეტი ან შემოიარე მომდევნო განცხადების გამოქვეყნების შემდეგ.',
+    ka: 'სცადე სხვა უნივერსიტეტი ან მომდევნო განცხადების გამოქვეყნების შემდეგ შემოიარე.',
   },
 
   'footer.tagline': {
-    en: 'Student sport from every campus, in one place.',
-    ka: 'სტუდენტური სპორტი ყველა კამპუსიდან ერთ სივრცეში.',
+    en: 'Student sport from every university, in one place.',
+    ka: 'სტუდენტური სპორტი ყველა უნივერსიტეტიდან — ერთ სივრცეში.',
   },
   'footer.rights': { en: 'All rights reserved.', ka: 'ყველა უფლება დაცულია.' },
   'footer.dataNotice': {
