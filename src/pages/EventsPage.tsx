@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router-dom'
 
-import { EventCard } from '@/components/cards'
+import { EventCard, NewsCard } from '@/components/cards'
 import { EVENTS_INSTAGRAM_URL, InstagramCard } from '@/components/MatchGallery'
 import { UniversityPicker } from '@/components/UniversityPicker'
 import { Pill, SectionHeading, Themed } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
-import { ALL, filterEvents } from '@/data/selectors'
+import { ALL, filterEvents, filterNews } from '@/data/selectors'
 import { useI18n } from '@/lib/i18n'
 
 export function EventsPage() {
@@ -15,6 +15,8 @@ export function EventsPage() {
 
   const universityId = params.get('uni') ?? hub.myUniversityId
   const events = filterEvents(hub.events, { universityId })
+  // No sport filter here — events are not tied to one.
+  const news = filterNews(hub.news, { universityId }).slice(0, 3)
 
   const now = Date.now()
   const upcoming = events.filter((event) => new Date(event.startsAt).getTime() >= now)
@@ -112,6 +114,22 @@ export function EventsPage() {
           body={t('social.eventsBody')}
         />
       </section>
+
+      {news.length > 0 && (
+        <section className="shell pb-14">
+          <SectionHeading
+            index={4}
+            eyebrow={t('nav.news')}
+            title={t('section.news')}
+            action={{ to: '/news', label: t('action.viewAll') }}
+          />
+          <div className="grid gap-6 md:grid-cols-3">
+            {news.map((item) => (
+              <NewsCard key={item.id} item={item} />
+            ))}
+          </div>
+        </section>
+      )}
     </Themed>
   )
 }
