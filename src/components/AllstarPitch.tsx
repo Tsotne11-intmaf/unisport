@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import { clubs, type AllstarRole, type AllstarSquad } from '@/data/football'
+import { clubs, currentSeason, type AllstarRole, type AllstarSquad } from '@/data/football'
 import { useI18n, type TranslationKey } from '@/lib/i18n'
 
 const roleKey: Record<AllstarRole, TranslationKey> = {
@@ -18,7 +18,7 @@ const clubIndex = new Map(clubs.map((club) => [club.id, club]))
  * the named substitutes underneath.
  */
 export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
-  const { t } = useI18n()
+  const { t, l } = useI18n()
 
   return (
     <div
@@ -28,14 +28,9 @@ export function AllstarPitch({ squad }: { squad: AllstarSquad }) {
           'radial-gradient(circle at 12% 8%, #ff4f9e 0%, transparent 42%), linear-gradient(145deg, #e5197d 0%, #c01267 55%, #8e0d4c 100%)',
       }}
     >
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-xl font-bold tracking-tight text-white">ALLSTAR {squad.season}</p>
-          <p className="text-xs text-white/70">{t('allstar.lede')}</p>
-        </div>
-        <span className="rounded-pill bg-white/15 px-3 py-1.5 text-xs font-bold text-white ring-1 ring-white/25">
-          {t('allstar.round')} {squad.round}
-        </span>
+      <div className="mb-5 text-center">
+        <p className="text-2xl font-bold tracking-tight text-white">ALLSTAR {squad.season}</p>
+        <p className="mt-1 text-xs font-semibold text-white/85">{l(currentSeason)}</p>
       </div>
 
       <div className="relative mx-auto aspect-[4/5] w-full max-w-sm">

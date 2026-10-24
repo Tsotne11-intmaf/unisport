@@ -73,12 +73,6 @@ const dictionary = {
   },
   'groups.teams': { en: 'teams', ka: 'გუნდი' },
 
-  'allstar.lede': {
-    en: 'The XI students voted for last season.',
-    ka: 'გასულ სეზონში სტუდენტების მიერ არჩეული შემადგენლობა.',
-  },
-  'allstar.empty': { en: 'Open slot', ka: 'თავისუფალი ადგილი' },
-  'allstar.round': { en: 'Round', ka: 'ტური' },
   'allstar.bench': { en: 'Substitutes', ka: 'სათადარიგო' },
   'allstar.invite': {
     en: 'Enter the tournament and you have a shot at next season’s All-Star XI.',
@@ -105,10 +99,15 @@ const dictionary = {
   'table.points': { en: 'PTS', ka: 'ქულა' },
 
   'vote.lede': {
-    en: 'One vote per person. The winner takes a place in the All-Star XI above.',
-    ka: 'თითო ადამიანზე ერთი ხმა. გამარჯვებული ზემოთ ALLSTAR შემადგენლობაში მოხვდება.',
+    en: 'Vote for your group’s best player and help decide who takes the award.',
+    ka: 'მიეცი ხმა ჯგუფის საუკეთესო მოთამაშეს და დაგვეხმარე ჯილდოს პრიზიორის გამოვლენაში.',
   },
   'vote.cta': { en: 'Vote', ka: 'მიეცი ხმა' },
+  'vote.placeholderName': { en: 'Name Surname', ka: 'სახელი და გვარი' },
+  'vote.pending': {
+    en: 'Nominees are announced before each round.',
+    ka: 'კანდიდატები ყოველი ტურის წინ ცხადდება.',
+  },
   'vote.voted': { en: 'Voted', ka: 'ხმა მიცემულია' },
   'vote.thanks': { en: 'Thanks — your vote is counted.', ka: 'მადლობა — შენი ხმა დაფიქსირდა.' },
   'vote.total': { en: 'votes', ka: 'ხმა' },

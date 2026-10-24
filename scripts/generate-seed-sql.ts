@@ -44,7 +44,7 @@ const sql = [
   '',
   insert(
     'universities',
-    ['id', 'name_en', 'name_ka', 'short_name', 'city_en', 'city_ka', 'color'],
+    ['id', 'name_en', 'name_ka', 'short_name', 'city_en', 'city_ka', 'color', 'logo_url'],
     universities.map((item) => [
       item.id,
       item.name.en,
@@ -53,6 +53,7 @@ const sql = [
       item.city.en,
       item.city.ka,
       item.color,
+      item.logoUrl,
     ]),
   ),
   insert(

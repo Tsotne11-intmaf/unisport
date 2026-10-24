@@ -21,6 +21,8 @@ export interface University {
   shortName: string
   city: Localized
   color: string
+  /** Crest; falls back to the short name on a colour tile when absent or missing. */
+  logoUrl: string | null
 }
 
 export interface Sport {

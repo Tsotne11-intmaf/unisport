@@ -10,6 +10,7 @@ create table if not exists universities (
   city_en     text not null,
   city_ka     text not null,
   color       text not null default '#6b7280',
+  logo_url    text,
   created_at  timestamptz not null default now()
 );
 

@@ -12,6 +12,7 @@ import { useHub } from '@/data/HubProvider'
 import {
   allstarSquad,
   clubs,
+  currentSeason,
   tournamentGroups,
   voteCandidates,
   winnerTeams,
@@ -120,7 +121,7 @@ export function FootballPage() {
         <section className="shell py-8">
           <SectionHeading
             index={3}
-            eyebrow={l(sport?.name)}
+            eyebrow={l(currentSeason)}
             title={t('section.groups')}
           />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('groups.lede')}</p>
@@ -130,7 +131,7 @@ export function FootballPage() {
 
       {showSquad && (
         <section className="shell py-8">
-          <SectionHeading index={4} eyebrow="ALLSTAR" title={t('section.allstar')} />
+          <SectionHeading index={4} eyebrow={l(currentSeason)} title={t('section.allstar')} />
           <AllstarPitch squad={allstarSquad} />
         </section>
       )}
@@ -139,7 +140,7 @@ export function FootballPage() {
         <section className="shell py-8">
           <SectionHeading
             index={5}
-            eyebrow={t('label.titles')}
+            eyebrow={l(currentSeason)}
             title={t('section.winners')}
           />
           <WinnerTeams teams={winners} />
@@ -148,7 +149,7 @@ export function FootballPage() {
 
       {candidates.length > 0 && (
         <section className="shell py-8">
-          <SectionHeading index={6} eyebrow={t('nav.football')} title={t('section.vote')} />
+          <SectionHeading index={6} eyebrow={l(currentSeason)} title={t('section.vote')} />
           <p className="mb-5 -mt-2 text-sm text-slate">{t('vote.lede')}</p>
           <PlayerVote candidates={candidates} />
         </section>

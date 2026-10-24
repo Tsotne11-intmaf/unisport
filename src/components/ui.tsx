@@ -1,5 +1,5 @@
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import type { ReactNode } from 'react'
 
 import { useI18n } from '@/lib/i18n'
 import type { SportId, University } from '@/types'
@@ -102,7 +102,44 @@ export function EmptyState() {
   )
 }
 
-/** University identity chip — the colour stands in for a crest. */
+/**
+ * A university's crest, falling back to its short name on a colour tile when
+ * there is no logo — or when the file 404s, so a missing asset never shows a
+ * broken image.
+ */
+export function UniversityMark({
+  university,
+  className = 'size-10 text-xs',
+}: {
+  university: University
+  className?: string
+}) {
+  const [failed, setFailed] = useState(false)
+
+  if (university.logoUrl && !failed) {
+    return (
+      <img
+        src={university.logoUrl}
+        alt={university.shortName}
+        loading="lazy"
+        onError={() => setFailed(true)}
+        className={`shrink-0 rounded-lg bg-white object-contain ${className}`}
+      />
+    )
+  }
+
+  return (
+    <span
+      className={`inline-flex shrink-0 items-center justify-center rounded-lg font-bold ${className}`}
+      style={{ backgroundColor: `${university.color}1f`, color: university.color }}
+      title={university.shortName}
+    >
+      {university.shortName.slice(0, 4)}
+    </span>
+  )
+}
+
+/** University identity chip, sized for inline use next to a name. */
 export function UniversityChip({
   university,
   size = 'md',
@@ -111,15 +148,11 @@ export function UniversityChip({
   size?: 'sm' | 'md'
 }) {
   if (!university) return null
-  const dimensions = size === 'sm' ? 'size-7 text-[10px]' : 'size-10 text-xs'
   return (
-    <span
-      className={`inline-flex shrink-0 items-center justify-center rounded-lg font-bold ${dimensions}`}
-      style={{ backgroundColor: `${university.color}1f`, color: university.color }}
-      title={university.shortName}
-    >
-      {university.shortName.slice(0, 4)}
-    </span>
+    <UniversityMark
+      university={university}
+      className={size === 'sm' ? 'size-7 text-[10px]' : 'size-10 text-xs'}
+    />
   )
 }
 

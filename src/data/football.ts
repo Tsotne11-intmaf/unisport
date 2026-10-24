@@ -49,11 +49,21 @@ export interface WinnerTeam {
   highlight: Localized
 }
 
-/** Nothing but a name until the round's shortlist is settled. */
+/**
+ * An empty slot until the round's shortlist is settled: `name` and `logoUrl`
+ * stay null and the row renders as a placeholder rather than a real nominee.
+ */
 export interface VoteCandidate {
   id: string
-  name: string
+  name: string | null
+  logoUrl: string | null
   votes: number
+}
+
+/** The league run every section on the football page refers to. */
+export const currentSeason: Localized = {
+  en: 'Summer season 2026',
+  ka: '2026 წლის ზაფხულის სეზონი',
 }
 
 export const clubs: Club[] = [
@@ -146,12 +156,12 @@ export const tournamentGroups: TournamentGroup[] = [
   },
 ]
 
-/** The 2025 All-Star XI, as published on the match graphic. */
+/** The All-Star XI, as published on the match graphic. */
 export const allstarSquad: AllstarSquad = {
-  id: 'btu-allstar-2025',
+  id: 'btu-allstar-2026',
   tournamentId: 'btu-football-league',
   round: 'A17',
-  season: '2025',
+  season: '2026',
   slots: [
     {
       id: 'st',
@@ -241,11 +251,11 @@ export const winnerTeams: WinnerTeam[] = [
   },
 ]
 
-/** Placeholder shortlist — swap the names once the round's nominees are set. */
+/** Five empty slots — fill in `name` and `logoUrl` to open the vote. */
 export const voteCandidates: VoteCandidate[] = [
-  { id: 'cand-1', name: 'D. Miminoshvili', votes: 184 },
-  { id: 'cand-2', name: 'M. Asatiani', votes: 167 },
-  { id: 'cand-3', name: 'T. Kvatchadze', votes: 142 },
-  { id: 'cand-4', name: 'N. Surguladze', votes: 118 },
-  { id: 'cand-5', name: 'T. Meladze', votes: 96 },
+  { id: 'cand-1', name: null, logoUrl: null, votes: 0 },
+  { id: 'cand-2', name: null, logoUrl: null, votes: 0 },
+  { id: 'cand-3', name: null, logoUrl: null, votes: 0 },
+  { id: 'cand-4', name: null, logoUrl: null, votes: 0 },
+  { id: 'cand-5', name: null, logoUrl: null, votes: 0 },
 ]

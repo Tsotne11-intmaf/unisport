@@ -10,6 +10,7 @@ export const universities: University[] = [
     shortName: 'BTU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#ff2e7e',
+    logoUrl: '/universities/btu.png',
   },
   {
     id: 'tsu',
@@ -17,6 +18,7 @@ export const universities: University[] = [
     shortName: 'TSU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#3f7dff',
+    logoUrl: null,
   },
   {
     id: 'gtu',
@@ -24,6 +26,7 @@ export const universities: University[] = [
     shortName: 'GTU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#f2a516',
+    logoUrl: null,
   },
   {
     id: 'cu',
@@ -31,6 +34,7 @@ export const universities: University[] = [
     shortName: 'CU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#0f9d58',
+    logoUrl: null,
   },
   {
     id: 'freeuni',
@@ -38,6 +42,7 @@ export const universities: University[] = [
     shortName: 'FreeUni',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#00a39b',
+    logoUrl: null,
   },
   {
     id: 'iliauni',
@@ -45,6 +50,7 @@ export const universities: University[] = [
     shortName: 'IliaUni',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#8b5cf6',
+    logoUrl: null,
   },
   {
     id: 'gau',
@@ -52,6 +58,7 @@ export const universities: University[] = [
     shortName: 'GAU',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#ef6c25',
+    logoUrl: null,
   },
   {
     id: 'agruni',
@@ -59,6 +66,7 @@ export const universities: University[] = [
     shortName: 'AgrUni',
     city: { en: 'Tbilisi', ka: 'თბილისი' },
     color: '#2f9e44',
+    logoUrl: null,
   },
 ]
 

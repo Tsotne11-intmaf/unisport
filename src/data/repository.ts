@@ -50,6 +50,7 @@ const toUniversity = (row: Row): University => ({
   shortName: str(row, 'short_name'),
   city: pair(row, 'city'),
   color: str(row, 'color'),
+  logoUrl: nullableStr(row, 'logo_url'),
 })
 
 const toSport = (row: Row): Sport => ({

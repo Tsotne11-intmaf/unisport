@@ -2,6 +2,8 @@ import { ALL } from '@/data/selectors'
 import { useI18n } from '@/lib/i18n'
 import type { University } from '@/types'
 
+import { UniversityMark } from './ui'
+
 /**
  * The wide card version of the university filter. Roomier than the chip row and
  * the right place to lead a section that is entirely about choosing a campus.
@@ -34,8 +36,7 @@ export function UniversityPicker({
           active={value === university.id}
           title={l(university.name)}
           subtitle={l(university.city)}
-          badge={university.shortName}
-          color={university.color}
+          university={university}
           count={counts?.[university.id]}
           onClick={() => onChange(university.id)}
         />
@@ -48,16 +49,14 @@ function PickerCard({
   active,
   title,
   subtitle,
-  badge,
-  color,
+  university,
   count,
   onClick,
 }: {
   active: boolean
   title: string
   subtitle: string
-  badge?: string
-  color?: string
+  university?: University
   count?: number
   onClick: () => void
 }) {
@@ -70,16 +69,13 @@ function PickerCard({
         active ? 'border-ink shadow-[0_12px_30px_-20px_rgb(13_14_17_/_0.5)]' : 'border-line'
       }`}
     >
-      <span
-        className="grid size-16 shrink-0 place-items-center rounded-2xl text-sm font-bold"
-        style={
-          color
-            ? { backgroundColor: `${color}1a`, color }
-            : { backgroundColor: 'var(--color-mist)', color: 'var(--color-slate)' }
-        }
-      >
-        {badge ?? '★'}
-      </span>
+      {university ? (
+        <UniversityMark university={university} className="size-16 rounded-2xl text-sm" />
+      ) : (
+        <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-mist text-sm font-bold text-slate">
+          ★
+        </span>
+      )}
 
       <span className="min-w-0 flex-1 pr-6">
         <span className="block truncate text-[15px] leading-snug font-bold">{title}</span>

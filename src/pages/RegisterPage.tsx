@@ -1,7 +1,7 @@
 import { useMemo, useState, type FormEvent, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { Card, Media, Pill, Themed } from '@/components/ui'
+import { Card, Media, Pill, Themed, UniversityMark } from '@/components/ui'
 import { useHub } from '@/data/HubProvider'
 import { ALL, placesLeft } from '@/data/selectors'
 import { submitRegistration } from '@/data/repository'
@@ -155,15 +155,7 @@ export function RegisterPage() {
                         : 'border-line bg-paper hover:border-ink/35'
                     }`}
                   >
-                    <span
-                      className="grid size-9 shrink-0 place-items-center rounded-lg text-[11px] font-bold"
-                      style={{
-                        backgroundColor: active ? 'rgb(255 255 255 / 0.16)' : `${university.color}1f`,
-                        color: active ? '#fff' : university.color,
-                      }}
-                    >
-                      {university.shortName.slice(0, 4)}
-                    </span>
+                    <UniversityMark university={university} className="size-9 text-[11px]" />
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-semibold">
                         {university.shortName}
