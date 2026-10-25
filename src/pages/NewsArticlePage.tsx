@@ -41,7 +41,9 @@ export function NewsArticlePage() {
           ← {t('nav.news')}
         </Link>
 
-        <div className="mt-6 rounded-[2rem] border border-line bg-paper p-6 sm:p-10">
+        {/* On a phone 24px of card padding inside 16px of page padding left the
+            article visibly narrower than every section under it. */}
+        <div className="mt-6 rounded-[1.5rem] border border-line bg-paper px-4 py-6 sm:rounded-[2rem] sm:p-10">
         <div className="flex flex-wrap items-center gap-2">
           {item.isAnnouncement && <Pill variant="accent">{t('label.announcement')}</Pill>}
           {sport && <Pill>{l(sport.name)}</Pill>}
@@ -83,11 +85,13 @@ export function NewsArticlePage() {
 
         <p className="mt-8 text-[17px] leading-loose">{l(item.body)}</p>
 
-        {/* Milestones pinned at the foot, set right so they read as markers
-            rather than another paragraph. */}
+        {/* Milestones at the foot. They set right beside the label on a wide
+            card; on a phone the label takes its own line and they start at the
+            margin, because right-aligned chips under left-aligned prose read
+            as though they belong to something else. */}
         {item.keyDates.length > 0 && (
-          <div className="mt-8 flex flex-wrap items-center justify-end gap-2 border-t border-line pt-6">
-            <span className="mr-auto text-xs font-bold tracking-wide text-slate uppercase">
+          <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-line pt-6 sm:justify-end">
+            <span className="w-full text-xs font-bold tracking-wide text-slate uppercase sm:mr-auto sm:w-auto">
               {t('news.keyDates')}
             </span>
             {item.keyDates.map((entry) => (

@@ -85,12 +85,15 @@ export function InstagramCard({
           <InstagramIcon />
         </span>
 
-        <span className="min-w-0 flex-1">
+        {/* A floor on the text column: without it the button takes the row
+            and the title is left wrapping one letter per line on a phone.
+            Below the floor the row wraps and the button drops underneath. */}
+        <span className="min-w-[11rem] flex-1">
           <span className="block font-bold">{title ?? t('social.title')}</span>
           <span className="block text-sm text-slate">{body ?? t('social.body')}</span>
         </span>
 
-        <span className="shrink-0 rounded-pill bg-ink px-4 py-2.5 text-sm font-semibold text-white">
+        <span className="w-full shrink-0 rounded-pill bg-ink px-4 py-2.5 text-center text-sm font-semibold text-white sm:w-auto sm:text-left">
           {t('social.cta')} ↗
         </span>
       </a>
